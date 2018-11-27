@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public HashSet<GameObject> emails;
-    RaycastHit hitInfo;
 
     public void Start()
     {
