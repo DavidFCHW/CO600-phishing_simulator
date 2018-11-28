@@ -72,4 +72,16 @@ public class DragScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         }
         hoveringOn = null;
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("HERE 1");
+        gameObject.GetComponent<Image>().color = new Color32(233, 0, 85, 100);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("HERE 2");
+        gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 100);
+    }
 }
