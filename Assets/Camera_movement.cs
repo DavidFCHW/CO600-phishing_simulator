@@ -18,8 +18,8 @@ public class Camera_movement : MonoBehaviour
     public float minimumHori = -45.0f;
     public float maximumHori = 45.0f;
 
-    public float sensHorizontal = 10.0f; //the sensitivity of camera movement horizontally.
-    public float sensVertical = 10.0f; //the sensitivity of camera movement vertically.
+    public float sensHorizontal = 5.0f; //the sensitivity of camera movement horizontally.
+    public float sensVertical = 5.0f; //the sensitivity of camera movement vertically.
 
     public float _rotationX = 0;
     public float _rotationY = 0;

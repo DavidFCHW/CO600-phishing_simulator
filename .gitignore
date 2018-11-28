@@ -58,3 +58,6 @@ sysinfo.txt
 =======
 *.unitypackage
 >>>>>>> 3a3339ec7fd6285a2b3372ca32fbae5270249142
+
+# mac generated file thingy
+.DS_Store

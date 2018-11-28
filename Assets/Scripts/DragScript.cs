@@ -29,7 +29,7 @@ public class DragScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public void OnDrag(PointerEventData eventData)
     {
         //transform.position = new Vector3(Input.mousePosition.x - offset.x, Input.mousePosition.y - offset.y, 0);
-        transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        this.GetComponent<Rigidbody2D>().position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -42,7 +42,7 @@ public class DragScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public void OnEndDrag(PointerEventData eventData)
     {
         transform.localScale = new Vector3(1, 1, 1);
-        transform.position = originalPosition;
+        GetComponent<Rigidbody2D>().position = originalPosition;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -71,5 +71,17 @@ public class DragScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             hoveringOn.gameObject.GetComponent<Image>().color = new Color32(233, 0, 85, 0);
         }
         hoveringOn = null;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("HERE 1");
+        gameObject.GetComponent<Image>().color = new Color32(233, 0, 85, 100);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("HERE 2");
+        gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 100);
     }
 }
