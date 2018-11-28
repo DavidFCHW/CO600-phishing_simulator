@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Office.unity
+    guid: 04c4af0cdcaa2684da17f6ac04ab5f1e
+  - enabled: 1
+    path: Assets/Scenes/Email Client.unity
+    guid: d9083d959b08e42f695bb1069db8d005
   m_configObjects: {}
