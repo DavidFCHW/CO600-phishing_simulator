@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ClickOnEmailScript : MonoBehaviour {
+    // File contants
+    private Color32 emailClickedOnColor = new Color32(255, 255, 255, 255);
 
     private BodyScript emailBodiesContainer;
     public GameObject emailBody;
@@ -11,7 +13,7 @@ public class ClickOnEmailScript : MonoBehaviour {
     public void OnClick() {
         emailBodiesContainer.hideAllEmailBodiesAndUnHighlightSubject();
         emailBody.transform.localScale = new Vector3(1, 1, 1);
-        this.gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        this.gameObject.GetComponent<Image>().color = emailClickedOnColor;
     }
 
     public void setEmailBodiesContainer(BodyScript emailBodiesContainer)
