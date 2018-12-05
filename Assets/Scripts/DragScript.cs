@@ -10,6 +10,7 @@ public class DragScript : MonoBehaviour,
     // File constants
     private Color32 normalColor = new Color32(255, 255, 255, 100);
     private Color32 hoverColor = new Color32(233, 0, 85, 100);
+    private Color32 emailClickedOnColor = new Color32(255, 255, 255, 255);
     private Color32 mailBoxHoverEnterColor = new Color32(233, 0, 85, 71);
     private Color32 mailBoxHoverExitColor = new Color32(233, 0, 85, 0);
     private Vector3 tinyPreviewScale = new Vector3(0.3f, 0.3f, 0.3f);
@@ -21,6 +22,7 @@ public class DragScript : MonoBehaviour,
     public MailboxScript sent;
     public MailboxScript trash;
     private MailboxScript hoveringOn = null;
+    private Color32 previousColor;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -86,11 +88,17 @@ public class DragScript : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        previousColor = gameObject.GetComponent<Image>().color;
         gameObject.GetComponent<Image>().color = hoverColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        gameObject.GetComponent<Image>().color = normalColor;
+        gameObject.GetComponent<Image>().color = previousColor;
+    }
+
+    public void clickOn()
+    {
+        previousColor = emailClickedOnColor;
     }
 }

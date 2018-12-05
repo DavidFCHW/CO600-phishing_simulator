@@ -14,6 +14,7 @@ public class ClickOnEmailScript : MonoBehaviour {
         emailBodiesContainer.hideAllEmailBodiesAndUnHighlightSubject();
         emailBody.transform.localScale = new Vector3(1, 1, 1);
         this.gameObject.GetComponent<Image>().color = emailClickedOnColor;
+        this.gameObject.GetComponent<DragScript>().clickOn();
     }
 
     public void setEmailBodiesContainer(BodyScript emailBodiesContainer)
