@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    // File constants
+    private Color32 mailBoxHoverColor = new Color32(139, 139, 139, 71);
+    private Color32 mailBoxNormalColor = new Color32(139, 139, 139, 0);
+    private int counter = 0;
+    public Text counterText;
+
     public HashSet<GameObject> emails;
 
     public void Start()
@@ -13,13 +19,10 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         emails = new HashSet<GameObject>();
     }
 
-    //public HashSet<GameObject> getEmails() {
-    //    return emails;
-    //}
-
     public void addEmail(GameObject email)
     {
         emails.Add(email);
+        incrementCounter();
         printEmails();
     }
 
@@ -32,13 +35,19 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
+    public void incrementCounter()
+    {
+        counter++;
+        counterText.text = counter.ToString();
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        gameObject.GetComponent<Image>().color = new Color32(139, 139, 139, 71);
+        gameObject.GetComponent<Image>().color = mailBoxHoverColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        gameObject.GetComponent<Image>().color = new Color32(139, 139, 139, 0);
+        gameObject.GetComponent<Image>().color = mailBoxNormalColor;
     }
 }

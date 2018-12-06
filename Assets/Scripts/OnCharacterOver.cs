@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class OnCharacterOver : MonoBehaviour {
 
+    // File constants
+    private Vector3 interogationMarkNormalScale = new Vector3(1, 1, 1);
+    private Vector3 dialogueBoxNormalScale = new Vector3(1, 1, 1);
+
     public GameObject dialogueBox;
     public GameObject interogationMark;
     private bool dialogueBoxShowing = false;
@@ -35,7 +39,7 @@ public class OnCharacterOver : MonoBehaviour {
         }
         else
         {
-            dialogueBox.transform.localScale = new Vector3(1, 1, 1);
+            dialogueBox.transform.localScale = dialogueBoxNormalScale;
             dialogueBoxShowing = true;
         }
     }
@@ -47,6 +51,6 @@ public class OnCharacterOver : MonoBehaviour {
 
     private void OnMouseEnter()
     {
-        interogationMark.transform.localScale = new Vector3(1, 1, 1);
+        interogationMark.transform.localScale = interogationMarkNormalScale;
     }
 }

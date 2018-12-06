@@ -2,21 +2,32 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DragScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
+public class DragScript : MonoBehaviour, 
+    IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerUpHandler, 
+    IPointerEnterHandler, IPointerExitHandler
 {
+    // File constants
+    private Color32 normalColor = new Color32(255, 255, 255, 100);
+    private Color32 hoverColor = new Color32(233, 0, 85, 100);
+    private Color32 emailClickedOnColor = new Color32(255, 255, 255, 255);
+    private Color32 mailBoxHoverEnterColor = new Color32(233, 0, 85, 71);
+    private Color32 mailBoxHoverExitColor = new Color32(233, 0, 85, 0);
+    private Vector3 tinyPreviewScale = new Vector3(0.3f, 0.3f, 0.3f);
+    private Vector3 normalPreviewScale = new Vector3(1, 1, 1);
+
     //private Vector3 offset;
     private Vector3 originalPosition;
+    private float halfHeightSmall;
     public MailboxScript inbox;
     public MailboxScript sent;
     public MailboxScript trash;
     private MailboxScript hoveringOn = null;
+    private Color32 previousColor;
 
-    public void OnPointerDown(PointerEventData eventData)
+    private void Awake()
     {
-        //offset = new Vector3(Input.mousePosition.x - transform.position.x, Input.mousePosition.y - transform.position.y);
-        //originalPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        halfHeightSmall = gameObject.GetComponent<RectTransform>().rect.height / 6;
     }
-
     public void OnPointerUp(PointerEventData eventData)
     {
         if (hoveringOn != null)
@@ -29,19 +40,23 @@ public class DragScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public void OnDrag(PointerEventData eventData)
     {
         //transform.position = new Vector3(Input.mousePosition.x - offset.x, Input.mousePosition.y - offset.y, 0);
-        this.GetComponent<Rigidbody2D>().position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        this.GetComponent<Rigidbody2D>().position = new Vector3(Input.mousePosition.x, Input.mousePosition.y+ + halfHeightSmall, 0);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        transform.localScale = tinyPreviewScale;
+        //if (!halfHeightSmallSet)
+        //{
+        //    halfHeightSmall = gameObject.GetComponent<RectTransform>().rect.height/2;
+        //}
         //offset = new Vector3(Input.mousePosition.x - transform.position.x, Input.mousePosition.y - transform.position.y);
         originalPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.localScale = new Vector3(1, 1, 1);
+        transform.localScale = normalPreviewScale;
         GetComponent<Rigidbody2D>().position = originalPosition;
     }
 
@@ -50,17 +65,17 @@ public class DragScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         if (collision.gameObject.name.Equals(trash.name))
         {
             hoveringOn = trash;
-            trash.gameObject.GetComponent<Image>().color = new Color32(233, 0, 85, 71);
+            trash.gameObject.GetComponent<Image>().color = mailBoxHoverEnterColor;
         }
         else if (collision.gameObject.name.Equals(inbox.name))
         {
             hoveringOn = inbox;
-            inbox.gameObject.GetComponent<Image>().color = new Color32(233, 0, 85, 71);
+            inbox.gameObject.GetComponent<Image>().color = mailBoxHoverEnterColor;
         }
         else if (collision.gameObject.name.Equals(sent.name))
         {
             hoveringOn = sent;
-            sent.gameObject.GetComponent<Image>().color = new Color32(233, 0, 85, 71);
+            sent.gameObject.GetComponent<Image>().color = mailBoxHoverEnterColor;
         }
     }
 
@@ -68,20 +83,24 @@ public class DragScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     {
         if (hoveringOn != null)
         {
-            hoveringOn.gameObject.GetComponent<Image>().color = new Color32(233, 0, 85, 0);
+            hoveringOn.gameObject.GetComponent<Image>().color = mailBoxHoverExitColor;
         }
         hoveringOn = null;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("HERE 1");
-        gameObject.GetComponent<Image>().color = new Color32(233, 0, 85, 100);
+        previousColor = gameObject.GetComponent<Image>().color;
+        gameObject.GetComponent<Image>().color = hoverColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("HERE 2");
-        gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 100);
+        gameObject.GetComponent<Image>().color = previousColor;
+    }
+
+    public void clickOn()
+    {
+        previousColor = emailClickedOnColor;
     }
 }
