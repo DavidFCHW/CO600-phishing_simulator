@@ -3,8 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class DragScript : MonoBehaviour, 
-    IDragHandler, IBeginDragHandler, IEndDragHandler, 
-    IPointerDownHandler, IPointerUpHandler, 
+    IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerUpHandler, 
     IPointerEnterHandler, IPointerExitHandler
 {
     // File constants
@@ -18,18 +17,17 @@ public class DragScript : MonoBehaviour,
 
     //private Vector3 offset;
     private Vector3 originalPosition;
+    private float halfHeightSmall;
     public MailboxScript inbox;
     public MailboxScript sent;
     public MailboxScript trash;
     private MailboxScript hoveringOn = null;
     private Color32 previousColor;
 
-    public void OnPointerDown(PointerEventData eventData)
+    private void Awake()
     {
-        //offset = new Vector3(Input.mousePosition.x - transform.position.x, Input.mousePosition.y - transform.position.y);
-        //originalPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        halfHeightSmall = gameObject.GetComponent<RectTransform>().rect.height / 6;
     }
-
     public void OnPointerUp(PointerEventData eventData)
     {
         if (hoveringOn != null)
@@ -42,12 +40,16 @@ public class DragScript : MonoBehaviour,
     public void OnDrag(PointerEventData eventData)
     {
         //transform.position = new Vector3(Input.mousePosition.x - offset.x, Input.mousePosition.y - offset.y, 0);
-        this.GetComponent<Rigidbody2D>().position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        this.GetComponent<Rigidbody2D>().position = new Vector3(Input.mousePosition.x, Input.mousePosition.y+ + halfHeightSmall, 0);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         transform.localScale = tinyPreviewScale;
+        //if (!halfHeightSmallSet)
+        //{
+        //    halfHeightSmall = gameObject.GetComponent<RectTransform>().rect.height/2;
+        //}
         //offset = new Vector3(Input.mousePosition.x - transform.position.x, Input.mousePosition.y - transform.position.y);
         originalPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
