@@ -9,38 +9,42 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     // File constants
     private Color32 mailBoxHoverColor = new Color32(139, 139, 139, 71);
     private Color32 mailBoxNormalColor = new Color32(139, 139, 139, 0);
+    // Variables
     private int counter = 0;
     public Text counterText;
-
-    public HashSet<GameObject> emails;
+    // The emails inside this mailbox
+    public List<Email> emails;
 
     public void Start()
     {
-        emails = new HashSet<GameObject>();
+        emails = new List<Email>();
     }
 
-    public void addEmail(GameObject email)
+    public void addEmail(Email email)
     {
         emails.Add(email);
-        incrementCounter();
-        printEmails();
+        IncrementCounter();
+        PrintEmails();
     }
 
-    public void printEmails()
+    public void PrintEmails()
     {
-        Debug.Log("Emails:");
-        foreach (GameObject email in emails)
-        {
-            Debug.Log(email.name);
-        }
+        //Debug.Log("Emails:");
+        //foreach (Email email in emails)
+        //{
+        //    Debug.Log(email);
+        //}
     }
 
-    public void incrementCounter()
+    public void IncrementCounter()
     {
         counter++;
         counterText.text = counter.ToString();
     }
 
+    /*
+     * Change color on hover
+     */
     public void OnPointerEnter(PointerEventData eventData)
     {
         gameObject.GetComponent<Image>().color = mailBoxHoverColor;

@@ -30,11 +30,11 @@ public class DragScript : MonoBehaviour,
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (hoveringOn != null)
-        {
-            hoveringOn.addEmail(this.gameObject);
-            Destroy(gameObject);
-        }
+        //if (hoveringOn != null)
+        //{
+        //    hoveringOn.addEmail(this.gameObject);
+        //    Destroy(gameObject);
+        //}
     }
 
     public void OnDrag(PointerEventData eventData)
