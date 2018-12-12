@@ -1,22 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/**
- * Taken from https://gamedev.stackexchange.com/questions/104693/how-to-use-input-getaxismouse-x-y-to-rotate-the-camera
- */
 public class CameraMovementScript : MonoBehaviour
 {
-    public float horizontalSpeed = 12F;
-    public float verticalSpeed = 2.0F;
-    private bool blocked = true;
-
-    void Update()
+    public bool blocked = true;
+    public enum RotationAxis
     {
-        if (!blocked) {
-            float h = horizontalSpeed * Input.GetAxis("Mouse X");
-            //float v = verticalSpeed * Input.GetAxis("Mouse Y");
-            //transform.Rotate(v, h, 0);
-            transform.Rotate(0, h, 0);
+        MouseX = 1, MouseY = 2
+    }
+    public RotationAxis axes = RotationAxis.MouseX;
+    public float minimumVert = -45.0f;
+    public float maximumVert = 45.0f;
+    public float minimumHori = -45.0f;
+    public float maximumHori = 45.0f;
+    public float sensHorizontal = 5.0f; //the sensitivity of camera movement horizontally.
+    public float sensVertical = 5.0f; //the sensitivity of camera movement vertically.
+    public float _rotationX = 0;
+    public float _rotationY = 0;
+    // Update is called once per frame
+    public void Update()
+    {
+        if (!blocked)
+        {
+            if (axes == RotationAxis.MouseX)
+            {
+                transform.Rotate(0, Input.GetAxis("Mouse X") * sensHorizontal, 0);
+                _rotationY -= Input.GetAxis("Mouse X") * sensHorizontal;
+                _rotationX = Mathf.Clamp(_rotationX, minimumHori, maximumHori);
+            }
+            else if (axes == RotationAxis.MouseY)
+            {
+                _rotationX -= Input.GetAxis("Mouse Y") * sensVertical;
+                _rotationX = Mathf.Clamp(_rotationX, minimumVert, maximumVert); //Clamps the vertical angle within the min and max variables.
+                float rotationY = transform.localEulerAngles.y;
+                transform.localEulerAngles = new Vector3(_rotationX, rotationY);
+            }
         }
     }
 
@@ -28,19 +46,5 @@ public class CameraMovementScript : MonoBehaviour
     public void Block()
     {
         blocked = true;
-    }
-
-    /*
-     * Perform a horizontal rotation of the camera
-     */
-    public void RotateHorizontal(int rotation)
-    {
-        transform.Rotate(0, rotation, 0);
-    }
-
-    public void LockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.lockState = CursorLockMode.Confined;
     }
 }

@@ -36,6 +36,6 @@ public class ManagerTalkScript : MonoBehaviour {
         text3.transform.localScale = hiddenScale;
         Destroy(gameObject);
         mainCam.UnBlock();
-        mainCam.LockCursor();
+        //mainCam.LockCursor();
     }
 }
