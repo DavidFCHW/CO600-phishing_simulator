@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EmailPreviewScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class EmailPreviewScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
 {
 
     // Associated email object, links preview to body
@@ -54,5 +54,21 @@ public class EmailPreviewScript : MonoBehaviour, IDragHandler, IBeginDragHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         email.OnPointerEnterPreview(eventData);
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        email.OnPreviewEnterMailbox(collision);
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        email.OnPreviewExitMailbox(collision);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        email.OnEmailPreviewRelease(eventData);
+
     }
 }
