@@ -13,11 +13,16 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private int counter = 0;
     public Text counterText;
     // The emails inside this mailbox
-    public List<Email> emails;
+    private List<Email> emails;
 
     public void Start()
     {
         emails = new List<Email>();
+    }
+
+    public List<Email> GetEmails()
+    {
+        return emails;
     }
 
     public void addEmail(Email email)
