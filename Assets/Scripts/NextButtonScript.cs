@@ -5,11 +5,11 @@ using UnityEngine;
 public class NextButtonScript : MonoBehaviour {
 
     public GameObject panel;
-    public Camera_movement camera_Movement;
+    public CameraMovementScript cameraMovement;
 
     public void OnClick()
     {
-        camera_Movement.blocked = false;
+        cameraMovement.UnBlock();
         Destroy(panel);
     }
 }
