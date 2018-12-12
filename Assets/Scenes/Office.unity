@@ -962,7 +962,7 @@ RectTransform:
   m_GameObject: {fileID: 481739607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 1053461846}
   - {fileID: 206895275}
@@ -2545,7 +2545,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next
+  m_Text: Done
 --- !u!222 &1175037576
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3421,8 +3421,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d88037a41cbe754fbab16897940f657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 2
-  verticalSpeed: 2
+  blocked: 1
+  axes: 1
+  minimumVert: -45
+  maximumVert: 45
+  minimumHori: -45
+  maximumHori: 45
+  sensHorizontal: 5
+  sensVertical: 5
+  _rotationX: 0
+  _rotationY: 0
 --- !u!1 &1827801824
 GameObject:
   m_ObjectHideFlags: 0
