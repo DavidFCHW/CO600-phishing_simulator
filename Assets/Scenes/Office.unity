@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 90502991}
   - component: {fileID: 90502990}
   - component: {fileID: 90502989}
+  - component: {fileID: 90502992}
   m_Layer: 5
   m_Name: redPanel
   m_TagString: Untagged
@@ -313,7 +314,7 @@ MonoBehaviour:
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
-  m_FillCenter: 1
+  m_FillCenter: 0
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
@@ -346,6 +347,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &90502992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 90502988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a47582b328fa4da2a46039b67c0fb63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 1775525758}
+  text1: {fileID: 481739607}
+  text2: {fileID: 828677649}
+  text3: {fileID: 772119179}
 --- !u!1 &115341565
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +663,6 @@ GameObject:
   - component: {fileID: 290572271}
   - component: {fileID: 290572270}
   - component: {fileID: 290572269}
-  - component: {fileID: 290572268}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -674,19 +689,6 @@ RectTransform:
   m_AnchoredPosition: {x: 198, y: -156}
   m_SizeDelta: {x: 140.7, y: 40.5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &290572268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 290572266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812c3dad9e58c41c08fa185d96a1dcf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 90502988}
-  cameraMovement: {fileID: 0}
 --- !u!114 &290572269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,8 +728,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 290572268}
-        m_MethodName: OnClick
+      - m_Target: {fileID: 90502992}
+        m_MethodName: OnClick1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1248,7 +1250,6 @@ GameObject:
   - component: {fileID: 647312019}
   - component: {fileID: 647312018}
   - component: {fileID: 647312017}
-  - component: {fileID: 647312016}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1275,19 +1276,6 @@ RectTransform:
   m_AnchoredPosition: {x: 198, y: -156}
   m_SizeDelta: {x: 140.7, y: 40.5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &647312016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 647312014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812c3dad9e58c41c08fa185d96a1dcf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 90502988}
-  cameraMovement: {fileID: 0}
 --- !u!114 &647312017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1327,8 +1315,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 647312016}
-        m_MethodName: OnClick
+      - m_Target: {fileID: 90502992}
+        m_MethodName: OnClick3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1385,7 +1373,6 @@ GameObject:
   - component: {fileID: 670574171}
   - component: {fileID: 670574170}
   - component: {fileID: 670574169}
-  - component: {fileID: 670574168}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1412,19 +1399,6 @@ RectTransform:
   m_AnchoredPosition: {x: 198, y: -156}
   m_SizeDelta: {x: 140.7, y: 40.5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &670574168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 670574166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812c3dad9e58c41c08fa185d96a1dcf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 90502988}
-  cameraMovement: {fileID: 0}
 --- !u!114 &670574169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1464,8 +1438,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 670574168}
-        m_MethodName: OnClick
+      - m_Target: {fileID: 90502992}
+        m_MethodName: OnClick2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1608,15 +1582,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lorem ipsum ut labore anim pariatur dolor officia proident enim eu exercitation
-    adipisicing nostrud dolore est anim consectetur ex deserunt magna sint nisi cupidatat
-    mollit.
+  m_Text: I'll be on the right over there so feel free to ask me anything.
 --- !u!222 &708668205
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1891,7 +1863,7 @@ RectTransform:
   m_GameObject: {fileID: 828677649}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1472780329}
   - {fileID: 1483190067}
@@ -3121,7 +3093,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lemme show you around.
+  m_Text: This is your desk, I've prepared a few notes for you.
 --- !u!222 &1513404282
 CanvasRenderer:
   m_ObjectHideFlags: 0
