@@ -13,6 +13,8 @@ public class EmailScript : MonoBehaviour {
     public MailboxScript inbox;
     public MailboxScript archive;
     public MailboxScript trash;
+    // Finished Panel
+    public GameObject finishedPanel;
     // Index of currently selcted email
     private int currentlySelectedEmailIndex = 0;
 
@@ -20,6 +22,8 @@ public class EmailScript : MonoBehaviour {
      * Method called on initialisation
      */
     void Start () {
+        // Set finished panel inactive
+        finishedPanel.SetActive(false);
         // Link together bodies and previews
 		for (int i = 0; i < emailPreviewArray.Length; i++)
         {
@@ -28,12 +32,23 @@ public class EmailScript : MonoBehaviour {
             emailPreviewArray[i].setEmail(email);
             emailBodyArray[i].setEmail(email);
         }
+        // Assign the isPhishing variables
+        AssignIsPhishing();
         // Shuffle the list
         emails = Shuffle(emails);
         // Re-assign the indexes
         AssignEmailIndexes();
         // Position the emails on screen
         PositionEmailPreviewsScript(emails);
+    }
+
+    /*
+     * Sets every mail as phishing or legit
+     */
+     void AssignIsPhishing()
+    {
+        emails[2].isPhish = true;
+        emails[3].isPhish = true;
     }
 
     /*
@@ -73,6 +88,21 @@ public class EmailScript : MonoBehaviour {
     }
 
     /*
+     * Reposition emails when one preview has been removed
+     */
+    private void RePositionEmailPreviewsScript(List<Email> emailList, int index)
+    {
+        for (int i = index; i < emailList.Count; i++)
+        {
+            emailList[i].emailPreview.gameObject.transform.localPosition = new Vector3(
+                emailList[i].emailPreview.gameObject.transform.localPosition.x,
+                emailList[i].emailPreview.gameObject.transform.localPosition.y + emailList[i].emailPreview.gameObject.GetComponent<RectTransform>().rect.height,
+                emailList[i].emailPreview.gameObject.transform.localPosition.z
+            );
+        }
+    }
+
+    /*
      * Move from email to email with up and down arrow keys
      */
     private void CheckIfArrow()
@@ -98,12 +128,24 @@ public class EmailScript : MonoBehaviour {
      */
      public void RemoveEmail(Email emailToRemove)
     {
+        // Remove email from array
         emails.Remove(emailToRemove);
-        Destroy(emailToRemove.emailPreview.gameObject);
-        // Re-assign the indexes
-        AssignEmailIndexes();
-        // Re-osition the emails on screen
-        //PositionEmailPreviewsScript(emails);
+        // Remove email from view
+        emailToRemove.emailPreview.gameObject.SetActive(false);
+        //emailToRemove.emailPreview.transform.localScale;
+
+        // Check if there are any more emails
+        if (emails.Count <= 0)
+        {
+            finishedPanel.SetActive(true);
+        }
+        else
+        {
+            // Re-assign the indexes
+            AssignEmailIndexes();
+            // Re-position the emails on screen
+            RePositionEmailPreviewsScript(emails, emailToRemove.index);
+        }
     }
 
     /*
@@ -143,6 +185,47 @@ public class EmailScript : MonoBehaviour {
         }
         return list;
     }
+
+    /*
+     * Button to end the game is pressed
+     */
+    public void CheckButtonClicked()
+    {
+        CheckCorrectEmails();
+    }
+
+    /*
+     * Check if the mail was in the correct inbox
+     */
+     private void CheckCorrectEmails()
+    {
+        int correct = 0;
+        int incorrect = 0;
+        foreach (Email mail in trash.GetEmails())
+        {
+            if (mail.isPhish)
+            {
+                correct++;
+            }
+            else
+            {
+                incorrect++;
+            }
+        }
+        foreach (Email mail in archive.GetEmails())
+        {
+            if (!mail.isPhish)
+            {
+                correct++;
+            }
+            else
+            {
+                incorrect++;
+            }
+        }
+        Debug.Log("Correct emails: " + correct);
+        Debug.Log("Incorrect emails: " + incorrect);
+    }
 }
 
 /*
@@ -165,6 +248,8 @@ public class Email
     private Vector3 normalPreviewScale = new Vector3(1, 1, 1);
     // Class References
     public int index;
+    public bool isPhish = false;
+    public bool isCorrect = true; // Used at the end to see if in correct inbox
     public EmailPreviewScript emailPreview;
     public EmailBodyScript emailBody;
     private EmailScript emailScript;
@@ -296,8 +381,7 @@ public class Email
             // Hide body
             ChangeScale(emailBody.gameObject, hideBodyScale);
             // Hide preview
-            Debug.Log("HIDE PREVIEW FOR " + emailPreview.gameObject.name);
-            //ChangeScale(emailPreview.gameObject, hidePreviewScale);
+            ChangeScale(emailPreview.gameObject, hidePreviewScale);
             // Remove from List
             emailScript.RemoveEmail(this);
         }
