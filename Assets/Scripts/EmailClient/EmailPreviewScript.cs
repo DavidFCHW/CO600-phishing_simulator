@@ -56,6 +56,9 @@ public class EmailPreviewScript : MonoBehaviour, IDragHandler, IBeginDragHandler
         email.OnPointerEnterPreview(eventData);
     }
 
+    /*
+     * Hover preview on mailbox
+     */
     public void OnTriggerEnter2D(Collider2D collision)
     {
         email.OnPreviewEnterMailbox(collision);

@@ -29,7 +29,6 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         emails.Add(email);
         IncrementCounter();
-        PrintEmails();
     }
 
     public void PrintEmails()

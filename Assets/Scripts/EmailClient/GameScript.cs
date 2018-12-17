@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameScript : MonoBehaviour {
 
-    //Dictionary<PreviewScript, BodyScript> emails = new Dictionary<string, string>();
-
     // Use this for initialization
     void Start () {
 		
