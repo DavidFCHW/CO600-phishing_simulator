@@ -13,6 +13,8 @@ public class EmailScript : MonoBehaviour {
     public MailboxScript inbox;
     public MailboxScript archive;
     public MailboxScript trash;
+    // Timer
+    public TimerScript timer;
     // Finished Panel
     public GameObject finishedPanel;
     // Index of currently selcted email

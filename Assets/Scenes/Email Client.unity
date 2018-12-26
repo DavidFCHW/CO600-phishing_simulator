@@ -3742,7 +3742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.000015258789, y: -1321.1503}
+  m_AnchoredPosition: {x: -0.000015258789, y: -1321.1501}
   m_SizeDelta: {x: 0, y: 1635.5}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &608198258
@@ -7763,7 +7763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.000015258789, y: -190.31995}
+  m_AnchoredPosition: {x: -0.000015258789, y: -190.31992}
   m_SizeDelta: {x: -0.000030518, y: 511.1}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1254782924
@@ -9294,8 +9294,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1653828239}
   m_HandleRect: {fileID: 1653828238}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.5285474
+  m_Value: 0.99999976
+  m_Size: 0.52854735
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10143,6 +10143,7 @@ MonoBehaviour:
   inbox: {fileID: 1638567482}
   archive: {fileID: 1969694006}
   trash: {fileID: 1317602098}
+  timer: {fileID: 1309193527}
   finishedPanel: {fileID: 2105481789}
 --- !u!1 &1462040202
 GameObject:
@@ -10522,8 +10523,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 864368568}
   m_HandleRect: {fileID: 864368567}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.62762666
+  m_Value: 0.9999997
+  m_Size: 0.6276267
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15372,7 +15373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -280.41998}
+  m_AnchoredPosition: {x: 0, y: -280.41995}
   m_SizeDelta: {x: 0, y: 594.8}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &2105481789
