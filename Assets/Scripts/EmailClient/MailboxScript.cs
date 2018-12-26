@@ -55,6 +55,22 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
     /*
+     * Remove an email from the list of emails
+     */
+    public void RemoveEmail(Email emailToRemove)
+    {
+        DecrementCounter();
+        // Remove email from array
+        emails.Remove(emailToRemove);
+        // Remove email from view
+        emailToRemove.emailPreview.gameObject.SetActive(false);
+        // Re-assign indexes
+        AssignEmailIndexes();
+        // Re-position the emails on screen
+        RepositionEmailPreviews(emailToRemove.index);
+    }
+
+    /*
      * Increment email counter
      */
     public void IncrementCounter()
@@ -64,16 +80,31 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
     /*
-     * Change color on hover
+     * Decrement email counter
+     */
+    public void DecrementCounter()
+    {
+        counter--;
+        counterText.text = counter.ToString();
+    }
+
+    /*
+     * Hover methods
      */
     public void OnPointerEnter(PointerEventData eventData)
     {
+        // Change color
         gameObject.GetComponent<Image>().color = mailBoxHoverColor;
+        // Set hovered on mailbox
+        emailScript.SetHoveredOn(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        // Change color back
         gameObject.GetComponent<Image>().color = (isActive ? mailBoxSelectedColor : mailBoxNormalColor);
+        // Set hovered on mailbox
+        emailScript.SetHoveredOn(null);
     }
 
     /*
@@ -81,24 +112,18 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
      */
      public void Select()
     {
-        PrintEmails();
         isActive = true;
-        ChangeColor(this.gameObject, mailBoxSelectedColor);
+        // Change color
+        this.gameObject.GetComponent<Image>().color = mailBoxSelectedColor;
         // Set email previews as active
         foreach (Email email in emails)
         {
             email.emailPreview.gameObject.SetActive(true);
         }
+        // Re-assign indexes
+        AssignEmailIndexes();
         // Position the emails on screenZ
         PositionEmailPreviews();
-    }
-
-    public void PrintEmails()
-    {
-        foreach (Email email in emails)
-        {
-            Debug.Log(email.emailPreview.gameObject.name);
-        }
     }
 
     /*
@@ -107,7 +132,8 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void Unselect()
     {
         isActive = false;
-        ChangeColor(this.gameObject, mailBoxNormalColor);
+        // Change color
+        this.gameObject.GetComponent<Image>().color = mailBoxNormalColor;
         // Set email previews as inactive
         foreach (Email email in emails)
         {
@@ -168,21 +194,6 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
     /*
-     * Remove an email from the list of emails
-     */
-    public void RemoveEmail(Email emailToRemove)
-    {
-        // Remove email from array
-        emails.Remove(emailToRemove);
-        // Remove email from view
-        emailToRemove.emailPreview.gameObject.SetActive(false);
-        // Re-assign indexes
-        AssignEmailIndexes();
-        // Re-position the emails on screen
-        RepositionEmailPreviews(emailToRemove.index);
-    }
-
-    /*
      * Called when you click on the mailbox
      */
     public void OnClick()
@@ -192,22 +203,6 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             emailScript.SetCurrentMailbox(this);
             Select();
         }
-    }
-
-
-
-
-    /*
-     * Helper methods
-     */
-    private void ChangeColor(GameObject gameobject, Color32 newColor)
-    {
-        gameobject.GetComponent<Image>().color = newColor;
-    }
-
-    private void ChangeScale(GameObject gameobject, Vector3 newScale)
-    {
-        gameobject.transform.localScale = newScale;
     }
 
     private List<T> Shuffle<T>(List<T> list)
