@@ -14,7 +14,7 @@ public class EmailPreviewScript : MonoBehaviour,
     /*
      * Called by the EmailScript, keeps a reference to the associated email object
      */
-    public void setEmail(Email email)
+    public void SetEmail(Email email)
     {
         this.email = email;
     }
@@ -22,7 +22,7 @@ public class EmailPreviewScript : MonoBehaviour,
     /*
      * Function called when preview is clicked
      */
-    public void onClick()
+    public void OnClick()
     {
         email.Select();
     }

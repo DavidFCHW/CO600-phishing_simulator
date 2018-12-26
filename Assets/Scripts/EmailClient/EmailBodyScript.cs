@@ -6,7 +6,7 @@ public class EmailBodyScript : MonoBehaviour {
 
     private Email email;
 
-    public void setEmail(Email email)
+    public void SetEmail(Email email)
     {
         this.email = email;
     }

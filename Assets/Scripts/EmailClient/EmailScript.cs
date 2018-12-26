@@ -57,8 +57,8 @@ public class EmailScript : MonoBehaviour {
             {
                 email.isPhish = true;
             }
-            emailPreviewArray[i].setEmail(email);
-            emailBodyArray[i].setEmail(email);
+            emailPreviewArray[i].SetEmail(email);
+            emailBodyArray[i].SetEmail(email);
             currentMailbox.AddEmail(email);
         }
         // Shuffle the list
