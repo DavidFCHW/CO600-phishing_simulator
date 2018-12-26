@@ -35,7 +35,6 @@ public class TimerScript : MonoBehaviour {
         timerValue = countFrom;
         // Set timer text
         timerText.text = timerValue.ToString();
-        counting = true;
     }
 
     // Update is called once per frame

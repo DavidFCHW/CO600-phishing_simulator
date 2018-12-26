@@ -96,7 +96,7 @@ public class EmailScript : MonoBehaviour {
 
     /*
      * Set the index of the currently selected email
-     * Called when another email is selected    
+     * Called when another email is selected
      */
     public void SetSelectedEmail(Email email)
     {
@@ -255,7 +255,7 @@ public class Email
 
     /*
      * Select this email
-     * Clicked when preview is clicked on    
+     * Clicked when preview is clicked on
      */
     public void Select()
     {
@@ -328,7 +328,7 @@ public class Email
     {
         ChangeColor(emailPreview.gameObject, previewHoverColor);
     }
-    
+
     public void OnPointerExitPreview(PointerEventData eventData)
     {
         ChangeColor(emailPreview.gameObject, (isSelected ? previewClickedOnColor : previewNormalColor));

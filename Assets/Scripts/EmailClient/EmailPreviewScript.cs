@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EmailPreviewScript : MonoBehaviour, 
-    IDragHandler, IBeginDragHandler, IEndDragHandler, 
+public class EmailPreviewScript : MonoBehaviour,
+    IDragHandler, IBeginDragHandler, IEndDragHandler,
     IPointerEnterHandler, IPointerExitHandler
 {
 
