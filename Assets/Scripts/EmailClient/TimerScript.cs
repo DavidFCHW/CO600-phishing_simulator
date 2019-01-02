@@ -44,7 +44,7 @@ public class TimerScript : MonoBehaviour {
             // Timer goes down
             timerValue -= Time.deltaTime;
             // Update the text
-            timerText.text = timerValue.ToString("n1");
+            timerText.text = timerValue.ToString("n0");
             // Shrink the rectangle
             RectTransform rectTransform = shrinkingRectangle.GetComponent<RectTransform>();
             rectTransform.offsetMax = new Vector2(-(countFrom - timerValue) * timeToWidthRatio, 0);

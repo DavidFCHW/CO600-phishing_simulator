@@ -10,6 +10,8 @@ public class EmailPreviewScript : MonoBehaviour,
 
     // Associated email object, links preview to body
     private Email email;
+    // Read indicator
+    public GameObject readIndicator;
 
     /*
      * Called by the EmailScript, keeps a reference to the associated email object

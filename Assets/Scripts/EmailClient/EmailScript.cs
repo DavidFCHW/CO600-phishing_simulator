@@ -13,6 +13,8 @@ public class EmailScript : MonoBehaviour {
     public MailboxScript inbox;
     public MailboxScript archive;
     public MailboxScript trash;
+    // Preview scrollview
+    public GameObject previewScrollView;
     // Timer
     public TimerScript timer;
     // Finished Panel
@@ -29,6 +31,9 @@ public class EmailScript : MonoBehaviour {
      * Method called on initialisation
      */
     void Start () {
+        // Make the preview scrollview the correct height
+        RectTransform rectTrans = previewScrollView.GetComponent<RectTransform>();
+        rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, emailPreviewArray[0].GetComponent<RectTransform>().rect.height * emailPreviewArray.Length);
         // Set the emailscript for all inboxes
         inbox.SetEmailScript(this);
         inbox.InitialiseEmailList();
@@ -213,9 +218,6 @@ public class Email
     private Color32 previewNormalColor = new Color32(255, 255, 255, 100);
     private Color32 previewHoverColor = new Color32(233, 0, 85, 100);
     // Scale flags
-    //private Vector3 showBodyScale = new Vector3(1, 1, 1);
-    //private Vector3 hideBodyScale = new Vector3(1, 0, 1);
-    //private Vector3 hidePreviewScale = new Vector3(1, 0, 1);
     private Vector3 tinyPreviewScale = new Vector3(0.3f, 0.3f, 0.3f);
     private Vector3 normalPreviewScale = new Vector3(1, 1, 1);
     // Class References
@@ -293,7 +295,7 @@ public class Email
     public void OnBeginPreviewDrag(PointerEventData eventData)
     {
         // Make the preview small
-        ChangeScale(emailPreview.gameObject, tinyPreviewScale);
+        emailPreview.gameObject.transform.localScale = tinyPreviewScale;
         // Keep track of the original position
         beforeDragPosition = emailPreview.gameObject.transform.position;
     }
@@ -301,17 +303,15 @@ public class Email
     public void OnEndPreviewDrag(PointerEventData eventData)
     {
         // Return the scale to normal
-        ChangeScale(emailPreview.gameObject, normalPreviewScale);
+        emailPreview.gameObject.transform.localScale = normalPreviewScale;
         // Check if dropped in a mailbox
         MailboxScript mailboxHoveredOn = emailScript.GetMailboxHoveredOn();
         if (mailboxHoveredOn && emailScript.GetCurrentMailbox() != mailboxHoveredOn)
         {
             mailboxHoveredOn.AddEmail(this);
             // Hide body
-            //ChangeScale(emailBody.gameObject, hideBodyScale);
             emailBody.gameObject.SetActive(false);
             // Hide preview
-            //ChangeScale(emailPreview.gameObject, hidePreviewScale);
             emailPreview.gameObject.SetActive(false);
             // Remove from List
             emailScript.RemoveEmailFromCurrentMailbox(this);
@@ -350,10 +350,5 @@ public class Email
     private void ChangeColor(GameObject gameobject, Color32 newColor)
     {
         gameobject.GetComponent<Image>().color = newColor;
-    }
-
-    private void ChangeScale(GameObject gameobject, Vector3 newScale)
-    {
-        gameobject.transform.localScale = newScale;
     }
 }
