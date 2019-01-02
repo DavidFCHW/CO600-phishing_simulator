@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EmailPreviewScript : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
+public class EmailPreviewScript : MonoBehaviour,
+    IDragHandler, IBeginDragHandler, IEndDragHandler,
+    IPointerEnterHandler, IPointerExitHandler
 {
 
     // Associated email object, links preview to body
     private Email email;
+    // Read indicator
+    public GameObject readIndicator;
 
     /*
      * Called by the EmailScript, keeps a reference to the associated email object
      */
-    public void setEmail(Email email)
+    public void SetEmail(Email email)
     {
         this.email = email;
     }
@@ -20,7 +24,7 @@ public class EmailPreviewScript : MonoBehaviour, IDragHandler, IBeginDragHandler
     /*
      * Function called when preview is clicked
      */
-    public void onClick()
+    public void OnClick()
     {
         email.Select();
     }
@@ -54,21 +58,5 @@ public class EmailPreviewScript : MonoBehaviour, IDragHandler, IBeginDragHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         email.OnPointerEnterPreview(eventData);
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        email.OnPreviewEnterMailbox(collision);
-    }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        email.OnPreviewExitMailbox(collision);
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        email.OnEmailPreviewRelease(eventData);
-
     }
 }

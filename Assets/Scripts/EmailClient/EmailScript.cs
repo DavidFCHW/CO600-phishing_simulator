@@ -6,60 +6,70 @@ using UnityEngine.EventSystems;
 
 public class EmailScript : MonoBehaviour {
     // List of emails
-    List<Email> emails = new List<Email>();
+    private int[] phishingEmailsIndexes;
     public EmailPreviewScript[] emailPreviewArray;
     public EmailBodyScript[] emailBodyArray;
     // MailBoxes
     public MailboxScript inbox;
     public MailboxScript archive;
     public MailboxScript trash;
+    // Preview scrollview
+    public GameObject previewScrollView;
+    // Timer
+    public TimerScript timer;
     // Finished Panel
     public GameObject finishedPanel;
     // Index of currently selcted email
+    private Email currentlySelectedEmail;
     private int currentlySelectedEmailIndex = 0;
+    // Current inbox
+    private MailboxScript currentMailbox;
+    // Mailbox hovered on
+    private MailboxScript mailboxHoveredOn = null;
 
     /*
      * Method called on initialisation
      */
     void Start () {
+        // Make the preview scrollview the correct height
+        RectTransform rectTrans = previewScrollView.GetComponent<RectTransform>();
+        rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, emailPreviewArray[0].GetComponent<RectTransform>().rect.height * emailPreviewArray.Length);
+        // Set the emailscript for all inboxes
+        inbox.SetEmailScript(this);
+        inbox.InitialiseEmailList();
+        archive.SetEmailScript(this);
+        archive.InitialiseEmailList();
+        trash.SetEmailScript(this);
+        trash.InitialiseEmailList();
+        // Set current mailbox as inbox
+        currentMailbox = inbox;
         // Set finished panel inactive
         finishedPanel.SetActive(false);
+        // Set all email previews inactive
+        foreach (EmailPreviewScript prev in emailPreviewArray) {
+            prev.gameObject.SetActive(false);
+        }
+        // Set all email bodies inactive
+        foreach (EmailBodyScript body in emailBodyArray)
+        {
+            body.gameObject.SetActive(false);
+        }
         // Link together bodies and previews
-		for (int i = 0; i < emailPreviewArray.Length; i++)
+        for (int i = 0; i < emailPreviewArray.Length; i++)
         {
             Email email = new Email(emailPreviewArray[i], emailBodyArray[i], i, this);
-            emails.Add(email);
-            emailPreviewArray[i].setEmail(email);
-            emailBodyArray[i].setEmail(email);
+            if (i==2 || i==3)
+            {
+                email.isPhish = true;
+            }
+            emailPreviewArray[i].SetEmail(email);
+            emailBodyArray[i].SetEmail(email);
+            currentMailbox.AddEmail(email);
         }
-        // Assign the isPhishing variables
-        AssignIsPhishing();
         // Shuffle the list
-        emails = Shuffle(emails);
-        // Re-assign the indexes
-        AssignEmailIndexes();
-        // Position the emails on screen
-        PositionEmailPreviewsScript(emails);
-    }
-
-    /*
-     * Sets every mail as phishing or legit
-     */
-     void AssignIsPhishing()
-    {
-        emails[2].isPhish = true;
-        emails[3].isPhish = true;
-    }
-
-    /*
-     * Assigns indexes to the emails in the order in which they appear on screen
-     */
-    private void AssignEmailIndexes()
-    {
-        for (int i = 0; i < emails.Count; i++)
-        {
-            emails[i].index = i;
-        }
+        currentMailbox.ShuffleEmails();
+        // Select current mailbox
+        currentMailbox.Select();
     }
 
     /*
@@ -71,38 +81,6 @@ public class EmailScript : MonoBehaviour {
     }
 
     /*
-     * Positions the emails on top of eachother in the window
-     */
-    private void PositionEmailPreviewsScript(List<Email> emailList)
-    {
-        float distanceToTop = 0;
-        for (int i = 0; i < emailList.Count; i++)
-        {
-            emailList[i].emailPreview.gameObject.transform.localPosition = new Vector3(
-                emailList[i].emailPreview.gameObject.transform.localPosition.x,
-                emailList[i].emailPreview.gameObject.transform.localPosition.y - distanceToTop,
-                emailList[i].emailPreview.gameObject.transform.localPosition.z
-            );
-            distanceToTop += emailList[i].emailPreview.gameObject.GetComponent<RectTransform>().rect.height;
-        }
-    }
-
-    /*
-     * Reposition emails when one preview has been removed
-     */
-    private void RePositionEmailPreviewsScript(List<Email> emailList, int index)
-    {
-        for (int i = index; i < emailList.Count; i++)
-        {
-            emailList[i].emailPreview.gameObject.transform.localPosition = new Vector3(
-                emailList[i].emailPreview.gameObject.transform.localPosition.x,
-                emailList[i].emailPreview.gameObject.transform.localPosition.y + emailList[i].emailPreview.gameObject.GetComponent<RectTransform>().rect.height,
-                emailList[i].emailPreview.gameObject.transform.localPosition.z
-            );
-        }
-    }
-
-    /*
      * Move from email to email with up and down arrow keys
      */
     private void CheckIfArrow()
@@ -111,79 +89,27 @@ public class EmailScript : MonoBehaviour {
         {
             if (currentlySelectedEmailIndex - 1 >= 0)
             {
-                SelectEmail(emails[currentlySelectedEmailIndex - 1].index);
+                currentMailbox.GetEmails()[currentlySelectedEmailIndex - 1].Select();
             }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (currentlySelectedEmailIndex + 1 < emails.Count)
+            if (currentlySelectedEmailIndex + 1 < currentMailbox.GetEmails().Count)
             {
-                SelectEmail(emails[currentlySelectedEmailIndex + 1].index);
+                currentMailbox.GetEmails()[currentlySelectedEmailIndex + 1].Select();
             }
         }
     }
 
     /*
-     * Remove an email from the list of emails
-     */
-     public void RemoveEmail(Email emailToRemove)
-    {
-        // Remove email from array
-        emails.Remove(emailToRemove);
-        // Remove email from view
-        emailToRemove.emailPreview.gameObject.SetActive(false);
-        //emailToRemove.emailPreview.transform.localScale;
-
-        // Check if there are any more emails
-        if (emails.Count <= 0)
-        {
-            finishedPanel.SetActive(true);
-        }
-        else
-        {
-            // Re-assign the indexes
-            AssignEmailIndexes();
-            // Re-position the emails on screen
-            RePositionEmailPreviewsScript(emails, emailToRemove.index);
-        }
-    }
-
-    /*
-     * Set a specific email as selected and unselect the previously selected email
-     */
-    private void SelectEmail(int index)
-    {
-        emails[currentlySelectedEmailIndex].Unselect();
-        emails[index].Select();
-        currentlySelectedEmailIndex = index;
-    }
-
-    /*
      * Set the index of the currently selected email
+     * Called when another email is selected
      */
-    public void SetSelectedEmail(int index)
+    public void SetSelectedEmail(Email email)
     {
-        emails[currentlySelectedEmailIndex].Unselect();
-        currentlySelectedEmailIndex = index;
-    }
-
-    /*
-     * Shuffle a list's items
-     */
-    private List<T> Shuffle<T>(List<T> list)
-    {
-        System.Random rnd = new System.Random();
-        int[] arr = new int[3];
-        int n = list.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = rnd.Next(n + 1);
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
-        }
-        return list;
+        UnselectEmail(currentlySelectedEmail);
+        currentlySelectedEmail = email;
+        currentlySelectedEmailIndex = email.index;
     }
 
     /*
@@ -195,9 +121,17 @@ public class EmailScript : MonoBehaviour {
     }
 
     /*
+     * Unselect email
+     */
+     public void UnselectEmail(Email email)
+    {
+        if (email != null) email.Unselect();
+    }
+
+    /*
      * Check if the mail was in the correct inbox
      */
-     private void CheckCorrectEmails()
+    private void CheckCorrectEmails()
     {
         int correct = 0;
         int incorrect = 0;
@@ -226,6 +160,51 @@ public class EmailScript : MonoBehaviour {
         Debug.Log("Correct emails: " + correct);
         Debug.Log("Incorrect emails: " + incorrect);
     }
+
+    public void SetCurrentMailbox(MailboxScript newCurrentMailbox)
+    {
+        // Unselect currently selected email (otherwise it stays selected in the other mailbox)
+        UnselectEmail(currentlySelectedEmail);
+        // Unselect mailbox
+        currentMailbox.Unselect();
+        // Keep the ref to the newly selceted mailbox
+        currentMailbox = newCurrentMailbox;
+        // We don't have to call select as it's called in mailboxscript onclick()
+    }
+
+    public void RemoveEmailFromCurrentMailbox(Email email)
+    {
+        currentMailbox.RemoveEmail(email);
+        // Check if there are any more emails in the inbox
+        if (inbox.GetEmails().Count <= 0)
+        {
+            finishedPanel.SetActive(true);
+        }
+    }
+
+    /*
+     * Set mailbox hovered on
+     */
+    public void SetHoveredOn(MailboxScript mailboxHoveredOn)
+    {
+        this.mailboxHoveredOn = mailboxHoveredOn;
+    }
+
+    /*
+     * Getter for mailboxHoveredOn
+     */
+    public MailboxScript GetMailboxHoveredOn()
+    {
+        return mailboxHoveredOn;
+    }
+
+    /*
+     * Getter for current mailbox
+     */
+     public MailboxScript GetCurrentMailbox()
+    {
+        return currentMailbox;
+    }
 }
 
 /*
@@ -238,12 +217,7 @@ public class Email
     private Color32 previewClickedOnColor = new Color32(255, 255, 255, 255);
     private Color32 previewNormalColor = new Color32(255, 255, 255, 100);
     private Color32 previewHoverColor = new Color32(233, 0, 85, 100);
-    private Color32 mailboxPreviewHoverColor = new Color32(233, 0, 85, 71);
-    private Color32 mailboxNormalColor = new Color32(233, 0, 85, 0);
     // Scale flags
-    private Vector3 showBodyScale = new Vector3(1, 1, 1);
-    private Vector3 hideBodyScale = new Vector3(1, 0, 1);
-    private Vector3 hidePreviewScale = new Vector3(1, 0, 1);
     private Vector3 tinyPreviewScale = new Vector3(0.3f, 0.3f, 0.3f);
     private Vector3 normalPreviewScale = new Vector3(1, 1, 1);
     // Class References
@@ -255,13 +229,13 @@ public class Email
     private EmailScript emailScript;
     // Variables
     // Dragging
-    private float halfHeightSmall;    // The half height of the tiny preview
-    private Vector3 originalPosition; // The original position of a preview
+    private float halfHeightSmall;      // The half height of the tiny preview
+    private Vector3 beforeDragPosition; // The original position of a preview
     // Hovering on preview
     private Color32 previousColor;
     private bool isSelected = false;
-    // Hovering on mailbox
-    private MailboxScript mailboxHoveredOn = null;
+    // Preview placements
+    public Vector3 originalPreviewPosition; // The position of the preview before anything happens
 
     /*
      * Constructor
@@ -280,18 +254,20 @@ public class Email
     public void Start()
     {
         halfHeightSmall = emailPreview.gameObject.GetComponent<RectTransform>().rect.height / 6;
+        originalPreviewPosition = emailPreview.gameObject.transform.localPosition;
     }
 
     /*
      * Select this email
+     * Clicked when preview is clicked on
      */
     public void Select()
     {
-        emailScript.SetSelectedEmail(index);
+        emailScript.SetSelectedEmail(this);
         // Set selected colour
         ChangeColor(emailPreview.gameObject, previewClickedOnColor);
         // Show body
-        ChangeScale(emailBody.gameObject, showBodyScale);
+        emailBody.gameObject.SetActive(true);
         isSelected = true;
     }
 
@@ -303,7 +279,7 @@ public class Email
         // Reset to normal colour
         ChangeColor(emailPreview.gameObject, previewNormalColor);
         // Hide body
-        ChangeScale(emailBody.gameObject, hideBodyScale);
+        emailBody.gameObject.SetActive(false);
         isSelected = false;
     }
 
@@ -313,78 +289,59 @@ public class Email
     public void OnPreviewDrag(PointerEventData eventData)
     {
         // Recalculate position
-        emailPreview.GetComponent<Rigidbody2D>().position = new Vector3(Input.mousePosition.x, Input.mousePosition.y+ + halfHeightSmall, 0);
+        emailPreview.gameObject.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + halfHeightSmall, 0);
     }
 
     public void OnBeginPreviewDrag(PointerEventData eventData)
     {
         // Make the preview small
-        ChangeScale(emailPreview.gameObject, tinyPreviewScale);
+        emailPreview.gameObject.transform.localScale = tinyPreviewScale;
         // Keep track of the original position
-        originalPosition = GetPosition(emailPreview.gameObject);
+        beforeDragPosition = emailPreview.gameObject.transform.position;
     }
 
     public void OnEndPreviewDrag(PointerEventData eventData)
     {
         // Return the scale to normal
-        ChangeScale(emailPreview.gameObject, normalPreviewScale);
-        // Return to original position
-        emailPreview.gameObject.GetComponent<Rigidbody2D>().position = originalPosition;
+        emailPreview.gameObject.transform.localScale = normalPreviewScale;
+        // Check if dropped in a mailbox
+        MailboxScript mailboxHoveredOn = emailScript.GetMailboxHoveredOn();
+        if (mailboxHoveredOn && emailScript.GetCurrentMailbox() != mailboxHoveredOn)
+        {
+            mailboxHoveredOn.AddEmail(this);
+            // Hide body
+            emailBody.gameObject.SetActive(false);
+            // Hide preview
+            emailPreview.gameObject.SetActive(false);
+            // Remove from List
+            emailScript.RemoveEmailFromCurrentMailbox(this);
+        }
+        else
+        {
+            // Return to original position
+            emailPreview.gameObject.transform.position = beforeDragPosition;
+        }
     }
 
     /*
-     * Hover over preview methods
+     * Hover over preview
      */
     public void OnPointerEnterPreview(PointerEventData eventData)
     {
         ChangeColor(emailPreview.gameObject, previewHoverColor);
     }
-    
+
     public void OnPointerExitPreview(PointerEventData eventData)
     {
-        if (isSelected)
-        {
-            ChangeColor(emailPreview.gameObject, previewClickedOnColor);
-        }
-        else
-        {
-            ChangeColor(emailPreview.gameObject, previewNormalColor);
-        }
+        ChangeColor(emailPreview.gameObject, (isSelected ? previewClickedOnColor : previewNormalColor));
     }
 
     /*
-     * Move preview to inbox methods
+     * Reset preview position
      */
-    public void OnPreviewEnterMailbox(Collider2D collision)
+    public void ResetPreviewPosition()
     {
-        mailboxHoveredOn = collision.gameObject.GetComponent<MailboxScript>();
-        if (mailboxHoveredOn != null)
-        {
-            ChangeColor(mailboxHoveredOn.gameObject, mailboxPreviewHoverColor);
-        }
-    }
-
-    public void OnPreviewExitMailbox(Collider2D collision)
-    {
-        if (mailboxHoveredOn != null)
-        {
-            ChangeColor(mailboxHoveredOn.gameObject, mailboxNormalColor);
-            mailboxHoveredOn = null;
-        }
-    }
-
-    public void OnEmailPreviewRelease(PointerEventData eventData)
-    {
-        if (mailboxHoveredOn != null)
-        {
-            mailboxHoveredOn.addEmail(this);
-            // Hide body
-            ChangeScale(emailBody.gameObject, hideBodyScale);
-            // Hide preview
-            ChangeScale(emailPreview.gameObject, hidePreviewScale);
-            // Remove from List
-            emailScript.RemoveEmail(this);
-        }
+        emailPreview.gameObject.transform.localPosition = originalPreviewPosition;
     }
 
     /*
@@ -393,15 +350,5 @@ public class Email
     private void ChangeColor(GameObject gameobject, Color32 newColor)
     {
         gameobject.GetComponent<Image>().color = newColor;
-    }
-
-    private void ChangeScale(GameObject gameobject, Vector3 newScale)
-    {
-        gameobject.transform.localScale = newScale;
-    }
-
-    private Vector3 GetPosition(GameObject gameObject)
-    {
-        return new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
     }
 }
