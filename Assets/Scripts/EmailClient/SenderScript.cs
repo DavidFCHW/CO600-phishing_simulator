@@ -7,20 +7,23 @@ using UnityEngine.UI;
 public class SenderScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
-    public GameObject fullAddress;
+    public string senderText;
+    public string addressText;
+    private Text thisComponent;
 
     private void Start()
     {
-        fullAddress.SetActive(false);
+        thisComponent = this.GetComponent<Text>();
+        thisComponent.text = senderText;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        fullAddress.SetActive(true);
+        thisComponent.text = senderText + " " + addressText;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        fullAddress.SetActive(false);
+        thisComponent.text = senderText;
     }
 }
