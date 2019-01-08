@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class GameScript : MonoBehaviour {
 
-    // Use this for initialization
-    void Start () {
+    public TimerScript timer;
 
-	}
+    private void Start()
+    {
+        // Give your reference to other objects
+        timer.SetGameScript(this);
+    }
 
-	// Update is called once per frame
-	void Update () {
+    public void TimerEnded()
+    {
 
-	}
+    }
 }

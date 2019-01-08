@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour {
 
+    GameScript gameScript;
     // Flags
     private float countFrom = 20.0f;
     Color32 stillOkColor = new Color32(0, 255, 0, 255);
-    Color32 middleTimeColor = new Color32(255, 206, 0, 255);
     Color32 criticalTimeColor = new Color32(255, 0, 0, 255);
     // Object references
     public GameObject shrinkingRectangle;
@@ -16,25 +16,20 @@ public class TimerScript : MonoBehaviour {
     // Variables
     private float timerValue;
     private bool counting = false;
-    // Consts
-    private float timerWidth;
-    private float timeToWidthRatio;
-    private float middleTime;
-    private float criticalTime;
 
     private void Start()
     {
-        // Set constants
-        timerWidth = this.GetComponent<RectTransform>().rect.width;
-        timeToWidthRatio = timerWidth / countFrom;
-        middleTime = countFrom * 0.5f;
-        criticalTime = countFrom * 0.2f;
         // Set the color
         shrinkingRectangle.GetComponent<Image>().color = stillOkColor;
         // Set timer value
         timerValue = countFrom;
         // Set timer text
         timerText.text = timerValue.ToString();
+    }
+
+    public void SetGameScript(GameScript gameScript)
+    {
+        this.gameScript = gameScript;
     }
 
     // Update is called once per frame
@@ -46,17 +41,13 @@ public class TimerScript : MonoBehaviour {
             // Update the text
             timerText.text = timerValue.ToString("n0");
             // Shrink the rectangle
-            RectTransform rectTransform = shrinkingRectangle.GetComponent<RectTransform>();
-            rectTransform.offsetMax = new Vector2(-(countFrom - timerValue) * timeToWidthRatio, 0);
-            // Change to critical color when we're in critical time
-            if (timerValue <= middleTime && criticalTime < timerValue)
-            {
-                shrinkingRectangle.GetComponent<Image>().color = middleTimeColor;
-            }
-            else if (timerValue <= criticalTime)
-            {
-                shrinkingRectangle.GetComponent<Image>().color = criticalTimeColor;
-            }
+            shrinkingRectangle.GetComponent<Image>().fillAmount -= 1.0f / countFrom * Time.deltaTime;
+            // Change color
+            shrinkingRectangle.GetComponent<Image>().color = new Color(
+                Mathf.Lerp(stillOkColor.r, criticalTimeColor.r, timerValue / countFrom),
+                Mathf.Lerp(stillOkColor.g, criticalTimeColor.g, timerValue / countFrom),
+                Mathf.Lerp(stillOkColor.b, criticalTimeColor.b, timerValue / countFrom),
+                Mathf.Lerp(stillOkColor.a, criticalTimeColor.a, timerValue / countFrom));
         }
         else if (timerValue <= 0.0f) TimerEnded();
     }
@@ -68,6 +59,7 @@ public class TimerScript : MonoBehaviour {
 
     public void TimerEnded()
     {
-
+        counting = false;
+        gameScript.TimerEnded();
     }
 }

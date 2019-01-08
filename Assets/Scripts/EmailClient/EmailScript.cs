@@ -15,8 +15,6 @@ public class EmailScript : MonoBehaviour {
     public MailboxScript trash;
     // Preview scrollview
     public GameObject previewScrollView;
-    // Timer
-    public TimerScript timer;
     // Finished Panel
     public GameObject finishedPanel;
     // Index of currently selcted email
