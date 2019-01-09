@@ -56,13 +56,19 @@ public class EmailScript : MonoBehaviour {
         // Link together bodies and previews
         for (int i = 0; i < emailPreviewArray.Length; i++)
         {
+            // Create email object with preview, body, index and emailscript reference
             Email email = new Email(emailPreviewArray[i], emailBodyArray[i], i, this);
+            // Set isPhis
             if (i==2 || i==3)
             {
                 email.isPhish = true;
             }
+            // Give email object reference to the body and preview script
             emailPreviewArray[i].SetEmail(email);
             emailBodyArray[i].SetEmail(email);
+            // Initialise said email
+            email.Initialise();
+            // Add the email to inbox
             currentMailbox.AddEmail(email);
         }
         // Shuffle the list
@@ -260,6 +266,7 @@ public class Email
     public EmailBodyScript emailBody;
     private EmailScript emailScript;
     // Variables
+    private bool unread = true;
     // Dragging
     private float halfHeightSmall;      // The half height of the tiny preview
     private Vector3 beforeDragPosition; // The original position of a preview
@@ -283,10 +290,12 @@ public class Email
     /*
      * Initialise values
      */
-    public void Start()
+    public void Initialise()
     {
         halfHeightSmall = emailPreview.gameObject.GetComponent<RectTransform>().rect.height / 6;
         originalPreviewPosition = emailPreview.gameObject.transform.localPosition;
+        // Make the text bold (cause unread)
+        emailPreview.SetDisplayUnread();
     }
 
     /*
@@ -295,6 +304,11 @@ public class Email
      */
     public void Select()
     {
+        if (unread)
+        {
+            unread = false;
+            emailPreview.SetDisplayRead();
+        }
         emailScript.SetSelectedEmail(this);
         // Set selected colour
         emailPreview.gameObject.GetComponent<Image>().color = previewClickedOnColor;

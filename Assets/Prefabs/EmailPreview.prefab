@@ -176,6 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   readIndicator: {fileID: 1516673063172130}
+  sender: {fileID: 114268117098559652}
+  subject: {fileID: 114213999380671258}
 --- !u!114 &114596880178813656
 MonoBehaviour:
   m_ObjectHideFlags: 1

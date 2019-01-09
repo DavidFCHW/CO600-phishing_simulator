@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class EmailPreviewScript : MonoBehaviour,
@@ -12,6 +13,9 @@ public class EmailPreviewScript : MonoBehaviour,
     private Email email;
     // Read indicator
     public GameObject readIndicator;
+    // Text
+    public Text sender;
+    public Text subject;
 
     /*
      * Called by the EmailScript, keeps a reference to the associated email object
@@ -58,5 +62,25 @@ public class EmailPreviewScript : MonoBehaviour,
     public void OnPointerEnter(PointerEventData eventData)
     {
         email.OnPointerEnterPreview(eventData);
+    }
+
+    public void SetDisplayUnread()
+    {
+        // Bold subject
+        subject.text = "<b>" + subject.text + "</b>";
+        // Bold sender
+        sender.text = "<b>" + sender.text + "</b>";
+        // Make blue dot appear
+        readIndicator.SetActive(true);
+    }
+
+    public void SetDisplayRead()
+    {
+        // Unbold sender
+        sender.text = sender.text.Substring(3, sender.text.Length - 7);
+        // Unbold subject
+        subject.text = subject.text.Substring(3, subject.text.Length - 7);
+        // Make blue dot dissapear
+        readIndicator.SetActive(false);
     }
 }
