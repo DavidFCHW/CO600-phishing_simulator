@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class EmailScript : MonoBehaviour {
+    private GameScript gameScript;
     // List of emails
     private int[] phishingEmailsIndexes;
     public EmailPreviewScript[] emailPreviewArray;
@@ -16,7 +17,7 @@ public class EmailScript : MonoBehaviour {
     // Preview scrollview
     public GameObject previewScrollView;
     // Finished Panel
-    public GameObject finishedPanel;
+    public GameObject donePanel;
     // Index of currently selcted email
     private Email currentlySelectedEmail;
     private int currentlySelectedEmailIndex = 0;
@@ -28,7 +29,7 @@ public class EmailScript : MonoBehaviour {
     /*
      * Method called on initialisation
      */
-    void Start () {
+    void Awake() {
         // Make the preview scrollview the correct height
         RectTransform rectTrans = previewScrollView.GetComponent<RectTransform>();
         rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, emailPreviewArray[0].GetComponent<RectTransform>().rect.height * emailPreviewArray.Length);
@@ -42,7 +43,7 @@ public class EmailScript : MonoBehaviour {
         // Set current mailbox as inbox
         currentMailbox = inbox;
         // Set finished panel inactive
-        finishedPanel.SetActive(false);
+        donePanel.SetActive(false);
         // Set all email previews inactive
         foreach (EmailPreviewScript prev in emailPreviewArray) {
             prev.gameObject.SetActive(false);
@@ -68,6 +69,11 @@ public class EmailScript : MonoBehaviour {
         currentMailbox.ShuffleEmails();
         // Select current mailbox
         currentMailbox.Select();
+    }
+
+    public void SetGameScript(GameScript gameScript)
+    {
+        this.gameScript = gameScript;
     }
 
     /*
@@ -115,7 +121,8 @@ public class EmailScript : MonoBehaviour {
      */
     public void CheckButtonClicked()
     {
-        CheckCorrectEmails();
+        Destroy(donePanel);
+        gameScript.FinishedSortingEmails();
     }
 
     /*
@@ -129,34 +136,40 @@ public class EmailScript : MonoBehaviour {
     /*
      * Check if the mail was in the correct inbox
      */
-    private void CheckCorrectEmails()
+    public int[] CheckEmails()
     {
-        int correct = 0;
-        int incorrect = 0;
+        int totalEmailsInt = inbox.GetEmails().Count + trash.GetEmails().Count + archive.GetEmails().Count;
+        int phishingEmailsInt = 0;
+        int sortedEmailsInt = 0;
+        int correctlyIdentifiedInt = 0;
+        int wronglyTrashedInt = 0;
+
+        foreach (Email email in inbox.GetEmails())
+        {
+            if (email.isPhish) phishingEmailsInt++;
+        }
         foreach (Email mail in trash.GetEmails())
         {
+            sortedEmailsInt++;
             if (mail.isPhish)
             {
-                correct++;
+                phishingEmailsInt++;
+                correctlyIdentifiedInt++;
             }
             else
             {
-                incorrect++;
+                wronglyTrashedInt++;
             }
         }
         foreach (Email mail in archive.GetEmails())
         {
-            if (!mail.isPhish)
+            sortedEmailsInt++;
+            if (mail.isPhish)
             {
-                correct++;
-            }
-            else
-            {
-                incorrect++;
+                phishingEmailsInt++;
             }
         }
-        Debug.Log("Correct emails: " + correct);
-        Debug.Log("Incorrect emails: " + incorrect);
+        return new int[] { totalEmailsInt, phishingEmailsInt, sortedEmailsInt, correctlyIdentifiedInt, wronglyTrashedInt };
     }
 
     public void SetCurrentMailbox(MailboxScript newCurrentMailbox)
@@ -176,7 +189,11 @@ public class EmailScript : MonoBehaviour {
         // Check if there are any more emails in the inbox
         if (inbox.GetEmails().Count <= 0)
         {
-            finishedPanel.SetActive(true);
+            donePanel.SetActive(true);
+        }
+        else
+        {
+            donePanel.SetActive(false);
         }
     }
 
