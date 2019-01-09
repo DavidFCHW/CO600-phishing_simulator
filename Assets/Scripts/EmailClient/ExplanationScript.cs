@@ -39,10 +39,13 @@ public class ExplanationScript : MonoBehaviour {
     {
         if (0 <= panelIndex && panelIndex < explanationPanels.Length)
         {
+
+            gameScript.playLightClick();
             explanationPanels[panelIndex].Select();
         }
         else if (panelIndex >= explanationPanels.Length)
         {
+            gameScript.playMeanClick();
             foreach (ExplanationPanelScript explanationPanel in explanationPanels)
             {
                 Destroy(explanationPanel.gameObject);

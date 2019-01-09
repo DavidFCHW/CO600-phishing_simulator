@@ -127,6 +127,7 @@ public class ScoreScript : MonoBehaviour {
      */
     public void DoneClicked()
     {
+        gameScript.playMeanClick();
         gameScript.FinishedShowingScore();
     }
 }

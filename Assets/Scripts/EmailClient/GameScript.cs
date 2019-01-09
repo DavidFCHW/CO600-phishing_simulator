@@ -12,6 +12,8 @@ public class GameScript : MonoBehaviour {
     // Audio sources
     public AudioSource whistleSound;
     public AudioSource backgroundMusic;
+    public AudioSource lightClick;
+    public AudioSource meanClick;
 
     /*
      * initialisation
@@ -52,14 +54,15 @@ public class GameScript : MonoBehaviour {
      */
     public void ExplanationsDone()
     {
-        StartGame();
+        StartCoroutine(StartGame());
     }
 
     /*
      * Start the game
      */
-     private void StartGame()
+     IEnumerator StartGame()
     {
+        yield return new WaitForSeconds(0.2f);
         backgroundMusic.Play();
         timer.StartTimer();
     }
@@ -75,6 +78,7 @@ public class GameScript : MonoBehaviour {
         int[] results = emailScript.CheckEmails();
         // (int totalEmailsInt, int phishingEmailsInt, int sortedEmailsInt, int correctlyIdentifiedInt, int wronglyTrashedInt)
         score.gameObject.SetActive(true);
+        Destroy(finishedPanel.gameObject);
         score.ShowScore(results[0], results[1], results[2], results[3], results[4]);
     }
 
@@ -84,5 +88,16 @@ public class GameScript : MonoBehaviour {
      public void FinishedShowingScore()
     {
         // Remove score panel and finish panel
+        Destroy(score.gameObject);
+    }
+
+    public void playLightClick()
+    {
+        lightClick.Play();
+    }
+
+    public void playMeanClick()
+    {
+        meanClick.Play();
     }
 }

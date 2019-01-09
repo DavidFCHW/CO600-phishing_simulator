@@ -144,20 +144,23 @@ public class EmailScript : MonoBehaviour {
         int correctlyIdentifiedInt = 0;
         int wronglyTrashedInt = 0;
 
-        foreach (Email email in inbox.GetEmails())
+        foreach (Email mail in inbox.GetEmails())
         {
-            if (email.isPhish) phishingEmailsInt++;
+            mail.TagAsNeutral();
+            if (mail.isPhish) phishingEmailsInt++;
         }
         foreach (Email mail in trash.GetEmails())
         {
             sortedEmailsInt++;
             if (mail.isPhish)
             {
+                mail.TagAsCorrect();
                 phishingEmailsInt++;
                 correctlyIdentifiedInt++;
             }
             else
             {
+                mail.TagAsIncorrect();
                 wronglyTrashedInt++;
             }
         }
@@ -166,7 +169,12 @@ public class EmailScript : MonoBehaviour {
             sortedEmailsInt++;
             if (mail.isPhish)
             {
+                mail.TagAsIncorrect();
                 phishingEmailsInt++;
+            }
+            else
+            {
+                mail.TagAsCorrect();
             }
         }
         return new int[] { totalEmailsInt, phishingEmailsInt, sortedEmailsInt, correctlyIdentifiedInt, wronglyTrashedInt };
@@ -232,6 +240,15 @@ public class Email
     private Color32 previewClickedOnColor = new Color32(255, 255, 255, 255);
     private Color32 previewNormalColor = new Color32(255, 255, 255, 100);
     private Color32 previewHoverColor = new Color32(233, 0, 85, 100);
+
+    private Color32 correctColor = new Color32(0, 255, 0, 255);
+    private Color32 correctColorLighter = new Color32(156, 255, 156, 255);
+
+    private Color32 incorrectColor = new Color32(255, 0, 0, 255);
+    private Color32 incorrectColorLighter = new Color32(255, 139, 139, 255);
+
+    private Color32 neutralColor = new Color32(0, 144, 255, 255);
+    private Color32 neutralColorLighter = new Color32(90, 182, 253, 255);
     // Scale flags
     private Vector3 tinyPreviewScale = new Vector3(0.3f, 0.3f, 0.3f);
     private Vector3 normalPreviewScale = new Vector3(1, 1, 1);
@@ -280,7 +297,7 @@ public class Email
     {
         emailScript.SetSelectedEmail(this);
         // Set selected colour
-        ChangeColor(emailPreview.gameObject, previewClickedOnColor);
+        emailPreview.gameObject.GetComponent<Image>().color = previewClickedOnColor;
         // Show body
         emailBody.gameObject.SetActive(true);
         isSelected = true;
@@ -292,10 +309,52 @@ public class Email
     public void Unselect()
     {
         // Reset to normal colour
-        ChangeColor(emailPreview.gameObject, previewNormalColor);
+        emailPreview.gameObject.GetComponent<Image>().color = previewNormalColor;
         // Hide body
         emailBody.gameObject.SetActive(false);
         isSelected = false;
+    }
+
+    /*
+     * Tag as correct on game end
+     */
+     public void TagAsCorrect()
+    {
+        // Make body green
+        emailBody.GetComponent<Image>().color = correctColorLighter;
+        // Make preview green
+        emailPreview.GetComponent<Image>().color = correctColor;
+        // Change preview color to not mess up on hover
+        previewNormalColor = correctColor;
+        previewClickedOnColor = correctColorLighter;
+    }
+
+    /*
+     * Tag as incorrect on game end
+     */
+    public void TagAsIncorrect()
+    {
+        // Make body red
+        emailBody.GetComponent<Image>().color = incorrectColorLighter;
+        // Make preview red
+        emailPreview.GetComponent<Image>().color = incorrectColor;
+        // Change preview color to not mess up on hover
+        previewNormalColor = incorrectColor;
+        previewClickedOnColor = incorrectColorLighter;
+    }
+
+    /*
+     * Tag as incorrect on game end
+     */
+    public void TagAsNeutral()
+    {
+        // Make body red
+        emailBody.GetComponent<Image>().color = neutralColorLighter;
+        // Make preview red
+        emailPreview.GetComponent<Image>().color = neutralColor;
+        // Change preview color to not mess up on hover
+        previewNormalColor = neutralColor;
+        previewClickedOnColor = neutralColorLighter;
     }
 
     /*
@@ -343,12 +402,12 @@ public class Email
      */
     public void OnPointerEnterPreview(PointerEventData eventData)
     {
-        ChangeColor(emailPreview.gameObject, previewHoverColor);
+        emailPreview.gameObject.GetComponent<Image>().color = previewHoverColor;
     }
 
     public void OnPointerExitPreview(PointerEventData eventData)
     {
-        ChangeColor(emailPreview.gameObject, (isSelected ? previewClickedOnColor : previewNormalColor));
+        emailPreview.gameObject.GetComponent<Image>().color = (isSelected ? previewClickedOnColor : previewNormalColor);
     }
 
     /*
@@ -357,13 +416,5 @@ public class Email
     public void ResetPreviewPosition()
     {
         emailPreview.gameObject.transform.localPosition = originalPreviewPosition;
-    }
-
-    /*
-     * Helper methods
-     */
-    private void ChangeColor(GameObject gameobject, Color32 newColor)
-    {
-        gameobject.GetComponent<Image>().color = newColor;
     }
 }
