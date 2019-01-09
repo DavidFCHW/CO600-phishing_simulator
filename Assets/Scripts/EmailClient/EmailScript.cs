@@ -152,11 +152,13 @@ public class EmailScript : MonoBehaviour {
 
         foreach (Email mail in inbox.GetEmails())
         {
+            mail.BlockEditable();
             mail.TagAsNeutral();
             if (mail.isPhish) phishingEmailsInt++;
         }
         foreach (Email mail in trash.GetEmails())
         {
+            mail.BlockEditable();
             sortedEmailsInt++;
             if (mail.isPhish)
             {
@@ -172,6 +174,7 @@ public class EmailScript : MonoBehaviour {
         }
         foreach (Email mail in archive.GetEmails())
         {
+            mail.BlockEditable();
             sortedEmailsInt++;
             if (mail.isPhish)
             {
@@ -267,6 +270,7 @@ public class Email
     private EmailScript emailScript;
     // Variables
     private bool unread = true;
+    private bool editeable = true; // We can move the mail around and whatnot, blocks dragging and setting as read
     // Dragging
     private float halfHeightSmall;      // The half height of the tiny preview
     private Vector3 beforeDragPosition; // The original position of a preview
@@ -295,7 +299,23 @@ public class Email
         halfHeightSmall = emailPreview.gameObject.GetComponent<RectTransform>().rect.height / 6;
         originalPreviewPosition = emailPreview.gameObject.transform.localPosition;
         // Make the text bold (cause unread)
-        emailPreview.SetDisplayUnread();
+        this.SetUnread();
+    }
+
+    /*
+     * Show an email as unread
+     */
+    public void SetUnread()
+    {
+        if (editeable) emailPreview.SetDisplayUnread();
+    }
+
+    /*
+     * Show an email as read
+     */
+     public void SetRead()
+    {
+        if (editeable) emailPreview.SetDisplayRead();
     }
 
     /*
@@ -304,10 +324,10 @@ public class Email
      */
     public void Select()
     {
-        if (unread)
+        if (unread && editeable)
         {
             unread = false;
-            emailPreview.SetDisplayRead();
+            SetRead();
         }
         emailScript.SetSelectedEmail(this);
         // Set selected colour
@@ -334,13 +354,11 @@ public class Email
      */
      public void TagAsCorrect()
     {
-        // Make body green
-        emailBody.GetComponent<Image>().color = correctColorLighter;
-        // Make preview green
-        emailPreview.GetComponent<Image>().color = correctColor;
         // Change preview color to not mess up on hover
         previewNormalColor = correctColor;
         previewClickedOnColor = correctColorLighter;
+        // Change preview and body color
+        Tag();
     }
 
     /*
@@ -348,13 +366,11 @@ public class Email
      */
     public void TagAsIncorrect()
     {
-        // Make body red
-        emailBody.GetComponent<Image>().color = incorrectColorLighter;
-        // Make preview red
-        emailPreview.GetComponent<Image>().color = incorrectColor;
         // Change preview color to not mess up on hover
         previewNormalColor = incorrectColor;
         previewClickedOnColor = incorrectColorLighter;
+        // Change preview and body color
+        Tag();
     }
 
     /*
@@ -362,13 +378,22 @@ public class Email
      */
     public void TagAsNeutral()
     {
-        // Make body red
-        emailBody.GetComponent<Image>().color = neutralColorLighter;
-        // Make preview red
-        emailPreview.GetComponent<Image>().color = neutralColor;
         // Change preview color to not mess up on hover
         previewNormalColor = neutralColor;
         previewClickedOnColor = neutralColorLighter;
+        // Change preview and body color
+        Tag();
+    }
+
+    /*
+     * Common code between all three tag functions
+     */
+     public void Tag()
+    {
+        // Change body color
+        emailBody.GetComponent<Image>().color = previewClickedOnColor;
+        // Change preview color
+        emailPreview.GetComponent<Image>().color = (isSelected ? previewClickedOnColor : previewNormalColor);
     }
 
     /*
@@ -376,38 +401,47 @@ public class Email
      */
     public void OnPreviewDrag(PointerEventData eventData)
     {
-        // Recalculate position
-        emailPreview.gameObject.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + halfHeightSmall, 0);
+        if (editeable)
+        {
+            // Recalculate position
+            emailPreview.gameObject.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + halfHeightSmall, 0);
+        }
     }
 
     public void OnBeginPreviewDrag(PointerEventData eventData)
     {
-        // Make the preview small
-        emailPreview.gameObject.transform.localScale = tinyPreviewScale;
-        // Keep track of the original position
-        beforeDragPosition = emailPreview.gameObject.transform.position;
+        if (editeable)
+        {
+            // Make the preview small
+            emailPreview.gameObject.transform.localScale = tinyPreviewScale;
+            // Keep track of the original position
+            beforeDragPosition = emailPreview.gameObject.transform.position;
+        }
     }
 
     public void OnEndPreviewDrag(PointerEventData eventData)
     {
-        // Return the scale to normal
-        emailPreview.gameObject.transform.localScale = normalPreviewScale;
-        // Check if dropped in a mailbox
-        MailboxScript mailboxHoveredOn = emailScript.GetMailboxHoveredOn();
-        if (mailboxHoveredOn && emailScript.GetCurrentMailbox() != mailboxHoveredOn)
+        if (editeable)
         {
-            mailboxHoveredOn.AddEmail(this);
-            // Hide body
-            emailBody.gameObject.SetActive(false);
-            // Hide preview
-            emailPreview.gameObject.SetActive(false);
-            // Remove from List
-            emailScript.RemoveEmailFromCurrentMailbox(this);
-        }
-        else
-        {
-            // Return to original position
-            emailPreview.gameObject.transform.position = beforeDragPosition;
+            // Return the scale to normal
+            emailPreview.gameObject.transform.localScale = normalPreviewScale;
+            // Check if dropped in a mailbox
+            MailboxScript mailboxHoveredOn = emailScript.GetMailboxHoveredOn();
+            if (mailboxHoveredOn && emailScript.GetCurrentMailbox() != mailboxHoveredOn)
+            {
+                mailboxHoveredOn.AddEmail(this);
+                // Hide body
+                emailBody.gameObject.SetActive(false);
+                // Hide preview
+                emailPreview.gameObject.SetActive(false);
+                // Remove from List
+                emailScript.RemoveEmailFromCurrentMailbox(this);
+            }
+            else
+            {
+                // Return to original position
+                emailPreview.gameObject.transform.position = beforeDragPosition;
+            }
         }
     }
 
@@ -430,5 +464,13 @@ public class Email
     public void ResetPreviewPosition()
     {
         emailPreview.gameObject.transform.localPosition = originalPreviewPosition;
+    }
+
+    /*
+     * Block dragging and setting unread/read
+     */
+     public void BlockEditable()
+    {
+        editeable = false;
     }
 }
