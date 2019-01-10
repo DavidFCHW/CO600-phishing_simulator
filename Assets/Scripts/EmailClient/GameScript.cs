@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameScript : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class GameScript : MonoBehaviour {
     public EmailScript emailScript;
     public ScoreScript score;
     public GameObject finishedPanel;
+    public GameObject goBack;
     // Audio sources
     public AudioSource whistleSound;
     public AudioSource backgroundMusic;
@@ -24,6 +26,7 @@ public class GameScript : MonoBehaviour {
         // Make some objects inactive
         score.gameObject.SetActive(false);
         finishedPanel.SetActive(false);
+        goBack.gameObject.SetActive(false);
         // Give your reference to other objects
         score       .SetGameScript(this);
         timer       .SetGameScript(this);
@@ -73,13 +76,17 @@ public class GameScript : MonoBehaviour {
      */
     IEnumerator EndGame()
     {
-        backgroundMusic.Pause();
+        backgroundMusic.Stop();
         finishedPanel.SetActive(true);
         yield return new WaitForSeconds(2);
         int[] results = emailScript.CheckEmails();
         // (int totalEmailsInt, int phishingEmailsInt, int sortedEmailsInt, int correctlyIdentifiedInt, int wronglyTrashedInt)
+        // Show score panel
         score.gameObject.SetActive(true);
-        Destroy(finishedPanel.gameObject);
+        // Deactivate now useless panels
+        finishedPanel.gameObject.SetActive(false);
+        timer.gameObject.SetActive(false);
+        // Show score
         score.ShowScore(results[0], results[1], results[2], results[3], results[4]);
     }
 
@@ -88,8 +95,12 @@ public class GameScript : MonoBehaviour {
      */
      public void FinishedShowingScore()
     {
+        // Tag emails
+        emailScript.TagEmails();
         // Remove score panel and finish panel
-        Destroy(score.gameObject);
+        score.gameObject.SetActive(false);
+        // Show try again and whatnot
+        goBack.gameObject.SetActive(true);
     }
 
     public void PlayLightClick()
@@ -112,5 +123,36 @@ public class GameScript : MonoBehaviour {
         {
             scoreTally.Pause();
         }
+    }
+
+    public void TryAgainButtonPressed()
+    {
+        // play click sound
+        PlayMeanClick();
+        // Start game over
+        StartOver();
+    }
+
+    public void ContinueButtonPressed()
+    {
+        // play click sound
+        PlayMeanClick();
+        // Go back to office scene
+        SceneManager.LoadScene("Office");
+    }
+
+    public void StartOver()
+    {
+        // Make some objects inactive
+        score.Reset();
+        finishedPanel.SetActive(false);
+        goBack.gameObject.SetActive(false);
+        // Reset timer
+        timer.gameObject.SetActive(true);
+        timer.ResetTimer();
+        // Reset email positions and color
+        emailScript.ResetEmails();
+        // Start game
+        StartCoroutine(StartGame());
     }
 }

@@ -53,15 +53,10 @@ public class ScoreScript : MonoBehaviour {
         int wronglyTrashedLoss = wronglyTrashedInt * moneyLostPerWronglyTrashedEmail;
         // Change the static string values
         profit.text = "<color=green>£" + profitValue + "</color>";
-        phishingEmailsString = phishingEmailsString + "<color=teal>" + phishingEmailsInt + "/" + totalEmailsInt + "</color>";
-        sortedEmailsString = sortedEmailsString + "<color=teal>" + sortedEmailsInt + "/" + totalEmailsInt + "</color>";
-        correctlyIdentifiedString = correctlyIdentifiedString + "<color=teal>" + correctlyIdentifiedInt + "/" + phishingEmailsInt + "</color>";
-        wronglyTrashedString = wronglyTrashedString + "<color=teal>" + wronglyTrashedInt + "/" + (totalEmailsInt - phishingEmailsInt) + "</color>";
-        // Change the text objects with the new string value + the gains
-        phishingEmails.text = phishingEmailsString;
-        sortedEmails.text = sortedEmailsString + "<color=green> + £" + sortedEmailsGains + "</color>";
-        correctlyIdentified.text = correctlyIdentifiedString + "<color=green> + £" + correctlyIdentifiedGains + "</color>";
-        wronglyTrashed.text = wronglyTrashedString + "<color=red> - £" + wronglyTrashedLoss + "</color>";
+        phishingEmails.text = phishingEmailsString + "<color=teal>" + phishingEmailsInt + "/" + totalEmailsInt + "</color>";
+        sortedEmails.text = sortedEmailsString + "<color=teal>" + sortedEmailsInt + "/" + totalEmailsInt + "</color><color=green> + £" + sortedEmailsGains + "</color>";
+        correctlyIdentified.text = correctlyIdentifiedString + "<color=teal>" + correctlyIdentifiedInt + "/" + phishingEmailsInt + "</color><color=green> + £" + correctlyIdentifiedGains + "</color>";
+        wronglyTrashed.text = wronglyTrashedString + "<color=teal>" + wronglyTrashedInt + "/" + (totalEmailsInt - phishingEmailsInt) + "</color><color=red> - £" + wronglyTrashedLoss + "</color>";
         // Make them appear dramatically
         StartCoroutine(MakeScoreTextAppearDramatically(sortedEmailsGains, correctlyIdentifiedGains, wronglyTrashedLoss));
     }
@@ -135,5 +130,18 @@ public class ScoreScript : MonoBehaviour {
     {
         gameScript.PlayMeanClick();
         gameScript.FinishedShowingScore();
+    }
+
+    public void Reset()
+    {
+        profit.gameObject.SetActive(true);
+        phishingEmails.gameObject.SetActive(false);
+        sortedEmails.gameObject.SetActive(false);
+        correctlyIdentified.gameObject.SetActive(false);
+        wronglyTrashed.gameObject.SetActive(false);
+        doneButton.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
+        // Reset profit
+        profitValue = 0;
     }
 }

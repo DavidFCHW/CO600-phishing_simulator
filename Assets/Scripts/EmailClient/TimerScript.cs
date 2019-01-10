@@ -13,18 +13,15 @@ public class TimerScript : MonoBehaviour {
     // Object references
     public GameObject shrinkingRectangle;
     public Text timerText;
+    public AudioSource countdown;
     // Variables
     private float timerValue;
     private bool counting = false;
+    private bool playedCountdown = false;
 
     private void Awake()
     {
-        // Set the color
-        shrinkingRectangle.GetComponent<Image>().color = stillOkColor;
-        // Set timer value
-        timerValue = countFrom;
-        // Set timer text
-        timerText.text = (timerValue).ToString();
+        ResetTimer();
     }
 
     public void SetGameScript(GameScript gameScript)
@@ -36,6 +33,12 @@ public class TimerScript : MonoBehaviour {
     void Update () {
         if (counting && timerValue > 0.0f)
         {
+            // Check if we're on the last 5 seconds
+            if ((int) timerValue == 4 && !playedCountdown)
+            {
+                countdown.Play();
+                playedCountdown = true;
+            }
             // Timer goes down
             timerValue -= Time.deltaTime;
             // Update the text
@@ -66,5 +69,20 @@ public class TimerScript : MonoBehaviour {
     {
         counting = false;
         gameScript.TimerEnded();
+    }
+
+    public void ResetTimer()
+    {
+        // Stop timer
+        counting = false;
+        // Set timer value
+        timerValue = countFrom;
+        // Set timer text
+        timerText.text = (timerValue).ToString();
+        // Set color
+        shrinkingRectangle.GetComponent<Image>().fillAmount = 1;
+        shrinkingRectangle.GetComponent<Image>().color = stillOkColor;
+        // Reset coutdown
+        playedCountdown = false;
     }
 }

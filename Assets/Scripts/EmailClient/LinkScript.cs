@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -32,7 +33,7 @@ public class LinkScript : MonoBehaviour {
             // Assign currentLinkActive
             currentLinkIndexActive = hoveredLinkIndex;
             // Check if we're hovering over the word "Phishing"
-            if (linkInfo.GetLinkID() == "Phishing definition")
+            if (String.Compare(linkInfo.GetLinkID(), "Phishing definition") == 0)
             {
                 associatedGameObject = phishingDefinition;
                 // Position the panel above the cursor
