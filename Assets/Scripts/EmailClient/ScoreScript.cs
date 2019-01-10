@@ -83,12 +83,14 @@ public class ScoreScript : MonoBehaviour {
         sortedEmails.gameObject.SetActive(true);
         // Add the profit
         yield return new WaitForSeconds(1);
+        gameScript.ToggleScoreTally(true);
         for (int i = 0; i < sortedEmailsGains; i += step)
         {
             profitValue += step;
             profit.text = "<color=green>£" + profitValue + "</color>";
             yield return null;
         }
+        gameScript.ToggleScoreTally(false);
 
         // Change step for smaller values
         step = 1;
@@ -98,24 +100,28 @@ public class ScoreScript : MonoBehaviour {
         correctlyIdentified.gameObject.SetActive(true);
         // Add the profit
         yield return new WaitForSeconds(1);
+        gameScript.ToggleScoreTally(true);
         for (int i = 0; i < correctlyIdentifiedGains; i += step)
         {
             profitValue += step;
             profit.text = "<color=green>£" + profitValue + "</color>";
             yield return null;
         }
+        gameScript.ToggleScoreTally(false);
 
         // Show wrongly trashed emails
         yield return new WaitForSeconds(1);
         wronglyTrashed.gameObject.SetActive(true);
         // Add the profit
         yield return new WaitForSeconds(1);
+        gameScript.ToggleScoreTally(true);
         for (int i = 0; i < wronglyTrashedLoss; i += step)
         {
             profitValue -= step;
             profit.text = "<color=green>£" + profitValue + "</color>";
             yield return null;
         }
+        gameScript.ToggleScoreTally(false);
 
         // Show button
         yield return new WaitForSeconds(1);
@@ -127,7 +133,7 @@ public class ScoreScript : MonoBehaviour {
      */
     public void DoneClicked()
     {
-        gameScript.playMeanClick();
+        gameScript.PlayMeanClick();
         gameScript.FinishedShowingScore();
     }
 }

@@ -14,6 +14,7 @@ public class GameScript : MonoBehaviour {
     public AudioSource backgroundMusic;
     public AudioSource lightClick;
     public AudioSource meanClick;
+    public AudioSource scoreTally;
 
     /*
      * initialisation
@@ -91,13 +92,25 @@ public class GameScript : MonoBehaviour {
         Destroy(score.gameObject);
     }
 
-    public void playLightClick()
+    public void PlayLightClick()
     {
         lightClick.Play();
     }
 
-    public void playMeanClick()
+    public void PlayMeanClick()
     {
         meanClick.Play();
+    }
+
+    public void ToggleScoreTally(bool toggle)
+    {
+        if (toggle)
+        {
+            scoreTally.Play();
+        }
+        else
+        {
+            scoreTally.Pause();
+        }
     }
 }
