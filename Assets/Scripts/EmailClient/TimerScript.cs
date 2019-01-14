@@ -13,18 +13,15 @@ public class TimerScript : MonoBehaviour {
     // Object references
     public GameObject shrinkingRectangle;
     public Text timerText;
+    public AudioSource countdown;
     // Variables
     private float timerValue;
     private bool counting = false;
+    private bool playedCountdown = false;
 
-    private void Start()
+    private void Awake()
     {
-        // Set the color
-        shrinkingRectangle.GetComponent<Image>().color = stillOkColor;
-        // Set timer value
-        timerValue = countFrom;
-        // Set timer text
-        timerText.text = timerValue.ToString();
+        ResetTimer();
     }
 
     public void SetGameScript(GameScript gameScript)
@@ -36,20 +33,26 @@ public class TimerScript : MonoBehaviour {
     void Update () {
         if (counting && timerValue > 0.0f)
         {
+            // Check if we're on the last 5 seconds
+            if ((int) timerValue == 4 && !playedCountdown)
+            {
+                countdown.Play();
+                playedCountdown = true;
+            }
             // Timer goes down
             timerValue -= Time.deltaTime;
             // Update the text
-            timerText.text = timerValue.ToString("n0");
+            timerText.text = (timerValue).ToString("n0");
             // Shrink the rectangle
             shrinkingRectangle.GetComponent<Image>().fillAmount -= 1.0f / countFrom * Time.deltaTime;
             // Change color
-            shrinkingRectangle.GetComponent<Image>().color = new Color(
-                Mathf.Lerp(stillOkColor.r, criticalTimeColor.r, timerValue / countFrom),
-                Mathf.Lerp(stillOkColor.g, criticalTimeColor.g, timerValue / countFrom),
-                Mathf.Lerp(stillOkColor.b, criticalTimeColor.b, timerValue / countFrom),
-                Mathf.Lerp(stillOkColor.a, criticalTimeColor.a, timerValue / countFrom));
+            shrinkingRectangle.GetComponent<Image>().color = new Color32(
+                (byte) Mathf.Lerp(criticalTimeColor.r, stillOkColor.r, (float) timerValue / countFrom),
+                (byte) Mathf.Lerp(criticalTimeColor.g, stillOkColor.g, (float)timerValue / countFrom),
+                (byte) Mathf.Lerp(criticalTimeColor.b, stillOkColor.b, (float)timerValue / countFrom),
+                (byte) Mathf.Lerp(criticalTimeColor.a, stillOkColor.a, (float)timerValue / countFrom));
         }
-        else if (timerValue <= 0.0f) TimerEnded();
+        else if (timerValue < 0.0f && counting) TimerEnded();
     }
 
     public void StartTimer()
@@ -57,9 +60,29 @@ public class TimerScript : MonoBehaviour {
         counting = true;
     }
 
+    public void StopTimer()
+    {
+        counting = false;
+    }
+
     public void TimerEnded()
     {
         counting = false;
         gameScript.TimerEnded();
+    }
+
+    public void ResetTimer()
+    {
+        // Stop timer
+        counting = false;
+        // Set timer value
+        timerValue = countFrom;
+        // Set timer text
+        timerText.text = (timerValue).ToString();
+        // Set color
+        shrinkingRectangle.GetComponent<Image>().fillAmount = 1;
+        shrinkingRectangle.GetComponent<Image>().color = stillOkColor;
+        // Reset coutdown
+        playedCountdown = false;
     }
 }

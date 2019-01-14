@@ -11,7 +11,7 @@ public class SenderScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public string addressText;
     private Text thisComponent;
 
-    private void Start()
+    private void Awake()
     {
         thisComponent = this.GetComponent<Text>();
         thisComponent.text = senderText;
