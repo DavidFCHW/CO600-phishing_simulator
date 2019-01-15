@@ -72,11 +72,8 @@ GameObject:
   - component: {fileID: 224713686328727486}
   - component: {fileID: 222510216180723750}
   - component: {fileID: 114596880178813656}
-  - component: {fileID: 114321651867667946}
-  - component: {fileID: 50190876610316250}
-  - component: {fileID: 61764268561764636}
-  - component: {fileID: 114457125592322848}
   - component: {fileID: 114978894453496458}
+  - component: {fileID: 114439836651197594}
   m_Layer: 5
   m_Name: EmailPreview
   m_TagString: Untagged
@@ -101,51 +98,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!50 &50190876610316250
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1728529600932954}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &61764268561764636
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1728529600932954}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &114213999380671258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,8 +118,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 18cb41a3d22164f2486b4f95a6ba102a, type: 3}
-    m_FontSize: 11
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -199,7 +151,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 18cb41a3d22164f2486b4f95a6ba102a, type: 3}
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
@@ -212,7 +164,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Reehan Aslam
---- !u!114 &114321651867667946
+--- !u!114 &114439836651197594
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,24 +172,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1728529600932954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0213275b57ed406a8f2f6eecf0c20e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 367a36146b2df43c7a1830632bc0a09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inbox: {fileID: 0}
-  sent: {fileID: 0}
-  trash: {fileID: 0}
---- !u!114 &114457125592322848
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1728529600932954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c8b281076674e9fb3d0ce8ecf4bf65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emailBody: {fileID: 0}
+  readIndicator: {fileID: 1516673063172130}
+  sender: {fileID: 114268117098559652}
+  subject: {fileID: 114213999380671258}
 --- !u!114 &114596880178813656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -358,7 +298,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114457125592322848}
+      - m_Target: {fileID: 114439836651197594}
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -421,7 +361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15.025, y: 17.6}
+  m_AnchoredPosition: {x: 15.025024, y: 17.599998}
   m_SizeDelta: {x: -30.05, y: -34.499996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224388315808000696
@@ -497,6 +437,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 15.024992, y: -13.975}
+  m_AnchoredPosition: {x: 15.025024, y: -13.974998}
   m_SizeDelta: {x: -30.099995, y: -27.95}
   m_Pivot: {x: 0.5, y: 0.5}
