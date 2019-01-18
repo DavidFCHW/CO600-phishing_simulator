@@ -60,9 +60,21 @@ public class TimerScript : MonoBehaviour {
         counting = true;
     }
 
+    public void UnPauseTimer()
+    {
+        counting = true;
+        countdown.Play();
+    }
+
     public void StopTimer()
     {
         counting = false;
+    }
+
+    public void PauseTimer()
+    {
+        counting = false;
+        countdown.Pause();
     }
 
     public void TimerEnded()
