@@ -6,23 +6,32 @@ using UnityEngine.SceneManagement;
 public class GameScript : MonoBehaviour {
 
     public TimerScript timer;
+    public PausePanelScript pausePanel;
     public ExplanationScript explanations;
     public EmailScript emailScript;
     public ScoreScript score;
     public GameObject finishedPanel;
     public GameObject goBack;
+    public GameObject pauseMenu; 
     // Audio sources
     public AudioSource whistleSound;
     public AudioSource backgroundMusic;
     public AudioSource lightClick;
     public AudioSource meanClick;
     public AudioSource scoreTally;
+    // Variables
+    private bool pauseEnabled; // Game can be paused
+    private bool gameIsPaused; // Game is currently paused
 
     /*
      * initialisation
      */
     private void Awake()
     {
+        // Make pause disabled
+        pauseEnabled = false;
+        pauseMenu.SetActive(false);
+        gameIsPaused = false;
         // Make some objects inactive
         score.gameObject.SetActive(false);
         finishedPanel.SetActive(false);
@@ -32,6 +41,46 @@ public class GameScript : MonoBehaviour {
         timer       .SetGameScript(this);
         explanations.SetGameScript(this);
         emailScript .SetGameScript(this);
+        pausePanel  .SetGameScript(this);
+    }
+
+    /*
+     * Called every frame after everything else
+     */
+    private void Update()
+    {
+        // Check if pause button pressed
+        if (pauseEnabled && Input.GetKeyUp(KeyCode.Escape))
+        {
+            if (!gameIsPaused)
+            {
+                Pause();
+            }
+            else
+            {
+                UnPause();
+            }
+        }
+    }
+
+    public void Pause()
+    {
+        pauseMenu.SetActive(true);
+        gameIsPaused = true;
+        // Stop timer
+        timer.PauseTimer();
+        // Pause music
+        backgroundMusic.Pause();
+    }
+
+    public void UnPause()
+    {
+        pauseMenu.SetActive(false);
+        gameIsPaused = false;
+        // Unpause music
+        backgroundMusic.Play();
+        // Unpause timer
+        timer.UnPauseTimer();
     }
 
     /*
@@ -67,7 +116,11 @@ public class GameScript : MonoBehaviour {
      IEnumerator StartGame()
     {
         yield return new WaitForSeconds(0.2f);
+        // Make pause enabled
+        pauseEnabled = true;
+        // Start music
         backgroundMusic.Play();
+        // Start timer
         timer.StartTimer();
     }
 
@@ -76,6 +129,9 @@ public class GameScript : MonoBehaviour {
      */
     IEnumerator EndGame()
     {
+        // Disable pause
+        pauseEnabled = false;
+        // Stop the stuff
         backgroundMusic.Stop();
         finishedPanel.SetActive(true);
         yield return new WaitForSeconds(2);
