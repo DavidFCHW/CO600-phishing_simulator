@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameScript : MonoBehaviour {
 
     public TimerScript timer;
+    public PausePanelScript pausePanel;
     public ExplanationScript explanations;
     public EmailScript emailScript;
     public ScoreScript score;
@@ -40,6 +41,7 @@ public class GameScript : MonoBehaviour {
         timer       .SetGameScript(this);
         explanations.SetGameScript(this);
         emailScript .SetGameScript(this);
+        pausePanel  .SetGameScript(this);
     }
 
     /*
@@ -74,7 +76,7 @@ public class GameScript : MonoBehaviour {
     public void UnPause()
     {
         pauseMenu.SetActive(false);
-        gameIsPaused = true;
+        gameIsPaused = false;
         // Unpause music
         backgroundMusic.Play();
         // Unpause timer
