@@ -5,20 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class TitleScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public AudioSource clickSound;
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //either this
-        //SceneManager.LoadScene("Office")); //Or this one...
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //either this
+        clickSound.Play();
+        SceneManager.LoadScene("Office"); //Or this one...
     }
 
     public void QuitGame()
