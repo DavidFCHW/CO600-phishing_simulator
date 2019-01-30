@@ -7,7 +7,7 @@ public class TimerScript : MonoBehaviour {
 
     GameScript gameScript;
     // Flags
-    private float countFrom = 20.0f;
+    private float countFrom = 120.0f;
     Color32 stillOkColor = new Color32(0, 255, 0, 255);
     Color32 criticalTimeColor = new Color32(255, 0, 0, 255);
     // Object references

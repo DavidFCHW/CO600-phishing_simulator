@@ -7,8 +7,8 @@ public class ScoreScript : MonoBehaviour {
 
     private GameScript gameScript;
     // Flags
-    private int moneyGainedPerSortedEmail = 200;
-    private int moneyGainedPerCorrectlyIdentifiedEmail = 50;
+    private int moneyGainedPerSortedEmail = 100;
+    private int moneyGainedPerCorrectlyIdentifiedEmail = 100;
     private int moneyLostPerWronglyTrashedEmail = 100;
     private string phishingEmailsString = "Phishing emails: ";
     private string sortedEmailsString = "Sorted emails: ";
