@@ -27,6 +27,9 @@ public class MailboxScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void InitialiseEmailList()
     {
         emails = new List<Email>();
+        counter = 0;
+        counterText.text = "" + counter;
+        Unselect();
     }
 
     /*

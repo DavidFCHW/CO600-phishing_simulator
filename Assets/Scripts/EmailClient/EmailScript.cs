@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class EmailScript : MonoBehaviour {
+    private GameScript gameScript;
     // List of emails
     private int[] phishingEmailsIndexes;
     public EmailPreviewScript[] emailPreviewArray;
@@ -15,10 +16,8 @@ public class EmailScript : MonoBehaviour {
     public MailboxScript trash;
     // Preview scrollview
     public GameObject previewScrollView;
-    // Timer
-    public TimerScript timer;
     // Finished Panel
-    public GameObject finishedPanel;
+    public GameObject donePanel;
     // Index of currently selcted email
     private Email currentlySelectedEmail;
     private int currentlySelectedEmailIndex = 0;
@@ -30,7 +29,7 @@ public class EmailScript : MonoBehaviour {
     /*
      * Method called on initialisation
      */
-    void Start () {
+    void Awake() {
         // Make the preview scrollview the correct height
         RectTransform rectTrans = previewScrollView.GetComponent<RectTransform>();
         rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, emailPreviewArray[0].GetComponent<RectTransform>().rect.height * emailPreviewArray.Length);
@@ -44,28 +43,79 @@ public class EmailScript : MonoBehaviour {
         // Set current mailbox as inbox
         currentMailbox = inbox;
         // Set finished panel inactive
-        finishedPanel.SetActive(false);
-        // Set all email previews inactive
-        foreach (EmailPreviewScript prev in emailPreviewArray) {
-            prev.gameObject.SetActive(false);
-        }
-        // Set all email bodies inactive
-        foreach (EmailBodyScript body in emailBodyArray)
-        {
-            body.gameObject.SetActive(false);
-        }
+        donePanel.SetActive(false);
         // Link together bodies and previews
         for (int i = 0; i < emailPreviewArray.Length; i++)
         {
+            // Create email object with preview, body, index and emailscript reference
             Email email = new Email(emailPreviewArray[i], emailBodyArray[i], i, this);
+            // Set isPhis
             if (i==2 || i==3)
             {
                 email.isPhish = true;
             }
+            // Give email object reference to the body and preview script
             emailPreviewArray[i].SetEmail(email);
             emailBodyArray[i].SetEmail(email);
+            // Initialise said email
+            email.Initialise();
+            // Add the email to inbox
             currentMailbox.AddEmail(email);
         }
+        // Set all emails inactive
+        foreach (Email mail in inbox.GetEmails())
+        {
+            mail.emailPreview.gameObject.SetActive(false);
+            mail.emailBody.gameObject.SetActive(false);
+        }
+        // Shuffle the list
+        currentMailbox.ShuffleEmails();
+        // Select current mailbox
+        currentMailbox.Select();
+    }
+
+    public void SetGameScript(GameScript gameScript)
+    {
+        this.gameScript = gameScript;
+    }
+
+    /*
+     * Reset to try again
+     */
+     public void ResetEmails()
+    {
+        // Set finished panel inactive
+        donePanel.SetActive(false);
+        // Move every mail to inbox
+        foreach (Email mail in trash.GetEmails())
+        {
+            // Add to inbox
+            inbox.AddEmail(mail);
+        }
+        foreach (Email mail in archive.GetEmails())
+        {
+            // Add to inbox
+            inbox.AddEmail(mail);
+        }
+        // Clear other inboxes
+        trash.InitialiseEmailList();
+        archive.InitialiseEmailList();
+        // Set all emails inactive
+        foreach (Email mail in inbox.GetEmails())
+        {
+            mail.emailPreview.gameObject.SetActive(false);
+            mail.emailBody.gameObject.SetActive(false);
+            // Set editable
+            mail.SetEditable(true);
+            // Reset colors
+            mail.TagAsUntagged();
+            // Unselect
+            mail.Unselect();
+            // Mark as unread
+            mail.SetUnread();
+        }
+        // Set current mailbox as inbox
+        currentMailbox = inbox;
         // Shuffle the list
         currentMailbox.ShuffleEmails();
         // Select current mailbox
@@ -117,7 +167,8 @@ public class EmailScript : MonoBehaviour {
      */
     public void CheckButtonClicked()
     {
-        CheckCorrectEmails();
+        donePanel.SetActive(false);
+        gameScript.FinishedSortingEmails();
     }
 
     /*
@@ -131,34 +182,76 @@ public class EmailScript : MonoBehaviour {
     /*
      * Check if the mail was in the correct inbox
      */
-    private void CheckCorrectEmails()
+    public int[] CheckEmails()
     {
-        int correct = 0;
-        int incorrect = 0;
+        int totalEmailsInt = inbox.GetEmails().Count + trash.GetEmails().Count + archive.GetEmails().Count;
+        int phishingEmailsInt = 0;
+        int sortedEmailsInt = 0;
+        int correctlyIdentifiedInt = 0;
+        int wronglyTrashedInt = 0;
+
+        foreach (Email mail in inbox.GetEmails())
+        {
+            if (mail.isPhish) phishingEmailsInt++;
+        }
         foreach (Email mail in trash.GetEmails())
         {
+            sortedEmailsInt++;
             if (mail.isPhish)
             {
-                correct++;
+                phishingEmailsInt++;
+                correctlyIdentifiedInt++;
             }
             else
             {
-                incorrect++;
+                wronglyTrashedInt++;
             }
         }
         foreach (Email mail in archive.GetEmails())
         {
-            if (!mail.isPhish)
+            sortedEmailsInt++;
+            if (mail.isPhish)
             {
-                correct++;
+                phishingEmailsInt++;
+            }
+        }
+        return new int[] { totalEmailsInt, phishingEmailsInt, sortedEmailsInt, correctlyIdentifiedInt, wronglyTrashedInt };
+    }
+
+    /*
+     * Tag emails based on wether or not they were correct
+     */
+    public void TagEmails()
+    {
+        foreach (Email mail in inbox.GetEmails())
+        {
+            mail.SetEditable(false);
+            mail.TagAsNeutral();
+        }
+        foreach (Email mail in trash.GetEmails())
+        {
+            mail.SetEditable(false);
+            if (mail.isPhish)
+            {
+                mail.TagAsCorrect();
             }
             else
             {
-                incorrect++;
+                mail.TagAsIncorrect();
             }
         }
-        Debug.Log("Correct emails: " + correct);
-        Debug.Log("Incorrect emails: " + incorrect);
+        foreach (Email mail in archive.GetEmails())
+        {
+            mail.SetEditable(false);
+            if (mail.isPhish)
+            {
+                mail.TagAsIncorrect();
+            }
+            else
+            {
+                mail.TagAsCorrect();
+            }
+        }
     }
 
     public void SetCurrentMailbox(MailboxScript newCurrentMailbox)
@@ -178,7 +271,11 @@ public class EmailScript : MonoBehaviour {
         // Check if there are any more emails in the inbox
         if (inbox.GetEmails().Count <= 0)
         {
-            finishedPanel.SetActive(true);
+            donePanel.SetActive(true);
+        }
+        else
+        {
+            donePanel.SetActive(false);
         }
     }
 
@@ -217,6 +314,15 @@ public class Email
     private Color32 previewClickedOnColor = new Color32(255, 255, 255, 255);
     private Color32 previewNormalColor = new Color32(255, 255, 255, 100);
     private Color32 previewHoverColor = new Color32(233, 0, 85, 100);
+
+    private Color32 correctColor = new Color32(0, 255, 0, 255);
+    private Color32 correctColorLighter = new Color32(156, 255, 156, 255);
+
+    private Color32 incorrectColor = new Color32(255, 0, 0, 255);
+    private Color32 incorrectColorLighter = new Color32(255, 139, 139, 255);
+
+    private Color32 neutralColor = new Color32(0, 144, 255, 255);
+    private Color32 neutralColorLighter = new Color32(90, 182, 253, 255);
     // Scale flags
     private Vector3 tinyPreviewScale = new Vector3(0.3f, 0.3f, 0.3f);
     private Vector3 normalPreviewScale = new Vector3(1, 1, 1);
@@ -228,6 +334,10 @@ public class Email
     public EmailBodyScript emailBody;
     private EmailScript emailScript;
     // Variables
+    private bool unread = true;
+    private bool editeable = true; // We can move the mail around and whatnot, blocks dragging and setting as read
+    private Color32 previewClickedOnColorUsed; // Used instead of previewClickedOnColor
+    private Color32 previewNormalColorUsed; // Used instead of previewNormalColor
     // Dragging
     private float halfHeightSmall;      // The half height of the tiny preview
     private Vector3 beforeDragPosition; // The original position of a preview
@@ -251,10 +361,30 @@ public class Email
     /*
      * Initialise values
      */
-    public void Start()
+    public void Initialise()
     {
+        previewClickedOnColorUsed = previewClickedOnColor;
+        previewNormalColorUsed = previewNormalColor;
         halfHeightSmall = emailPreview.gameObject.GetComponent<RectTransform>().rect.height / 6;
         originalPreviewPosition = emailPreview.gameObject.transform.localPosition;
+        // Make the text bold (cause unread)
+        this.SetUnread();
+    }
+
+    /*
+     * Show an email as unread
+     */
+    public void SetUnread()
+    {
+        if (editeable) emailPreview.SetDisplayUnread();
+    }
+
+    /*
+     * Show an email as read
+     */
+     public void SetRead()
+    {
+        if (editeable) emailPreview.SetDisplayRead();
     }
 
     /*
@@ -263,9 +393,14 @@ public class Email
      */
     public void Select()
     {
+        if (unread && editeable)
+        {
+            unread = false;
+            SetRead();
+        }
         emailScript.SetSelectedEmail(this);
         // Set selected colour
-        ChangeColor(emailPreview.gameObject, previewClickedOnColor);
+        emailPreview.gameObject.GetComponent<Image>().color = previewClickedOnColorUsed;
         // Show body
         emailBody.gameObject.SetActive(true);
         isSelected = true;
@@ -277,10 +412,69 @@ public class Email
     public void Unselect()
     {
         // Reset to normal colour
-        ChangeColor(emailPreview.gameObject, previewNormalColor);
+        emailPreview.gameObject.GetComponent<Image>().color = previewNormalColorUsed;
         // Hide body
         emailBody.gameObject.SetActive(false);
         isSelected = false;
+    }
+
+    /*
+     * Tag as correct on game end
+     */
+     public void TagAsCorrect()
+    {
+        // Change preview color to not mess up on hover
+        previewNormalColorUsed = correctColor;
+        previewClickedOnColorUsed = correctColorLighter;
+        // Change preview and body color
+        Tag();
+    }
+
+    /*
+     * Tag as incorrect on game end
+     */
+    public void TagAsIncorrect()
+    {
+        // Change preview color to not mess up on hover
+        previewNormalColorUsed = incorrectColor;
+        previewClickedOnColorUsed = incorrectColorLighter;
+        // Change preview and body color
+        Tag();
+    }
+
+    /*
+     * Tag as incorrect on game end
+     */
+    public void TagAsNeutral()
+    {
+        // Change preview color to not mess up on hover
+        previewNormalColorUsed = neutralColor;
+        previewClickedOnColorUsed = neutralColorLighter;
+        // Change preview and body color
+        Tag();
+    }
+
+    /*
+     * Put back to normal
+     */
+    public void TagAsUntagged()
+    {
+        // Change preview color to not mess up on hover
+        previewNormalColorUsed = previewNormalColor;
+        previewClickedOnColorUsed = previewClickedOnColor;
+        // Change preview and body color
+        Tag();
+    }
+
+    /*
+     * Common code between all three tag functions
+     */
+    public void Tag()
+    {
+        // Change body color
+        emailBody.GetComponent<Image>().color = previewClickedOnColorUsed;
+        // Change preview color
+        emailPreview.GetComponent<Image>().color = (isSelected ? previewClickedOnColorUsed : previewNormalColorUsed);
     }
 
     /*
@@ -288,38 +482,47 @@ public class Email
      */
     public void OnPreviewDrag(PointerEventData eventData)
     {
-        // Recalculate position
-        emailPreview.gameObject.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + halfHeightSmall, 0);
+        if (editeable)
+        {
+            // Recalculate position
+            emailPreview.gameObject.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + halfHeightSmall, 0);
+        }
     }
 
     public void OnBeginPreviewDrag(PointerEventData eventData)
     {
-        // Make the preview small
-        emailPreview.gameObject.transform.localScale = tinyPreviewScale;
-        // Keep track of the original position
-        beforeDragPosition = emailPreview.gameObject.transform.position;
+        if (editeable)
+        {
+            // Make the preview small
+            emailPreview.gameObject.transform.localScale = tinyPreviewScale;
+            // Keep track of the original position
+            beforeDragPosition = emailPreview.gameObject.transform.position;
+        }
     }
 
     public void OnEndPreviewDrag(PointerEventData eventData)
     {
-        // Return the scale to normal
-        emailPreview.gameObject.transform.localScale = normalPreviewScale;
-        // Check if dropped in a mailbox
-        MailboxScript mailboxHoveredOn = emailScript.GetMailboxHoveredOn();
-        if (mailboxHoveredOn && emailScript.GetCurrentMailbox() != mailboxHoveredOn)
+        if (editeable)
         {
-            mailboxHoveredOn.AddEmail(this);
-            // Hide body
-            emailBody.gameObject.SetActive(false);
-            // Hide preview
-            emailPreview.gameObject.SetActive(false);
-            // Remove from List
-            emailScript.RemoveEmailFromCurrentMailbox(this);
-        }
-        else
-        {
-            // Return to original position
-            emailPreview.gameObject.transform.position = beforeDragPosition;
+            // Return the scale to normal
+            emailPreview.gameObject.transform.localScale = normalPreviewScale;
+            // Check if dropped in a mailbox
+            MailboxScript mailboxHoveredOn = emailScript.GetMailboxHoveredOn();
+            if (mailboxHoveredOn && emailScript.GetCurrentMailbox() != mailboxHoveredOn)
+            {
+                mailboxHoveredOn.AddEmail(this);
+                // Hide body
+                emailBody.gameObject.SetActive(false);
+                // Hide preview
+                emailPreview.gameObject.SetActive(false);
+                // Remove from List
+                emailScript.RemoveEmailFromCurrentMailbox(this);
+            }
+            else
+            {
+                // Return to original position
+                emailPreview.gameObject.transform.position = beforeDragPosition;
+            }
         }
     }
 
@@ -328,12 +531,12 @@ public class Email
      */
     public void OnPointerEnterPreview(PointerEventData eventData)
     {
-        ChangeColor(emailPreview.gameObject, previewHoverColor);
+        emailPreview.gameObject.GetComponent<Image>().color = previewHoverColor;
     }
 
     public void OnPointerExitPreview(PointerEventData eventData)
     {
-        ChangeColor(emailPreview.gameObject, (isSelected ? previewClickedOnColor : previewNormalColor));
+        emailPreview.gameObject.GetComponent<Image>().color = (isSelected ? previewClickedOnColorUsed : previewNormalColorUsed);
     }
 
     /*
@@ -345,10 +548,10 @@ public class Email
     }
 
     /*
-     * Helper methods
+     * Block dragging and setting unread/read
      */
-    private void ChangeColor(GameObject gameobject, Color32 newColor)
+     public void SetEditable(bool editable)
     {
-        gameobject.GetComponent<Image>().color = newColor;
+        this.editeable = editable;
     }
 }
