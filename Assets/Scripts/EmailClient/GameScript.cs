@@ -10,9 +10,10 @@ public class GameScript : MonoBehaviour {
     public ExplanationScript explanations;
     public EmailScript emailScript;
     public ScoreScript score;
+    public StartCountDownScript startCountdown;
     public GameObject finishedPanel;
     public GameObject goBack;
-    public GameObject pauseMenu; 
+    public GameObject pauseMenu;
     // Audio sources
     public AudioSource whistleSound;
     public AudioSource backgroundMusic;
@@ -37,11 +38,12 @@ public class GameScript : MonoBehaviour {
         finishedPanel.SetActive(false);
         goBack.gameObject.SetActive(false);
         // Give your reference to other objects
-        score       .SetGameScript(this);
-        timer       .SetGameScript(this);
-        explanations.SetGameScript(this);
-        emailScript .SetGameScript(this);
-        pausePanel  .SetGameScript(this);
+        score         .SetGameScript(this);
+        timer         .SetGameScript(this);
+        explanations  .SetGameScript(this);
+        emailScript   .SetGameScript(this);
+        pausePanel    .SetGameScript(this);
+        startCountdown.SetGameScript(this);
     }
 
     /*
@@ -116,6 +118,15 @@ public class GameScript : MonoBehaviour {
      IEnumerator StartGame()
     {
         yield return new WaitForSeconds(0.2f);
+        // Show countdown
+        startCountdown.StartCountdown();
+    }
+
+    /*
+     * Called when the countdown is done
+     */
+     public void CountdownDone()
+    {
         // Make pause enabled
         pauseEnabled = true;
         // Start music
