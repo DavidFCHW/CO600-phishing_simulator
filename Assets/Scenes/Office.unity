@@ -4177,7 +4177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7199fe39e5342a5a3c3f4bf2145fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaherDialogue1: {fileID: 90502988}
+  manaherDialogue1: {fileID: 90502992}
   backgroundSound: {fileID: 1556220238}
 --- !u!4 &982351620
 Transform:

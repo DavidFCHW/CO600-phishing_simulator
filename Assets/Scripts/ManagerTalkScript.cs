@@ -16,8 +16,9 @@ public class ManagerTalkScript : MonoBehaviour {
 
     private void Awake()
     {
-        // Block camera
-        mainCam.Block();
+        mainCam.UnBlock();
+        // Hide object
+        this.gameObject.SetActive(false);
         // Hide all text panels
         foreach (GameObject go in textPanels)
         {
@@ -26,6 +27,15 @@ public class ManagerTalkScript : MonoBehaviour {
         // Show the first text panel
         currentTextPanel = 0;
         textPanels[currentTextPanel].SetActive(true);
+    }
+
+    /*
+     * Show dilogue
+     */
+     public void ShowDialogue()
+    {
+        mainCam.Block();
+        this.gameObject.SetActive(true);
     }
 
     /*

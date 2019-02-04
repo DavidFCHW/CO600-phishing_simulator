@@ -9,24 +9,17 @@ using UnityEngine;
 public class OfficeScript : MonoBehaviour
 {
     // Unity object references
-    public GameObject manaherDialogue1;
+    public ManagerTalkScript manaherDialogue1;
     public AudioSource backgroundSound;
     // Variables
-    private bool managerExplanationsShown = false;
+    private static bool managerExplanationsShown = false;
 
-    private void Awake()
+    private void Start()
     {
-        // Set every bubble inactive
-        manaherDialogue1.SetActive(false);
         // Play background sound
         backgroundSound.Play();
         // Show manager explanation the first time we enter the office
-        if (!managerExplanationsShown) ShowManagerExplanations();
+        if (!managerExplanationsShown) manaherDialogue1.ShowDialogue();
         managerExplanationsShown = true;
-    }
-
-    private void ShowManagerExplanations()
-    {
-        manaherDialogue1.SetActive(true);
     }
 }
