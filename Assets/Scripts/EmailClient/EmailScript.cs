@@ -367,6 +367,8 @@ public class Email
         previewNormalColorUsed = previewNormalColor;
         halfHeightSmall = emailPreview.gameObject.GetComponent<RectTransform>().rect.height / 6;
         originalPreviewPosition = emailPreview.gameObject.transform.localPosition;
+        // Hide feedback for now
+        emailBody.HideFeedback();
         // Make the text bold (cause unread)
         this.SetUnread();
     }
