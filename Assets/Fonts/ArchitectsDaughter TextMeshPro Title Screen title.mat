@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArchitectsDaughter TextMeshPro actually used for title screen
+  m_Name: ArchitectsDaughter TextMeshPro Title Screen title
   m_Shader: {fileID: 4800000, guid: dca26082f9cb439469295791d9f76fe5, type: 3}
   m_ShaderKeywords: UNDERLAY_ON
   m_LightmapFlags: 4
