@@ -10,6 +10,8 @@ public class ScoreScript : MonoBehaviour {
     private int moneyGainedPerSortedEmail = 100;
     private int moneyGainedPerCorrectlyIdentifiedEmail = 100;
     private int moneyLostPerWronglyTrashedEmail = 100;
+    private int scoreThreshold = 1000;
+
     private string phishingEmailsString = "Phishing emails: ";
     private string sortedEmailsString = "Sorted emails: ";
     private string correctlyIdentifiedString = "Correctly identified: ";
@@ -78,14 +80,14 @@ public class ScoreScript : MonoBehaviour {
         sortedEmails.gameObject.SetActive(true);
         // Add the profit
         yield return new WaitForSeconds(1);
-        gameScript.ToggleScoreTally(true);
+        gameScript.ToggleScoreTally(true); // Plays the sound
         for (int i = 0; i < sortedEmailsGains; i += step)
         {
             profitValue += step;
             profit.text = "<color=green>£" + profitValue + "</color>";
             yield return null;
         }
-        gameScript.ToggleScoreTally(false);
+        gameScript.ToggleScoreTally(false); // Plays the sound
 
         // Change step for smaller values
         step = 1;
@@ -95,28 +97,28 @@ public class ScoreScript : MonoBehaviour {
         correctlyIdentified.gameObject.SetActive(true);
         // Add the profit
         yield return new WaitForSeconds(1);
-        gameScript.ToggleScoreTally(true);
+        gameScript.ToggleScoreTally(true); // Plays the sound
         for (int i = 0; i < correctlyIdentifiedGains; i += step)
         {
             profitValue += step;
             profit.text = "<color=green>£" + profitValue + "</color>";
             yield return null;
         }
-        gameScript.ToggleScoreTally(false);
+        gameScript.ToggleScoreTally(false); // Plays the sound
 
         // Show wrongly trashed emails
         yield return new WaitForSeconds(1);
         wronglyTrashed.gameObject.SetActive(true);
         // Add the profit
         yield return new WaitForSeconds(1);
-        gameScript.ToggleScoreTally(true);
+        gameScript.ToggleScoreTally(true); // Plays the sound
         for (int i = 0; i < wronglyTrashedLoss; i += step)
         {
             profitValue -= step;
             profit.text = "<color=green>£" + profitValue + "</color>";
             yield return null;
         }
-        gameScript.ToggleScoreTally(false);
+        gameScript.ToggleScoreTally(false); // Plays the sound
 
         // Show button
         yield return new WaitForSeconds(1);
@@ -129,7 +131,7 @@ public class ScoreScript : MonoBehaviour {
     public void DoneClicked()
     {
         gameScript.PlayMeanClick();
-        gameScript.FinishedShowingScore();
+        gameScript.FinishedShowingScore(profitValue >= scoreThreshold);
     }
 
     public void Reset()

@@ -13,7 +13,7 @@ public class EmailScript : MonoBehaviour {
     public EmailPreviewScript[] mediumEmailPreviewArray;
     public EmailBodyScript[] mediumEmailBodyArray;
     // What level we're on
-    public static int level = 0;
+    private static int level = 0;
     // MailBoxes
     public MailboxScript inbox;
     public MailboxScript archive;
@@ -53,13 +53,27 @@ public class EmailScript : MonoBehaviour {
         currentMailbox = inbox;
         // Set finished panel inactive
         donePanel.SetActive(false);
+        // Initialise emails
+        if (level == 0) InitialiseEasyEmails();
+        else if (level == 0) InitialiseMediumEmails();
+        // Shuffle the list
+        currentMailbox.ShuffleEmails();
+        // Select current mailbox
+        currentMailbox.Select();
+    }
+
+    /*
+     * Links the emails together and whatnot
+     */
+     public void InitialiseEasyEmails()
+    {
         // Link together bodies and previews
         for (int i = 0; i < easyEmailPreviewArray.Length; i++)
         {
             // Create email object with preview, body, index and emailscript reference
             Email email = new Email(easyEmailPreviewArray[i], easyEmailBodyArray[i], i, this);
             // Set isPhis
-            if (i==1 || i==2 || i==8 || i==9)
+            if (i == 1 || i == 2 || i == 8 || i == 9)
             {
                 email.isPhish = true;
             }
@@ -71,10 +85,31 @@ public class EmailScript : MonoBehaviour {
             // Add the email to inbox
             currentMailbox.AddEmail(email);
         }
-        // Shuffle the list
-        currentMailbox.ShuffleEmails();
-        // Select current mailbox
-        currentMailbox.Select();
+    }
+
+    /*
+     * Links the emails together and whatnot
+     */
+    public void InitialiseMediumEmails()
+    {
+        // Link together bodies and previews
+        for (int i = 0; i < mediumEmailPreviewArray.Length; i++)
+        {
+            // Create email object with preview, body, index and emailscript reference
+            Email email = new Email(mediumEmailPreviewArray[i], mediumEmailBodyArray[i], i, this);
+            // Set isPhis
+            if (i == 10000)
+            {
+                email.isPhish = true;
+            }
+            // Give email object reference to the body and preview script
+            mediumEmailPreviewArray[i].SetEmail(email);
+            mediumEmailBodyArray[i].SetEmail(email);
+            // Initialise said email
+            email.Initialise();
+            // Add the email to inbox
+            currentMailbox.AddEmail(email);
+        }
     }
 
     public void SetGameScript(GameScript gameScript)
@@ -272,6 +307,14 @@ public class EmailScript : MonoBehaviour {
         {
             donePanel.SetActive(false);
         }
+    }
+
+    /*
+     * Increase level
+     */
+     public void IncreaseLevel()
+    {
+        level++;
     }
 
     /*

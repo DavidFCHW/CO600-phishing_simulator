@@ -12,7 +12,8 @@ public class GameScript : MonoBehaviour {
     public ScoreScript score;
     public StartCountDownScript startCountdown;
     public GameObject finishedPanel;
-    public GameObject goBack;
+    public GameObject tryAgainButton;
+    public GameObject continueButton;
     public GameObject pauseMenu;
     public GameObject blur;
     // Audio sources
@@ -37,7 +38,8 @@ public class GameScript : MonoBehaviour {
         // Make some objects inactive
         score.gameObject.SetActive(false);
         finishedPanel.SetActive(false);
-        goBack.gameObject.SetActive(false);
+        continueButton.gameObject.SetActive(false);
+        tryAgainButton.gameObject.SetActive(false);
         // Blur the game
         blur.SetActive(true);
         // Give your reference to other objects
@@ -167,7 +169,7 @@ public class GameScript : MonoBehaviour {
     /*
      * After the score has been shown
      */
-     public void FinishedShowingScore()
+     public void FinishedShowingScore(bool passed)
     {
         // Remove blur
         blur.SetActive(false);
@@ -175,8 +177,9 @@ public class GameScript : MonoBehaviour {
         emailScript.TagEmails();
         // Remove score panel and finish panel
         score.gameObject.SetActive(false);
-        // Show try again and whatnot
-        goBack.gameObject.SetActive(true);
+        // Show try again, only show continue if passed
+        tryAgainButton.gameObject.SetActive(true);
+        if (passed) continueButton.gameObject.SetActive(true);
     }
 
     public void PlayLightClick()
@@ -191,14 +194,8 @@ public class GameScript : MonoBehaviour {
 
     public void ToggleScoreTally(bool toggle)
     {
-        if (toggle)
-        {
-            scoreTally.Play();
-        }
-        else
-        {
-            scoreTally.Pause();
-        }
+        if (toggle)scoreTally.Play();
+        else scoreTally.Pause();
     }
 
     public void TryAgainButtonPressed()
@@ -213,6 +210,8 @@ public class GameScript : MonoBehaviour {
     {
         // play click sound
         PlayMeanClick();
+        // Increase level
+        emailScript.IncreaseLevel();
         // Go back to office scene
         SceneManager.LoadScene("Office");
     }
@@ -227,7 +226,8 @@ public class GameScript : MonoBehaviour {
         // Make some objects inactive
         score.Reset();
         finishedPanel.SetActive(false);
-        goBack.gameObject.SetActive(false);
+        continueButton.gameObject.SetActive(false);
+        tryAgainButton.gameObject.SetActive(false);
         // Reset timer
         timer.gameObject.SetActive(true);
         timer.ResetTimer();
