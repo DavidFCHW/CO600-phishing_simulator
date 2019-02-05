@@ -14,6 +14,7 @@ public class GameScript : MonoBehaviour {
     public GameObject finishedPanel;
     public GameObject goBack;
     public GameObject pauseMenu;
+    public GameObject blur;
     // Audio sources
     public AudioSource whistleSound;
     public AudioSource backgroundMusic;
@@ -37,6 +38,8 @@ public class GameScript : MonoBehaviour {
         score.gameObject.SetActive(false);
         finishedPanel.SetActive(false);
         goBack.gameObject.SetActive(false);
+        // Blur the game
+        blur.SetActive(true);
         // Give your reference to other objects
         score         .SetGameScript(this);
         timer         .SetGameScript(this);
@@ -127,6 +130,8 @@ public class GameScript : MonoBehaviour {
      */
      public void CountdownDone()
     {
+        // Remove blur
+        blur.SetActive(false);
         // Make pause enabled
         pauseEnabled = true;
         // Start music
@@ -146,6 +151,8 @@ public class GameScript : MonoBehaviour {
         backgroundMusic.Stop();
         finishedPanel.SetActive(true);
         yield return new WaitForSeconds(2);
+        // Blur
+        blur.SetActive(true);
         int[] results = emailScript.CheckEmails();
         // (int totalEmailsInt, int phishingEmailsInt, int sortedEmailsInt, int correctlyIdentifiedInt, int wronglyTrashedInt)
         // Show score panel
@@ -162,6 +169,8 @@ public class GameScript : MonoBehaviour {
      */
      public void FinishedShowingScore()
     {
+        // Remove blur
+        blur.SetActive(false);
         // Tag emails
         emailScript.TagEmails();
         // Remove score panel and finish panel
@@ -208,8 +217,13 @@ public class GameScript : MonoBehaviour {
         SceneManager.LoadScene("Office");
     }
 
+    /*
+     * Called on try again
+     */
     public void StartOver()
     {
+        // Blur
+        blur.SetActive(true);
         // Make some objects inactive
         score.Reset();
         finishedPanel.SetActive(false);

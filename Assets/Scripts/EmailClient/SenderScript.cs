@@ -10,6 +10,7 @@ public class SenderScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public string senderText;
     public string addressText;
     private Text thisComponent;
+    private bool blocked = false;
 
     private void Awake()
     {
@@ -19,11 +20,23 @@ public class SenderScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        thisComponent.text = senderText + " " + addressText;
+        if (!blocked) thisComponent.text = senderText + " " + addressText;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!blocked) thisComponent.text = senderText;
+    }
+
+    public void Block()
+    {
+        blocked = true;
+        thisComponent.text = senderText + " " + addressText;
+    }
+
+    public void UnBlock()
+    {
+        blocked = false;
         thisComponent.text = senderText;
     }
 }

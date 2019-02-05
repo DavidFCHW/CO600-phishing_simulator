@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EmailBodyScript : MonoBehaviour {
 
     private Email email;
+    public SenderScript senderPanel;
     public string sender;
     public string address;
     public Text senderBox;

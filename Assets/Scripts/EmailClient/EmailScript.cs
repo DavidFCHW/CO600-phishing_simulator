@@ -103,16 +103,7 @@ public class EmailScript : MonoBehaviour {
         // Set all emails inactive
         foreach (Email mail in inbox.GetEmails())
         {
-            mail.emailPreview.gameObject.SetActive(false);
-            mail.emailBody.gameObject.SetActive(false);
-            // Set editable
-            mail.SetEditable(true);
-            // Reset colors
-            mail.TagAsUntagged();
-            // Unselect
-            mail.Unselect();
-            // Mark as unread
-            mail.SetUnread();
+            mail.Reset();
         }
         // Set current mailbox as inbox
         currentMailbox = inbox;
@@ -226,7 +217,8 @@ public class EmailScript : MonoBehaviour {
         foreach (Email mail in inbox.GetEmails())
         {
             mail.SetEditable(false);
-            mail.TagAsNeutral();
+            //mail.TagAsNeutral();
+            mail.TagAsIncorrect();
         }
         foreach (Email mail in trash.GetEmails())
         {
@@ -371,6 +363,8 @@ public class Email
         emailBody.HideFeedback();
         // Make the text bold (cause unread)
         this.SetUnread();
+        // Unblock sender panel
+        emailBody.senderPanel.UnBlock();
     }
 
     /*
@@ -378,7 +372,8 @@ public class Email
      */
     public void SetUnread()
     {
-        if (editeable) emailPreview.SetDisplayUnread();
+        unread = true;
+        emailPreview.SetDisplayUnread();
     }
 
     /*
@@ -386,7 +381,8 @@ public class Email
      */
      public void SetRead()
     {
-        if (editeable) emailPreview.SetDisplayRead();
+        unread = false;
+        emailPreview.SetDisplayRead();
     }
 
     /*
@@ -397,7 +393,6 @@ public class Email
     {
         if (unread && editeable)
         {
-            unread = false;
             SetRead();
         }
         emailScript.SetSelectedEmail(this);
@@ -426,8 +421,10 @@ public class Email
      public void TagAsCorrect()
     {
         // Change preview color to not mess up on hover
-        previewNormalColorUsed = correctColor;
-        previewClickedOnColorUsed = correctColorLighter;
+        previewNormalColorUsed = correctColorLighter;
+        previewClickedOnColorUsed = correctColor;
+        // Show feedback panel
+        emailBody.ShowPositiveFeedback();
         // Change preview and body color
         Tag();
     }
@@ -438,8 +435,10 @@ public class Email
     public void TagAsIncorrect()
     {
         // Change preview color to not mess up on hover
-        previewNormalColorUsed = incorrectColor;
-        previewClickedOnColorUsed = incorrectColorLighter;
+        previewNormalColorUsed = incorrectColorLighter;
+        previewClickedOnColorUsed = incorrectColor;
+        // Show feedback panel
+        emailBody.ShowNegativeFeedback();
         // Change preview and body color
         Tag();
     }
@@ -450,8 +449,10 @@ public class Email
     public void TagAsNeutral()
     {
         // Change preview color to not mess up on hover
-        previewNormalColorUsed = neutralColor;
-        previewClickedOnColorUsed = neutralColorLighter;
+        previewNormalColorUsed = neutralColorLighter;
+        previewClickedOnColorUsed = neutralColor;
+        // Show feedback panel
+        emailBody.ShowNegativeFeedback();
         // Change preview and body color
         Tag();
     }
@@ -469,14 +470,37 @@ public class Email
     }
 
     /*
+     * Called on try again
+     */
+     public void Reset()
+    {
+        emailPreview.gameObject.SetActive(false);
+        emailBody.gameObject.SetActive(false);
+        // Set editable
+        SetEditable(true);
+        // Reset colors
+        TagAsUntagged();
+        // Unselect
+        Unselect();
+        // Mark as unread
+        if (!unread) SetUnread();
+        // Hide feedback
+        emailBody.HideFeedback();
+        // Unblock sender panel
+        emailBody.senderPanel.UnBlock();
+    }
+
+    /*
      * Common code between all three tag functions
      */
     public void Tag()
     {
-        // Change body color
-        emailBody.GetComponent<Image>().color = previewClickedOnColorUsed;
+        //// Change body color
+        //emailBody.GetComponent<Image>().color = previewClickedOnColorUsed;
         // Change preview color
         emailPreview.GetComponent<Image>().color = (isSelected ? previewClickedOnColorUsed : previewNormalColorUsed);
+        // Show address permanently
+        emailBody.senderPanel.Block();
     }
 
     /*
