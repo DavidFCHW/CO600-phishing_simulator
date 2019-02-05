@@ -8,8 +8,10 @@ public class EmailScript : MonoBehaviour {
     private GameScript gameScript;
     // List of emails
     private int[] phishingEmailsIndexes;
-    public EmailPreviewScript[] emailPreviewArray;
-    public EmailBodyScript[] emailBodyArray;
+    public EmailPreviewScript[] easyEmailPreviewArray;
+    public EmailBodyScript[] easyEmailBodyArray;
+    public EmailPreviewScript[] mediumEmailPreviewArray;
+    public EmailBodyScript[] mediumEmailBodyArray;
     // MailBoxes
     public MailboxScript inbox;
     public MailboxScript archive;
@@ -32,7 +34,7 @@ public class EmailScript : MonoBehaviour {
     void Awake() {
         // Make the preview scrollview the correct height
         RectTransform rectTrans = previewScrollView.GetComponent<RectTransform>();
-        rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, emailPreviewArray[0].GetComponent<RectTransform>().rect.height * emailPreviewArray.Length);
+        rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, easyEmailPreviewArray[0].GetComponent<RectTransform>().rect.height * easyEmailPreviewArray.Length);
         // Set the emailscript for all inboxes
         inbox.SetEmailScript(this);
         inbox.InitialiseEmailList();
@@ -45,18 +47,18 @@ public class EmailScript : MonoBehaviour {
         // Set finished panel inactive
         donePanel.SetActive(false);
         // Link together bodies and previews
-        for (int i = 0; i < emailPreviewArray.Length; i++)
+        for (int i = 0; i < easyEmailPreviewArray.Length; i++)
         {
             // Create email object with preview, body, index and emailscript reference
-            Email email = new Email(emailPreviewArray[i], emailBodyArray[i], i, this);
+            Email email = new Email(easyEmailPreviewArray[i], easyEmailBodyArray[i], i, this);
             // Set isPhis
             if (i==1 || i==2 || i==8 || i==9)
             {
                 email.isPhish = true;
             }
             // Give email object reference to the body and preview script
-            emailPreviewArray[i].SetEmail(email);
-            emailBodyArray[i].SetEmail(email);
+            easyEmailPreviewArray[i].SetEmail(email);
+            easyEmailBodyArray[i].SetEmail(email);
             // Initialise said email
             email.Initialise();
             // Add the email to inbox
