@@ -2,40 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * The manager explanations upon entering the office
+ * Re-designed to be re-useable
+ * Assign this script to the container Panel (not the canvas)
+ */
 public class ManagerTalkScript : MonoBehaviour {
 
-    // Flags
-    private Vector3 hiddenScale = new Vector3(0, 0, 0);
-    private Vector3 normalScale = new Vector3(1, 1, 0);
-
     public CameraMovementScript mainCam;
-    public GameObject text1;
-    public GameObject text2;
-    public GameObject text3;
+    public GameObject[] textPanels; // All the text panels
+    private int currentTextPanel; // The text panel we're currently on
+    public AudioSource clickSound;
 
-    // Button in text box 1 is clicked
-    public void OnClick1()
+    private void Awake()
     {
-        // Hide text box 1
-        text1.transform.localScale = hiddenScale;
-        // Move around a bit
-        //mainCam.RotateHorizontal(5);
-        // Show text2
-        text2.transform.localScale = normalScale;
-    }
-
-    // 
-    public void OnClick2()
-    {
-        text2.transform.localScale = hiddenScale;
-        text3.transform.localScale = normalScale;
-    }
-
-    public void OnClick3()
-    {
-        text3.transform.localScale = hiddenScale;
-        Destroy(gameObject);
         mainCam.UnBlock();
-        //mainCam.LockCursor();
+        // Hide object
+        this.gameObject.SetActive(false);
+        // Hide all text panels
+        foreach (GameObject go in textPanels)
+        {
+            go.SetActive(false);
+        }
+        // Show the first text panel
+        currentTextPanel = 0;
+        textPanels[currentTextPanel].SetActive(true);
+    }
+
+    /*
+     * Show dilogue
+     */
+     public void ShowDialogue()
+    {
+        mainCam.Block();
+        this.gameObject.SetActive(true);
+    }
+
+    /*
+     * Go to next panel
+     */
+    private void GoToNextPanel()
+    {
+        if (currentTextPanel+1 >= textPanels.Length)
+        {
+            // We're on the last one
+            Destroy(gameObject);
+            mainCam.UnBlock();
+        }
+        else
+        {
+            // Go to the next panel
+            textPanels[currentTextPanel].SetActive(false);
+            currentTextPanel++;
+            textPanels[currentTextPanel].SetActive(true);
+        }
+    }
+
+    /*
+     * Next button clicked
+     */
+    public void OnNextClicked()
+    {
+        clickSound.Play();
+        GoToNextPanel();
     }
 }
