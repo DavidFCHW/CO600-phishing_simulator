@@ -35,6 +35,11 @@ public class EmailScript : MonoBehaviour {
         // Make the preview scrollview the correct height
         RectTransform rectTrans = previewScrollView.GetComponent<RectTransform>();
         rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, easyEmailPreviewArray[0].GetComponent<RectTransform>().rect.height * easyEmailPreviewArray.Length);
+        // Set all emails inactive
+        foreach (EmailPreviewScript preview in easyEmailPreviewArray) preview.gameObject.SetActive(false);
+        foreach (EmailPreviewScript preview in mediumEmailPreviewArray) preview.gameObject.SetActive(false);
+        foreach (EmailBodyScript body in easyEmailBodyArray) body.gameObject.SetActive(false);
+        foreach (EmailBodyScript body in mediumEmailBodyArray) body.gameObject.SetActive(false);
         // Set the emailscript for all inboxes
         inbox.SetEmailScript(this);
         inbox.InitialiseEmailList();
@@ -63,12 +68,6 @@ public class EmailScript : MonoBehaviour {
             email.Initialise();
             // Add the email to inbox
             currentMailbox.AddEmail(email);
-        }
-        // Set all emails inactive
-        foreach (Email mail in inbox.GetEmails())
-        {
-            mail.emailPreview.gameObject.SetActive(false);
-            mail.emailBody.gameObject.SetActive(false);
         }
         // Shuffle the list
         currentMailbox.ShuffleEmails();
