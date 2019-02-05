@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArchitectsDaughter TextMeshPro Title screen
+  m_Name: ArchitectsDaughter TextMeshPro Finished
   m_Shader: {fileID: 4800000, guid: dca26082f9cb439469295791d9f76fe5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -42,11 +42,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Ambient: 0.5
-    - _Bevel: 0.5
+    - _Bevel: 0.281
     - _BevelClamp: 0
-    - _BevelOffset: 0
-    - _BevelRoundness: 0
-    - _BevelWidth: 0
+    - _BevelOffset: -0.034
+    - _BevelRoundness: 0.258
+    - _BevelWidth: -0.077
     - _BumpFace: 0
     - _BumpOutline: 0
     - _ColorMask: 15
@@ -62,13 +62,13 @@ Material:
     - _LightAngle: 3.1416
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
-    - _OutlineSoftness: 0
+    - _OutlineSoftness: 1
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.263
+    - _OutlineWidth: 0.547
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 0.5745145
+    - _ScaleRatioA: 0.30474797
     - _ScaleRatioB: 0
     - _ScaleRatioC: 0
     - _ScaleX: 1
@@ -82,10 +82,10 @@ Material:
     - _StencilWriteMask: 255
     - _TextureHeight: 512
     - _TextureWidth: 512
-    - _UnderlayDilate: 0
-    - _UnderlayOffsetX: 0
-    - _UnderlayOffsetY: 0
-    - _UnderlaySoftness: 0
+    - _UnderlayDilate: 0.513
+    - _UnderlayOffsetX: 0.832
+    - _UnderlayOffsetY: 0.468
+    - _UnderlaySoftness: 0.757
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
     - _WeightBold: 0.75
