@@ -50,7 +50,7 @@ public class EmailScript : MonoBehaviour {
             // Create email object with preview, body, index and emailscript reference
             Email email = new Email(emailPreviewArray[i], emailBodyArray[i], i, this);
             // Set isPhis
-            if (i==2 || i==3)
+            if (i==1 || i==2 || i==8 || i==9)
             {
                 email.isPhish = true;
             }
