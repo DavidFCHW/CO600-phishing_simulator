@@ -12,6 +12,8 @@ public class EmailScript : MonoBehaviour {
     public EmailBodyScript[] easyEmailBodyArray;
     public EmailPreviewScript[] mediumEmailPreviewArray;
     public EmailBodyScript[] mediumEmailBodyArray;
+    // What level we're on
+    public static int level = 0;
     // MailBoxes
     public MailboxScript inbox;
     public MailboxScript archive;
