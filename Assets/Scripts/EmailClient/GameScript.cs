@@ -23,8 +23,8 @@ public class GameScript : MonoBehaviour {
     public AudioSource meanClick;
     public AudioSource scoreTally;
     // Variables
-    private bool pauseEnabled; // Game can be paused
-    private bool gameIsPaused; // Game is currently paused
+    private bool _pauseEnabled; // Game can be paused
+    private bool _gameIsPaused; // Game is currently paused
 
     /*
      * initialisation
@@ -32,9 +32,9 @@ public class GameScript : MonoBehaviour {
     private void Awake()
     {
         // Make pause disabled
-        pauseEnabled = false;
+        _pauseEnabled = false;
         pauseMenu.SetActive(false);
-        gameIsPaused = false;
+        _gameIsPaused = false;
         // Make some objects inactive
         score.gameObject.SetActive(false);
         finishedPanel.SetActive(false);
@@ -57,23 +57,17 @@ public class GameScript : MonoBehaviour {
     private void Update()
     {
         // Check if pause button pressed
-        if (pauseEnabled && Input.GetKeyUp(KeyCode.Escape))
+        if (_pauseEnabled && Input.GetKeyUp(KeyCode.Escape))
         {
-            if (!gameIsPaused)
-            {
-                Pause();
-            }
-            else
-            {
-                UnPause();
-            }
+            if (!_gameIsPaused) Pause();
+            else UnPause();
         }
     }
 
-    public void Pause()
+    private void Pause()
     {
         pauseMenu.SetActive(true);
-        gameIsPaused = true;
+        _gameIsPaused = true;
         // Stop timer
         timer.PauseTimer();
         // Pause music
@@ -83,7 +77,7 @@ public class GameScript : MonoBehaviour {
     public void UnPause()
     {
         pauseMenu.SetActive(false);
-        gameIsPaused = false;
+        _gameIsPaused = false;
         // Unpause music
         backgroundMusic.Play();
         // Unpause timer
@@ -120,7 +114,7 @@ public class GameScript : MonoBehaviour {
     /*
      * Start the game
      */
-     IEnumerator StartGame()
+    private IEnumerator StartGame()
     {
         yield return new WaitForSeconds(0.2f);
         // Show countdown
@@ -135,7 +129,7 @@ public class GameScript : MonoBehaviour {
         // Remove blur
         blur.SetActive(false);
         // Make pause enabled
-        pauseEnabled = true;
+        _pauseEnabled = true;
         // Start music
         backgroundMusic.Play();
         // Start timer
@@ -145,10 +139,10 @@ public class GameScript : MonoBehaviour {
     /*
      * Game ended
      */
-    IEnumerator EndGame()
+    private IEnumerator EndGame()
     {
         // Disable pause
-        pauseEnabled = false;
+        _pauseEnabled = false;
         // Stop the stuff
         backgroundMusic.Stop();
         finishedPanel.SetActive(true);
@@ -219,7 +213,7 @@ public class GameScript : MonoBehaviour {
     /*
      * Called on try again
      */
-    public void StartOver()
+    private void StartOver()
     {
         // Blur
         blur.SetActive(true);
