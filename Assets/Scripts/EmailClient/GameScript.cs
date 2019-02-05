@@ -10,9 +10,12 @@ public class GameScript : MonoBehaviour {
     public ExplanationScript explanations;
     public EmailScript emailScript;
     public ScoreScript score;
+    public StartCountDownScript startCountdown;
     public GameObject finishedPanel;
-    public GameObject goBack;
-    public GameObject pauseMenu; 
+    public GameObject tryAgainButton;
+    public GameObject continueButton;
+    public GameObject pauseMenu;
+    public GameObject blur;
     // Audio sources
     public AudioSource whistleSound;
     public AudioSource backgroundMusic;
@@ -20,8 +23,8 @@ public class GameScript : MonoBehaviour {
     public AudioSource meanClick;
     public AudioSource scoreTally;
     // Variables
-    private bool pauseEnabled; // Game can be paused
-    private bool gameIsPaused; // Game is currently paused
+    private bool _pauseEnabled; // Game can be paused
+    private bool _gameIsPaused; // Game is currently paused
 
     /*
      * initialisation
@@ -29,19 +32,23 @@ public class GameScript : MonoBehaviour {
     private void Awake()
     {
         // Make pause disabled
-        pauseEnabled = false;
+        _pauseEnabled = false;
         pauseMenu.SetActive(false);
-        gameIsPaused = false;
+        _gameIsPaused = false;
         // Make some objects inactive
         score.gameObject.SetActive(false);
         finishedPanel.SetActive(false);
-        goBack.gameObject.SetActive(false);
+        continueButton.gameObject.SetActive(false);
+        tryAgainButton.gameObject.SetActive(false);
+        // Blur the game
+        blur.SetActive(true);
         // Give your reference to other objects
-        score       .SetGameScript(this);
-        timer       .SetGameScript(this);
-        explanations.SetGameScript(this);
-        emailScript .SetGameScript(this);
-        pausePanel  .SetGameScript(this);
+        score         .SetGameScript(this);
+        timer         .SetGameScript(this);
+        explanations  .SetGameScript(this);
+        emailScript   .SetGameScript(this);
+        pausePanel    .SetGameScript(this);
+        startCountdown.SetGameScript(this);
     }
 
     /*
@@ -50,23 +57,17 @@ public class GameScript : MonoBehaviour {
     private void Update()
     {
         // Check if pause button pressed
-        if (pauseEnabled && Input.GetKeyUp(KeyCode.Escape))
+        if (_pauseEnabled && Input.GetKeyUp(KeyCode.Escape))
         {
-            if (!gameIsPaused)
-            {
-                Pause();
-            }
-            else
-            {
-                UnPause();
-            }
+            if (!_gameIsPaused) Pause();
+            else UnPause();
         }
     }
 
-    public void Pause()
+    private void Pause()
     {
         pauseMenu.SetActive(true);
-        gameIsPaused = true;
+        _gameIsPaused = true;
         // Stop timer
         timer.PauseTimer();
         // Pause music
@@ -76,7 +77,7 @@ public class GameScript : MonoBehaviour {
     public void UnPause()
     {
         pauseMenu.SetActive(false);
-        gameIsPaused = false;
+        _gameIsPaused = false;
         // Unpause music
         backgroundMusic.Play();
         // Unpause timer
@@ -113,11 +114,22 @@ public class GameScript : MonoBehaviour {
     /*
      * Start the game
      */
-     IEnumerator StartGame()
+    private IEnumerator StartGame()
     {
         yield return new WaitForSeconds(0.2f);
+        // Show countdown
+        startCountdown.StartCountdown();
+    }
+
+    /*
+     * Called when the countdown is done
+     */
+     public void CountdownDone()
+    {
+        // Remove blur
+        blur.SetActive(false);
         // Make pause enabled
-        pauseEnabled = true;
+        _pauseEnabled = true;
         // Start music
         backgroundMusic.Play();
         // Start timer
@@ -127,14 +139,16 @@ public class GameScript : MonoBehaviour {
     /*
      * Game ended
      */
-    IEnumerator EndGame()
+    private IEnumerator EndGame()
     {
         // Disable pause
-        pauseEnabled = false;
+        _pauseEnabled = false;
         // Stop the stuff
         backgroundMusic.Stop();
         finishedPanel.SetActive(true);
         yield return new WaitForSeconds(2);
+        // Blur
+        blur.SetActive(true);
         int[] results = emailScript.CheckEmails();
         // (int totalEmailsInt, int phishingEmailsInt, int sortedEmailsInt, int correctlyIdentifiedInt, int wronglyTrashedInt)
         // Show score panel
@@ -149,14 +163,17 @@ public class GameScript : MonoBehaviour {
     /*
      * After the score has been shown
      */
-     public void FinishedShowingScore()
+     public void FinishedShowingScore(bool passed)
     {
+        // Remove blur
+        blur.SetActive(false);
         // Tag emails
         emailScript.TagEmails();
         // Remove score panel and finish panel
         score.gameObject.SetActive(false);
-        // Show try again and whatnot
-        goBack.gameObject.SetActive(true);
+        // Show try again, only show continue if passed
+        tryAgainButton.gameObject.SetActive(true);
+        if (passed) continueButton.gameObject.SetActive(true);
     }
 
     public void PlayLightClick()
@@ -171,14 +188,8 @@ public class GameScript : MonoBehaviour {
 
     public void ToggleScoreTally(bool toggle)
     {
-        if (toggle)
-        {
-            scoreTally.Play();
-        }
-        else
-        {
-            scoreTally.Pause();
-        }
+        if (toggle)scoreTally.Play();
+        else scoreTally.Pause();
     }
 
     public void TryAgainButtonPressed()
@@ -193,16 +204,24 @@ public class GameScript : MonoBehaviour {
     {
         // play click sound
         PlayMeanClick();
+        // Increase level
+        emailScript.IncreaseLevel();
         // Go back to office scene
         SceneManager.LoadScene("Office");
     }
 
-    public void StartOver()
+    /*
+     * Called on try again
+     */
+    private void StartOver()
     {
+        // Blur
+        blur.SetActive(true);
         // Make some objects inactive
         score.Reset();
         finishedPanel.SetActive(false);
-        goBack.gameObject.SetActive(false);
+        continueButton.gameObject.SetActive(false);
+        tryAgainButton.gameObject.SetActive(false);
         // Reset timer
         timer.gameObject.SetActive(true);
         timer.ResetTimer();
