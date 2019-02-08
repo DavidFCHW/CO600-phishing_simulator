@@ -30,6 +30,7 @@ public class CameraMovementScript : MonoBehaviour
             }
             else if (axes == RotationAxis.MouseY)
             {
+                transform.Rotate(0, Input.GetAxis("Mouse X") * sensHorizontal, 0);
                 _rotationX -= Input.GetAxis("Mouse Y") * sensVertical;
                 _rotationX = Mathf.Clamp(_rotationX, minimumVert, maximumVert); //Clamps the vertical angle within the min and max variables.
                 float rotationY = transform.localEulerAngles.y;

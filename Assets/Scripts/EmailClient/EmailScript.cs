@@ -22,7 +22,7 @@ public class EmailScript : MonoBehaviour {
     public GameObject previewScrollView;
     // Finished Panel
     public GameObject donePanel;
-    // Index of currently selcted email
+    // Index of currently selected email
     private Email currentlySelectedEmail;
     private int currentlySelectedEmailIndex = 0;
     // Current inbox
@@ -213,42 +213,46 @@ public class EmailScript : MonoBehaviour {
      */
     public int[] CheckEmails()
     {
-        int totalEmailsInt = inbox.GetEmails().Count + trash.GetEmails().Count + archive.GetEmails().Count;
-        int phishingEmailsInt = 0;
-        int sortedEmailsInt = 0;
-        int correctlyIdentifiedInt = 0;
-        int wronglyTrashedInt = 0;
+        var totalEmailsInt = inbox.GetEmails().Count + trash.GetEmails().Count + archive.GetEmails().Count;
+        var phishingEmailsInt = 0;      // The number of phishing emails
+        var sortedEmailsInt = 0;        // The number of emails out of inbox total
+        var phishingEmailsTrashed = 0;  // The number of phishing emails trashed
+        var legitEmailsTrashed = 0;     // The number of Legit emails trashed
+        var phishingEmailsArchived = 0; // The number of Phishing emails archived
+        var legitEmailsArchived = 0;    // The number of Legit emails archived
 
-        foreach (Email mail in inbox.GetEmails())
-        {
-            if (mail.isPhish) phishingEmailsInt++;
-        }
-        foreach (Email mail in trash.GetEmails())
+        foreach (var mail in inbox.GetEmails()) if (mail.isPhish) phishingEmailsInt++;
+        foreach (var mail in trash.GetEmails())
         {
             sortedEmailsInt++;
             if (mail.isPhish)
             {
                 phishingEmailsInt++;
-                correctlyIdentifiedInt++;
+                phishingEmailsTrashed++;
             }
             else
             {
-                wronglyTrashedInt++;
+                legitEmailsTrashed++;
             }
         }
-        foreach (Email mail in archive.GetEmails())
+        foreach (var mail in archive.GetEmails())
         {
             sortedEmailsInt++;
             if (mail.isPhish)
             {
+                phishingEmailsArchived++;
                 phishingEmailsInt++;
             }
+            else
+            {
+                legitEmailsArchived++;
+            }
         }
-        return new int[] { totalEmailsInt, phishingEmailsInt, sortedEmailsInt, correctlyIdentifiedInt, wronglyTrashedInt };
+        return new[] { totalEmailsInt, phishingEmailsInt, sortedEmailsInt, phishingEmailsTrashed, legitEmailsTrashed, phishingEmailsArchived, legitEmailsArchived };
     }
 
     /*
-     * Tag emails based on wether or not they were correct
+     * Tag emails based on whether or not they were correct
      */
     public void TagEmails()
     {

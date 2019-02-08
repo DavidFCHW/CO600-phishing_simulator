@@ -13,18 +13,17 @@ public class TitleScript : MonoBehaviour {
     public GameObject creditsPanel;
     public GameObject creditsText;
     // Variables
-    private float creditsTextYOffset;
-    private float creditsTextOutOfSightOffset;
-    private int step = 1; // How fast the credits go
+    private float _creditsTextYOffset;
+    private int _step = 1; // How fast the credits go
+    private RectTransform _creditsTextRectTrans;
 
     private void Start()
     {
-        // Place the creditpanel just below the canvas
-        RectTransform creditsTextRectTrans = creditsText.GetComponent<RectTransform>();
-        creditsTextYOffset = -this.gameObject.GetComponent<RectTransform>().rect.height;
-        creditsTextRectTrans.offsetMax = new Vector2(0, creditsTextYOffset);
-        // Calculate the offset for credits to be out of sight (height of credit text)
-        creditsTextOutOfSightOffset = LayoutUtility.GetPreferredSize(creditsTextRectTrans, 1);
+        _creditsTextRectTrans = creditsText.GetComponent<RectTransform>();
+        // Place the credit panel just below the canvas
+        var creditsTextRectTrans = creditsText.GetComponent<RectTransform>();
+        _creditsTextYOffset = -gameObject.GetComponent<RectTransform>().rect.height;
+        creditsTextRectTrans.offsetMax = new Vector2(0, _creditsTextYOffset);
         // Hide credits
         buttonPanel.SetActive(true);
         creditsPanel.SetActive(false);
@@ -38,12 +37,12 @@ public class TitleScript : MonoBehaviour {
      */
      private void IncreaseStep()
     {
-        if (step == 1) step = 4;
-        else if (step == 4) step = 8;
-        else if (step == 8) step = 1;
+        if (_step == 1) _step = 4;
+        else if (_step == 4) _step = 8;
+        else if (_step == 8) _step = 1;
     }
 
-    private void PlayGame()
+     private void PlayGame()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //either this
         SceneManager.LoadScene("Office"); //Or this one...
@@ -78,13 +77,12 @@ public class TitleScript : MonoBehaviour {
      */
     IEnumerator MoveCreditsUp()
     {
-        RectTransform creditsTextRectTrans = creditsText.GetComponent<RectTransform>();
-        for (float i = creditsTextYOffset; i < LayoutUtility.GetPreferredSize(creditsTextRectTrans, 1); i += step)
+        for (float i = _creditsTextYOffset; i < LayoutUtility.GetPreferredSize(_creditsTextRectTrans, 1); i += _step)
         {
-            creditsTextRectTrans.offsetMax = new Vector2(0, i);
+            _creditsTextRectTrans.offsetMax = new Vector2(0, i);
             yield return null;
         }
-        step = 1;
+        _step = 1;
         yield return new WaitForSeconds(1);
         RemoveCredits();
     }

@@ -7,35 +7,51 @@ public class ScoreScript : MonoBehaviour {
 
     private GameScript gameScript;
     // Flags
-    private int moneyGainedPerSortedEmail = 100;
-    private int moneyGainedPerCorrectlyIdentifiedEmail = 100;
-    private int moneyLostPerWronglyTrashedEmail = 100;
+    private readonly int _moneyGainedPerLegitEmailArchived = 100;
+    private readonly int _moneyLostPerLegitEmailTrashed = 100;
+    private readonly int _moneyLostPerPhishingEmailArchived = 100;
+    private readonly int _moneyGainedPerPhishingEmailTrashed = 100;
     private int scoreThreshold = 1000;
 
-    private string phishingEmailsString = "Phishing emails: ";
-    private string sortedEmailsString = "Sorted emails: ";
-    private string correctlyIdentifiedString = "Correctly identified: ";
-    private string wronglyTrashedString = "Wrongly trashed: ";
     // Unity objects
-    public Text phishingEmails;
-    public Text sortedEmails;
-    public Text correctlyIdentified;
-    public Text wronglyTrashed;
+    public Text legitEmailsArchived;
+    public Text legitEmailsArchivedGains;
+    public Text phishingEmailsArchived;
+    public Text phishingEmailsArchivedLoss;
+    public Text phishingEmailsTrashed;
+    public Text phishingEmailsTrashedGains;
+    public Text legitEmailsTrashed;
+    public Text legitEmailsTrashedLosses;
     public Text profit;
     public Button doneButton;
     // The profit made
-    private int profitValue = 0;
-
+    private int _profitValue = 0;
+    // The step used when adding stuff dramatically
+    private int _step = 5;
+    // The coroutine that shows the score dramatically
+    private Coroutine _showScoreCoroutine;
+    // The calculated amount of gains and losses
+    private int _legitEmailsArchivedGainsInt;
+    private int _legitEmailsTrashedLossesInt;
+    private int _phishingEmailsArchivedLossInt;
+    private int _phishingEmailsTrashedGainsInt;
+    
     /*
      * Initialisation
      */
-    private void Awake()
+    private void Start()
     {
+        // Set all the text fields inactive
         profit.gameObject.SetActive(true);
-        phishingEmails.gameObject.SetActive(false);
-        sortedEmails.gameObject.SetActive(false);
-        correctlyIdentified.gameObject.SetActive(false);
-        wronglyTrashed.gameObject.SetActive(false);
+        legitEmailsArchived.gameObject.SetActive(false);
+        legitEmailsArchivedGains.gameObject.SetActive(false);
+        legitEmailsTrashed.gameObject.SetActive(false);
+        legitEmailsTrashedLosses.gameObject.SetActive(false);
+        phishingEmailsArchived.gameObject.SetActive(false);
+        phishingEmailsArchivedLoss.gameObject.SetActive(false);
+        phishingEmailsTrashed.gameObject.SetActive(false);
+        phishingEmailsTrashedGains.gameObject.SetActive(false);
+        // Set the done button inactive
         doneButton.gameObject.SetActive(false);
     }
 
@@ -47,81 +63,125 @@ public class ScoreScript : MonoBehaviour {
     /*
      * Show the score
      */
-    public void ShowScore(int totalEmailsInt, int phishingEmailsInt, int sortedEmailsInt, int correctlyIdentifiedInt, int wronglyTrashedInt)
+    public void ShowScore(int totalEmailsInt, int phishingEmailsInt, int sortedEmailsInt, int phishingEmailsTrashedInt, int legitEmailsTrashedInt, int phishingEmailsArchivedInt, int legitEmailsArchivedInt)
     {
         // Calculate gains and loses
-        int sortedEmailsGains = sortedEmailsInt * moneyGainedPerSortedEmail;
-        int correctlyIdentifiedGains = correctlyIdentifiedInt * moneyGainedPerCorrectlyIdentifiedEmail;
-        int wronglyTrashedLoss = wronglyTrashedInt * moneyLostPerWronglyTrashedEmail;
-        // Change the static string values
-        profit.text = "<color=green>£" + profitValue + "</color>";
-        phishingEmails.text = phishingEmailsString + "<color=teal>" + phishingEmailsInt + "/" + totalEmailsInt + "</color>";
-        sortedEmails.text = sortedEmailsString + "<color=teal>" + sortedEmailsInt + "/" + totalEmailsInt + "</color><color=green> + £" + sortedEmailsGains + "</color>";
-        correctlyIdentified.text = correctlyIdentifiedString + "<color=teal>" + correctlyIdentifiedInt + "/" + phishingEmailsInt + "</color><color=green> + £" + correctlyIdentifiedGains + "</color>";
-        wronglyTrashed.text = wronglyTrashedString + "<color=teal>" + wronglyTrashedInt + "/" + (totalEmailsInt - phishingEmailsInt) + "</color><color=red> - £" + wronglyTrashedLoss + "</color>";
+        _legitEmailsArchivedGainsInt = legitEmailsArchivedInt * _moneyGainedPerLegitEmailArchived;
+        _legitEmailsTrashedLossesInt = legitEmailsTrashedInt * _moneyLostPerLegitEmailTrashed;
+        _phishingEmailsArchivedLossInt = phishingEmailsArchivedInt * _moneyLostPerPhishingEmailArchived;
+        _phishingEmailsTrashedGainsInt = phishingEmailsTrashedInt * _moneyGainedPerPhishingEmailTrashed;
+        // Change the string values
+        profit.text = "<color=green>£" + _profitValue + "</color>";
+        legitEmailsArchived.text = "You archived <color=teal>" + legitEmailsArchivedInt + "</color> legit emails";
+        phishingEmailsArchived.text = "You archived <color=teal>" + phishingEmailsArchivedInt + "</color> phishing emails";
+        phishingEmailsTrashed.text = "You trashed <color=teal>" + phishingEmailsTrashedInt + "</color> phishing emails";
+        legitEmailsTrashed.text = "You trashed <color=teal>" + legitEmailsTrashedInt + "</color> legit emails";
+        
+        legitEmailsArchivedGains.text = "<color=green>+£" + _legitEmailsArchivedGainsInt + "</color>";
+        phishingEmailsArchivedLoss.text = "<color=red>-£" + _phishingEmailsArchivedLossInt + "</color>";
+        phishingEmailsTrashedGains.text = "<color=green>+£" + _phishingEmailsTrashedGainsInt + "</color>";
+        legitEmailsTrashedLosses.text = "<color=red>-£" + _legitEmailsTrashedLossesInt + "</color>";
         // Make them appear dramatically
-        StartCoroutine(MakeScoreTextAppearDramatically(sortedEmailsGains, correctlyIdentifiedGains, wronglyTrashedLoss));
+        
+        Coroutine co;
+ 
+        // start the coroutine the usual way but store the Coroutine object that StartCoroutine returns.
+        _showScoreCoroutine = StartCoroutine(MakeScoreTextAppearDramatically(_legitEmailsArchivedGainsInt, _legitEmailsTrashedLossesInt, _phishingEmailsArchivedLossInt, _phishingEmailsTrashedGainsInt));
     }
 
     /*
      * Makes score text appear dramatically
      */
-    IEnumerator MakeScoreTextAppearDramatically(int sortedEmailsGains, int correctlyIdentifiedGains, int wronglyTrashedLoss)
+    IEnumerator MakeScoreTextAppearDramatically(int legitEmailsArchivedGainsInt, int legitEmailsTrashedLossesInt, int phishingEmailsArchivedLossInt, int phishingEmailsTrashedGainsInt)
     {
-        // The step used when adding stuff dramatically
-        int step = 5;
-
-        // Show phishing emails
-        yield return new WaitForSeconds(1);
-        phishingEmails.gameObject.SetActive(true);
-
-        // Show sorted emails
-        yield return new WaitForSeconds(1);
-        sortedEmails.gameObject.SetActive(true);
-        // Add the profit
-        yield return new WaitForSeconds(1);
+        // Show legit emails archived
+        yield return new WaitForSeconds(0.5f);
+        legitEmailsArchived.gameObject.SetActive(true);
+        // Show Gain/Loss from it
+        yield return new WaitForSeconds(0.5f);
+        legitEmailsArchivedGains.gameObject.SetActive(true);
+        // Change profit
+        if (legitEmailsArchivedGainsInt != 0) yield return new WaitForSeconds(0.5f);
         gameScript.ToggleScoreTally(true); // Plays the sound
-        for (int i = 0; i < sortedEmailsGains; i += step)
+        for (var i = 0; i < legitEmailsArchivedGainsInt; i += _step)
         {
-            profitValue += step;
-            profit.text = "<color=green>£" + profitValue + "</color>";
+            _profitValue += _step;
+            profit.text = "<color=green>£" + _profitValue + "</color>";
             yield return null;
         }
-        gameScript.ToggleScoreTally(false); // Plays the sound
+        gameScript.ToggleScoreTally(false); // Stops the sound
 
-        // Change step for smaller values
-        step = 1;
-
-        // Show correctly identified emails
-        yield return new WaitForSeconds(1);
-        correctlyIdentified.gameObject.SetActive(true);
-        // Add the profit
-        yield return new WaitForSeconds(1);
+        // Show phishing emails archived
+        yield return new WaitForSeconds(0.5f);
+        phishingEmailsArchived.gameObject.SetActive(true);
+        // Show Gain/Loss from it
+        yield return new WaitForSeconds(0.5f);
+        phishingEmailsArchivedLoss.gameObject.SetActive(true);
+        // Change profit
+        if (phishingEmailsArchivedLossInt != 0) yield return new WaitForSeconds(0.5f);
         gameScript.ToggleScoreTally(true); // Plays the sound
-        for (int i = 0; i < correctlyIdentifiedGains; i += step)
+        for (var i = 0; i < phishingEmailsArchivedLossInt; i += _step)
         {
-            profitValue += step;
-            profit.text = "<color=green>£" + profitValue + "</color>";
+            _profitValue -= _step;
+            profit.text = "<color=green>£" + _profitValue + "</color>";
             yield return null;
         }
-        gameScript.ToggleScoreTally(false); // Plays the sound
-
-        // Show wrongly trashed emails
-        yield return new WaitForSeconds(1);
-        wronglyTrashed.gameObject.SetActive(true);
-        // Add the profit
-        yield return new WaitForSeconds(1);
+        gameScript.ToggleScoreTally(false); // Stops the sound
+        
+        // Show phishing emails trashed
+        yield return new WaitForSeconds(0.5f);
+        phishingEmailsTrashed.gameObject.SetActive(true);
+        // Show Gain/Loss from it
+        yield return new WaitForSeconds(0.5f);
+        phishingEmailsTrashedGains.gameObject.SetActive(true);
+        // Change profit
+        if (phishingEmailsTrashedGainsInt != 0) yield return new WaitForSeconds(0.5f);
         gameScript.ToggleScoreTally(true); // Plays the sound
-        for (int i = 0; i < wronglyTrashedLoss; i += step)
+        for (var i = 0; i < phishingEmailsTrashedGainsInt; i += _step)
         {
-            profitValue -= step;
-            profit.text = "<color=green>£" + profitValue + "</color>";
+            _profitValue += _step;
+            profit.text = "<color=green>£" + _profitValue + "</color>";
             yield return null;
         }
-        gameScript.ToggleScoreTally(false); // Plays the sound
+        gameScript.ToggleScoreTally(false); // Stops the sound
+        
+        // Show legit emails trashed
+        yield return new WaitForSeconds(0.5f);
+        legitEmailsTrashed.gameObject.SetActive(true);
+        // Show Gain/Loss from it
+        yield return new WaitForSeconds(0.5f);
+        legitEmailsTrashedLosses.gameObject.SetActive(true);
+        // Change profit
+        if (legitEmailsTrashedLossesInt != 0) yield return new WaitForSeconds(0.5f);
+        gameScript.ToggleScoreTally(true); // Plays the sound
+        for (var i = 0; i < legitEmailsTrashedLossesInt; i += _step)
+        {
+            _profitValue -= _step;
+            profit.text = "<color=green>£" + _profitValue + "</color>";
+            yield return null;
+        }
+        gameScript.ToggleScoreTally(false); // Stops the sound
 
         // Show button
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
+        doneButton.gameObject.SetActive(true);
+    }
+
+    private void ShowScoreUndramatically(int legitEmailsArchivedGainsInt, int legitEmailsTrashedLossesInt, int phishingEmailsArchivedLossInt, int phishingEmailsTrashedGainsInt)
+    {
+        _profitValue = legitEmailsArchivedGainsInt - legitEmailsTrashedLossesInt - phishingEmailsArchivedLossInt + phishingEmailsTrashedGainsInt;
+        profit.text = "<color=green>£" + _profitValue + "</color>";
+        
+        legitEmailsArchived.gameObject.SetActive(true);
+        legitEmailsTrashed.gameObject.SetActive(true);
+        phishingEmailsTrashed.gameObject.SetActive(true);
+        phishingEmailsArchived.gameObject.SetActive(true);
+        
+        legitEmailsArchivedGains.gameObject.SetActive(true);
+        legitEmailsTrashedLosses.gameObject.SetActive(true);
+        phishingEmailsTrashedGains.gameObject.SetActive(true);
+        phishingEmailsArchivedLoss.gameObject.SetActive(true);
+        
         doneButton.gameObject.SetActive(true);
     }
 
@@ -131,19 +191,36 @@ public class ScoreScript : MonoBehaviour {
     public void DoneClicked()
     {
         gameScript.PlayMeanClick();
-        gameScript.FinishedShowingScore(profitValue >= scoreThreshold);
+        gameScript.FinishedShowingScore(_profitValue >= scoreThreshold);
+    }
+    
+    /*
+     * Button to skip the score showing animation
+     */
+    public void SkipClicked()
+    {
+        StopCoroutine(_showScoreCoroutine);
+        gameScript.ToggleScoreTally(false);
+        ShowScoreUndramatically(_legitEmailsArchivedGainsInt, _legitEmailsTrashedLossesInt, _phishingEmailsArchivedLossInt, _phishingEmailsTrashedGainsInt);
     }
 
     public void Reset()
     {
+        // Set all the text fields inactive
         profit.gameObject.SetActive(true);
-        phishingEmails.gameObject.SetActive(false);
-        sortedEmails.gameObject.SetActive(false);
-        correctlyIdentified.gameObject.SetActive(false);
-        wronglyTrashed.gameObject.SetActive(false);
+        legitEmailsArchived.gameObject.SetActive(false);
+        legitEmailsArchivedGains.gameObject.SetActive(false);
+        legitEmailsTrashed.gameObject.SetActive(false);
+        legitEmailsTrashedLosses.gameObject.SetActive(false);
+        phishingEmailsArchived.gameObject.SetActive(false);
+        phishingEmailsArchivedLoss.gameObject.SetActive(false);
+        phishingEmailsTrashed.gameObject.SetActive(false);
+        phishingEmailsTrashedGains.gameObject.SetActive(false);
+        // Set the done button inactive
         doneButton.gameObject.SetActive(false);
-        this.gameObject.SetActive(false);
+        // Set the score panel inactive
+        gameObject.SetActive(false);
         // Reset profit
-        profitValue = 0;
+        _profitValue = 0;
     }
 }

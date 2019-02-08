@@ -9,7 +9,7 @@ using UnityEngine;
  */
 public class ManagerTalkScript : MonoBehaviour {
 
-    public CameraMovementScript mainCam;
+    public FirstPersonCameraScript mainCam;
     public GameObject[] textPanels; // All the text panels
     private int currentTextPanel; // The text panel we're currently on
     public AudioSource clickSound;

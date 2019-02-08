@@ -149,7 +149,7 @@ public class GameScript : MonoBehaviour {
         yield return new WaitForSeconds(2);
         // Blur
         blur.SetActive(true);
-        int[] results = emailScript.CheckEmails();
+        var results = emailScript.CheckEmails();
         // (int totalEmailsInt, int phishingEmailsInt, int sortedEmailsInt, int correctlyIdentifiedInt, int wronglyTrashedInt)
         // Show score panel
         score.gameObject.SetActive(true);
@@ -157,7 +157,15 @@ public class GameScript : MonoBehaviour {
         finishedPanel.gameObject.SetActive(false);
         timer.gameObject.SetActive(false);
         // Show score
-        score.ShowScore(results[0], results[1], results[2], results[3], results[4]);
+        score.ShowScore(
+            results[0], 
+            results[1], 
+            results[2], 
+            results[3], 
+            results[4], 
+            results[5], 
+            results[6]
+        );
     }
 
     /*

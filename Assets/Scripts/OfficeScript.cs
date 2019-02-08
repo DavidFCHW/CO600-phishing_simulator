@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /*
  * Script to coordinate the events in the office
@@ -9,17 +10,19 @@ using UnityEngine;
 public class OfficeScript : MonoBehaviour
 {
     // Unity object references
-    public ManagerTalkScript manaherDialogue1;
+    public ManagerTalkScript managerDialogue1;
+    public ManagerTalkScript managerDialogue2;
     public AudioSource backgroundSound;
     // Variables
-    private static bool managerExplanationsShown = false;
+    private static bool _managerExplanationsShown;
 
     private void Start()
     {
         // Play background sound
         backgroundSound.Play();
         // Show manager explanation the first time we enter the office
-        if (!managerExplanationsShown) manaherDialogue1.ShowDialogue();
-        managerExplanationsShown = true;
+        if (!_managerExplanationsShown) managerDialogue1.ShowDialogue();
+        else managerDialogue2.ShowDialogue();
+        _managerExplanationsShown = true;
     }
 }
