@@ -11,7 +11,7 @@ public class ManagerTalkScript : MonoBehaviour {
 
     public FirstPersonCameraScript mainCam;
     public GameObject[] textPanels; // All the text panels
-    private int currentTextPanel; // The text panel we're currently on
+    private int _currentTextPanel; // The text panel we're currently on
     public AudioSource clickSound;
 
     private void Awake()
@@ -20,13 +20,10 @@ public class ManagerTalkScript : MonoBehaviour {
         // Hide object
         this.gameObject.SetActive(false);
         // Hide all text panels
-        foreach (GameObject go in textPanels)
-        {
-            go.SetActive(false);
-        }
+        foreach (var go in textPanels) go.SetActive(false);
         // Show the first text panel
-        currentTextPanel = 0;
-        textPanels[currentTextPanel].SetActive(true);
+        _currentTextPanel = 0;
+        textPanels[_currentTextPanel].SetActive(true);
     }
 
     /*
@@ -43,7 +40,7 @@ public class ManagerTalkScript : MonoBehaviour {
      */
     private void GoToNextPanel()
     {
-        if (currentTextPanel+1 >= textPanels.Length)
+        if (_currentTextPanel+1 >= textPanels.Length)
         {
             // We're on the last one
             Destroy(gameObject);
@@ -52,9 +49,9 @@ public class ManagerTalkScript : MonoBehaviour {
         else
         {
             // Go to the next panel
-            textPanels[currentTextPanel].SetActive(false);
-            currentTextPanel++;
-            textPanels[currentTextPanel].SetActive(true);
+            textPanels[_currentTextPanel].SetActive(false);
+            _currentTextPanel++;
+            textPanels[_currentTextPanel].SetActive(true);
         }
     }
 

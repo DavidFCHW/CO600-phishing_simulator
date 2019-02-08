@@ -11,27 +11,25 @@ public class FirstPersonCameraScript : MonoBehaviour {
     private float _pitch;
     private bool _rotationBlocked = false;
 
-    void Update () {
-        if (!_rotationBlocked)
-        {
-            _yaw += speedH * Input.GetAxis("Mouse X") * Time.deltaTime;
-            _pitch -= speedV * Input.GetAxis("Mouse Y") * Time.deltaTime;
+    private void Update () {
+        if (_rotationBlocked) return;
+        _yaw += speedH * Input.GetAxis("Mouse X") * Time.deltaTime;
+        _pitch -= speedV * Input.GetAxis("Mouse Y") * Time.deltaTime;
 
-            transform.eulerAngles = new Vector3(_pitch, _yaw, 0.0f);
-        }
+        transform.eulerAngles = new Vector3(_pitch, _yaw, 0.0f);
     }
 
     public void Block()
     {
-        cursor.SetActive(false);
+//        cursor.SetActive(false);
         _rotationBlocked = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
     public void UnBlock()
     {
-        cursor.SetActive(true);
+//        cursor.SetActive(true);
         _rotationBlocked = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }

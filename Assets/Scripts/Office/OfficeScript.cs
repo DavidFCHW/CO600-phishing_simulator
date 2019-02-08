@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 /*
@@ -13,6 +14,7 @@ public class OfficeScript : MonoBehaviour
     public ManagerTalkScript managerDialogue1;
     public ManagerTalkScript managerDialogue2;
     public AudioSource backgroundSound;
+    public AudioSource clickSound;
     // Variables
     private static bool _managerExplanationsShown;
 
@@ -24,5 +26,14 @@ public class OfficeScript : MonoBehaviour
         if (!_managerExplanationsShown) managerDialogue1.ShowDialogue();
         else managerDialogue2.ShowDialogue();
         _managerExplanationsShown = true;
+    }
+    
+    /*
+     * The button in the manager bubble asking you for help
+     */
+    public void AcceptButtonClicked()
+    {
+        clickSound.Play();
+        SceneManager.LoadScene("Email Client");
     }
 }
