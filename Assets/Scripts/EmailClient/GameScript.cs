@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameScript : MonoBehaviour {
 
@@ -13,7 +14,8 @@ public class GameScript : MonoBehaviour {
     public StartCountDownScript startCountdown;
     public GameObject finishedPanel;
     public GameObject tryAgainButton;
-    public GameObject continueButton;
+    public ContinueButtonHoverScript continueButton;
+    public GameObject continueBlockedExplanations;
     public GameObject pauseMenu;
     public GameObject blur;
     // Audio sources
@@ -25,6 +27,7 @@ public class GameScript : MonoBehaviour {
     // Variables
     private bool _pauseEnabled; // Game can be paused
     private bool _gameIsPaused; // Game is currently paused
+    private bool _canContinue; // Whether or not the player achieved a high enough score to continue
 
     /*
      * initialisation
@@ -40,6 +43,7 @@ public class GameScript : MonoBehaviour {
         finishedPanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
         tryAgainButton.gameObject.SetActive(false);
+        continueBlockedExplanations.SetActive(false);
         // Blur the game
         blur.SetActive(true);
         // Give your reference to other objects
@@ -49,6 +53,7 @@ public class GameScript : MonoBehaviour {
         emailScript   .SetGameScript(this);
         pausePanel    .SetGameScript(this);
         startCountdown.SetGameScript(this);
+        continueButton.SetGameScript(this);
     }
 
     /*
@@ -181,8 +186,28 @@ public class GameScript : MonoBehaviour {
         score.gameObject.SetActive(false);
         // Show try again, only show continue if passed
         tryAgainButton.gameObject.SetActive(true);
-        if (passed) continueButton.gameObject.SetActive(true);
+        if (!passed)
+        {
+            _canContinue = false;
+            continueButton.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            _canContinue = true;
+            continueButton.GetComponent<Button>().interactable = true;
+        }
+        continueButton.gameObject.SetActive(true);
     }
+
+     public void ContinueButtonHoverStart()
+     {
+         if (!_canContinue) continueBlockedExplanations.SetActive(true);
+     }
+     
+     public void ContinueButtonHoverStop()
+     {
+         if (!_canContinue) continueBlockedExplanations.SetActive(false);
+     }
 
     public void PlayLightClick()
     {
@@ -230,6 +255,7 @@ public class GameScript : MonoBehaviour {
         finishedPanel.SetActive(false);
         continueButton.gameObject.SetActive(false);
         tryAgainButton.gameObject.SetActive(false);
+        continueBlockedExplanations.SetActive(false);
         // Reset timer
         timer.gameObject.SetActive(true);
         timer.ResetTimer();

@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class ScoreScript : MonoBehaviour {
 
-    private GameScript gameScript;
+    private GameScript _gameScript;
     // Flags
     private readonly int _moneyGainedPerLegitEmailArchived = 100;
     private readonly int _moneyLostPerLegitEmailTrashed = 100;
     private readonly int _moneyLostPerPhishingEmailArchived = 100;
     private readonly int _moneyGainedPerPhishingEmailTrashed = 100;
-    private int scoreThreshold = 1000;
+    private int scoreThreshold = 800;
 
     // Unity objects
     public Text legitEmailsArchived;
@@ -58,7 +58,7 @@ public class ScoreScript : MonoBehaviour {
 
     public void SetGameScript(GameScript gameScript)
     {
-        this.gameScript = gameScript;
+        _gameScript = gameScript;
     }
 
     /*
@@ -83,10 +83,6 @@ public class ScoreScript : MonoBehaviour {
         phishingEmailsTrashedGains.text = "<color=green>+£" + _phishingEmailsTrashedGainsInt + "</color>";
         legitEmailsTrashedLosses.text = "<color=red>-£" + _legitEmailsTrashedLossesInt + "</color>";
         // Make them appear dramatically
-        
-        Coroutine co;
- 
-        // start the coroutine the usual way but store the Coroutine object that StartCoroutine returns.
         _showScoreCoroutine = StartCoroutine(MakeScoreTextAppearDramatically(_legitEmailsArchivedGainsInt, _legitEmailsTrashedLossesInt, _phishingEmailsArchivedLossInt, _phishingEmailsTrashedGainsInt));
     }
 
@@ -103,14 +99,14 @@ public class ScoreScript : MonoBehaviour {
         legitEmailsArchivedGains.gameObject.SetActive(true);
         // Change profit
         if (legitEmailsArchivedGainsInt != 0) yield return new WaitForSeconds(0.5f);
-        gameScript.ToggleScoreTally(true); // Plays the sound
+        _gameScript.ToggleScoreTally(true); // Plays the sound
         for (var i = 0; i < legitEmailsArchivedGainsInt; i += _step)
         {
             _profitValue += _step;
             profit.text = "<color=green>£" + _profitValue + "</color>";
             yield return null;
         }
-        gameScript.ToggleScoreTally(false); // Stops the sound
+        _gameScript.ToggleScoreTally(false); // Stops the sound
 
         // Show phishing emails archived
         yield return new WaitForSeconds(0.5f);
@@ -120,14 +116,14 @@ public class ScoreScript : MonoBehaviour {
         phishingEmailsArchivedLoss.gameObject.SetActive(true);
         // Change profit
         if (phishingEmailsArchivedLossInt != 0) yield return new WaitForSeconds(0.5f);
-        gameScript.ToggleScoreTally(true); // Plays the sound
+        _gameScript.ToggleScoreTally(true); // Plays the sound
         for (var i = 0; i < phishingEmailsArchivedLossInt; i += _step)
         {
             _profitValue -= _step;
             profit.text = "<color=green>£" + _profitValue + "</color>";
             yield return null;
         }
-        gameScript.ToggleScoreTally(false); // Stops the sound
+        _gameScript.ToggleScoreTally(false); // Stops the sound
         
         // Show phishing emails trashed
         yield return new WaitForSeconds(0.5f);
@@ -137,14 +133,14 @@ public class ScoreScript : MonoBehaviour {
         phishingEmailsTrashedGains.gameObject.SetActive(true);
         // Change profit
         if (phishingEmailsTrashedGainsInt != 0) yield return new WaitForSeconds(0.5f);
-        gameScript.ToggleScoreTally(true); // Plays the sound
+        _gameScript.ToggleScoreTally(true); // Plays the sound
         for (var i = 0; i < phishingEmailsTrashedGainsInt; i += _step)
         {
             _profitValue += _step;
             profit.text = "<color=green>£" + _profitValue + "</color>";
             yield return null;
         }
-        gameScript.ToggleScoreTally(false); // Stops the sound
+        _gameScript.ToggleScoreTally(false); // Stops the sound
         
         // Show legit emails trashed
         yield return new WaitForSeconds(0.5f);
@@ -154,14 +150,14 @@ public class ScoreScript : MonoBehaviour {
         legitEmailsTrashedLosses.gameObject.SetActive(true);
         // Change profit
         if (legitEmailsTrashedLossesInt != 0) yield return new WaitForSeconds(0.5f);
-        gameScript.ToggleScoreTally(true); // Plays the sound
+        _gameScript.ToggleScoreTally(true); // Plays the sound
         for (var i = 0; i < legitEmailsTrashedLossesInt; i += _step)
         {
             _profitValue -= _step;
             profit.text = "<color=green>£" + _profitValue + "</color>";
             yield return null;
         }
-        gameScript.ToggleScoreTally(false); // Stops the sound
+        _gameScript.ToggleScoreTally(false); // Stops the sound
 
         // Show button
         yield return new WaitForSeconds(0.5f);
@@ -191,8 +187,8 @@ public class ScoreScript : MonoBehaviour {
      */
     public void DoneClicked()
     {
-        gameScript.PlayMeanClick();
-        gameScript.FinishedShowingScore(_profitValue >= scoreThreshold);
+        _gameScript.PlayMeanClick();
+        _gameScript.FinishedShowingScore(_profitValue >= scoreThreshold);
     }
     
     /*
@@ -201,7 +197,7 @@ public class ScoreScript : MonoBehaviour {
     public void SkipClicked()
     {
         StopCoroutine(_showScoreCoroutine);
-        gameScript.ToggleScoreTally(false);
+        _gameScript.ToggleScoreTally(false);
         ShowScoreUndramatically(_legitEmailsArchivedGainsInt, _legitEmailsTrashedLossesInt, _phishingEmailsArchivedLossInt, _phishingEmailsTrashedGainsInt);
     }
 

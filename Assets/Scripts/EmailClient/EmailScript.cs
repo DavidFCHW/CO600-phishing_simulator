@@ -33,7 +33,7 @@ public class EmailScript : MonoBehaviour {
     /*
      * Method called on initialisation
      */
-    void Awake() {
+    private void Awake() {
         // Make the preview scrollview the correct height
         RectTransform rectTrans = previewScrollView.GetComponent<RectTransform>();
         rectTrans.sizeDelta = new Vector2(rectTrans.sizeDelta.x, easyEmailPreviewArray[0].GetComponent<RectTransform>().rect.height * easyEmailPreviewArray.Length);
