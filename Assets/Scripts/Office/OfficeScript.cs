@@ -36,4 +36,10 @@ public class OfficeScript : MonoBehaviour
         clickSound.Play();
         SceneManager.LoadScene("Email Client");
     }
+
+    public void QuitGameClicked()
+    {
+        clickSound.Play();
+        SceneManager.LoadScene("Title Screen");
+    }
 }
