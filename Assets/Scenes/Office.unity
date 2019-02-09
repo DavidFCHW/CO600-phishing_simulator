@@ -183,7 +183,7 @@ Transform:
   - {fileID: 2014843436}
   - {fileID: 438409593}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &19331340 stripped
 Transform:
@@ -302,7 +302,7 @@ Transform:
   - {fileID: 2102728112}
   - {fileID: 180832728}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &49557001
 GameObject:
@@ -2938,7 +2938,7 @@ Transform:
   - {fileID: 937354985}
   - {fileID: 1626039163}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &481739607
 GameObject:
@@ -3462,7 +3462,7 @@ Transform:
   - {fileID: 1128834296}
   - {fileID: 1634898679}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &680994266
 GameObject:
@@ -5580,6 +5580,7 @@ MonoBehaviour:
   managerDialogue2: {fileID: 904928331}
   backgroundSound: {fileID: 1556220238}
   clickSound: {fileID: 2102728113}
+  screenText: {fileID: 1145109182}
 --- !u!4 &982351620
 Transform:
   m_ObjectHideFlags: 0
@@ -5592,7 +5593,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1015332061
 GameObject:
@@ -7230,7 +7231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1492835097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7492,7 +7493,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1505483816}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 982351619}
+        m_MethodName: QuitGameClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1505483816

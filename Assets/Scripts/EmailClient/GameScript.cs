@@ -238,7 +238,15 @@ public class GameScript : MonoBehaviour {
         // play click sound
         PlayMeanClick();
         // Increase level
-        emailScript.IncreaseLevel();
+        StaticClass.IncreaseLevel();
+        // Go back to office scene
+        SceneManager.LoadScene("Office");
+    }
+
+    public void QuitButtonPressed()
+    {
+        // play click sound
+        PlayMeanClick();
         // Go back to office scene
         SceneManager.LoadScene("Office");
     }

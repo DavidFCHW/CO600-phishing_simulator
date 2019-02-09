@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 /*
  * Script to coordinate the events in the office
@@ -15,17 +17,39 @@ public class OfficeScript : MonoBehaviour
     public ManagerTalkScript managerDialogue2;
     public AudioSource backgroundSound;
     public AudioSource clickSound;
-    // Variables
-    private static bool _managerExplanationsShown;
+    public TextMeshProUGUI screenText;
 
     private void Start()
     {
         // Play background sound
         backgroundSound.Play();
-        // Show manager explanation the first time we enter the office
-        if (!_managerExplanationsShown) managerDialogue1.ShowDialogue();
-        else managerDialogue2.ShowDialogue();
-        _managerExplanationsShown = true;
+        Debug.Log(StaticClass.GetCurrentLevel());
+        switch (StaticClass.GetCurrentLevel())
+        {
+            case 1:
+            {
+                if (!StaticClass.DialogueForCurrentLevelShown())
+                {
+                    managerDialogue1.ShowDialogue();
+                    StaticClass.SeenDialogueForCurrentLevel();
+                }
+                screenText.text = "Easy level <sprite=3>\nMedium level <sprite=3>\nHard level <sprite=3>";
+                break;
+            }
+            case 2:
+            {
+                if (!StaticClass.DialogueForCurrentLevelShown())
+                {
+                    managerDialogue2.ShowDialogue();
+                    StaticClass.SeenDialogueForCurrentLevel();
+                }
+                screenText.text = "Easy level <sprite=4>\nMedium level <sprite=3>\nHard level <sprite=3>";
+                break;
+            }
+            default:
+                screenText.text = "Easy level <sprite=4>\nMedium level <sprite=4>\nHard level <sprite=3>";
+                break;
+        }
     }
     
     /*
@@ -41,5 +65,38 @@ public class OfficeScript : MonoBehaviour
     {
         clickSound.Play();
         SceneManager.LoadScene("Title Screen");
+    }
+}
+
+/*
+ * Class that holds variables that stay loaded
+ */
+public static class StaticClass {
+    
+    private static int _currentLevel = 1;
+    private static bool _dialogueForCurrentLevelShown { get; set; }
+    
+    /*
+     * Called when a level is completed
+     */
+    public static void IncreaseLevel()
+    {
+        _currentLevel++;
+        _dialogueForCurrentLevelShown = false;
+    }
+
+    public static int GetCurrentLevel()
+    {
+        return _currentLevel;
+    }
+    
+    public static bool DialogueForCurrentLevelShown()
+    {
+        return _dialogueForCurrentLevelShown;
+    }
+
+    public static void SeenDialogueForCurrentLevel()
+    {
+        _dialogueForCurrentLevelShown = true;
     }
 }
