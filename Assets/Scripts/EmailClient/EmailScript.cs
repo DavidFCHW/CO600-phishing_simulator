@@ -55,7 +55,7 @@ public class EmailScript : MonoBehaviour {
         donePanel.SetActive(false);
         // Initialise emails
         if (level == 0) InitialiseEasyEmails();
-        else if (level == 0) InitialiseMediumEmails();
+        else if (level == 1) InitialiseMediumEmails();
         // Shuffle the list
         currentMailbox.ShuffleEmails();
         // Select current mailbox

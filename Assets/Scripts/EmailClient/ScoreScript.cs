@@ -95,7 +95,7 @@ public class ScoreScript : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         legitEmailsArchived.gameObject.SetActive(true);
         // Show Gain/Loss from it
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         legitEmailsArchivedGains.gameObject.SetActive(true);
         // Change profit
         if (legitEmailsArchivedGainsInt != 0) yield return new WaitForSeconds(0.5f);
@@ -112,7 +112,7 @@ public class ScoreScript : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         phishingEmailsArchived.gameObject.SetActive(true);
         // Show Gain/Loss from it
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         phishingEmailsArchivedLoss.gameObject.SetActive(true);
         // Change profit
         if (phishingEmailsArchivedLossInt != 0) yield return new WaitForSeconds(0.5f);
@@ -129,7 +129,7 @@ public class ScoreScript : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         phishingEmailsTrashed.gameObject.SetActive(true);
         // Show Gain/Loss from it
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         phishingEmailsTrashedGains.gameObject.SetActive(true);
         // Change profit
         if (phishingEmailsTrashedGainsInt != 0) yield return new WaitForSeconds(0.5f);
@@ -146,7 +146,7 @@ public class ScoreScript : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         legitEmailsTrashed.gameObject.SetActive(true);
         // Show Gain/Loss from it
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         legitEmailsTrashedLosses.gameObject.SetActive(true);
         // Change profit
         if (legitEmailsTrashedLossesInt != 0) yield return new WaitForSeconds(0.5f);
