@@ -23,7 +23,6 @@ public class OfficeScript : MonoBehaviour
     {
         // Play background sound
         backgroundSound.Play();
-        Debug.Log(StaticClass.GetCurrentLevel());
         switch (StaticClass.GetCurrentLevel())
         {
             case 1:
