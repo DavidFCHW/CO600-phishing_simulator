@@ -25,7 +25,12 @@ public class LinkScript : MonoBehaviour {
     private void LateUpdate()
     {
         // Find the link hovered on if any
-        int hoveredLinkIndex = TMP_TextUtilities.FindIntersectingLink(_textMeshProText, Input.mousePosition, null);
+        var hoveredLinkIndex = -1;
+        try
+        {
+            hoveredLinkIndex = TMP_TextUtilities.FindIntersectingLink(_textMeshProText, Input.mousePosition, null);
+        }
+        catch (IndexOutOfRangeException e) { }
         // Check if it exists and if it's different from the previous one
         if (hoveredLinkIndex != -1 && hoveredLinkIndex != _currentLinkIndexActive)
         {
