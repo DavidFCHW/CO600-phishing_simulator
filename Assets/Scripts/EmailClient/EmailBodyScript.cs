@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class EmailBodyScript : MonoBehaviour {
 
-    private Email email;
+    private Email _email;
+    [SerializeField] private GameObject mainContent;
+    [SerializeField] private GameObject mainContentWithFeedback;
     public SenderScript senderPanel;
-    public string sender;
-    public string address;
-    public Text senderBox;
     public GameObject positiveFeedback;
     public GameObject negativeFeedback;
 
     public void SetEmail(Email email)
     {
-        this.email = email;
+        _email = email;
     }
 
     /*
@@ -35,5 +34,17 @@ public class EmailBodyScript : MonoBehaviour {
     public void ShowNegativeFeedback()
     {
         negativeFeedback.SetActive(true);
+    }
+
+    public void DisplayBody()
+    {
+        mainContent.SetActive(true);
+        mainContentWithFeedback.SetActive(false);
+    }
+    
+    public void DisplayFeedback()
+    {
+        mainContent.SetActive(false);
+        mainContentWithFeedback.SetActive(true);
     }
 }

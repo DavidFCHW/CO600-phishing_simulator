@@ -33,6 +33,8 @@ public class LinkScript : MonoBehaviour {
             if (_currentLinkIndexActive != -1) hiddenPanels[_currentLinkIndexActive].SetActive(false);
             // Assign currentLinkActive
             _currentLinkIndexActive = hoveredLinkIndex;
+            // Position panel where the mouse is
+            hiddenPanels[_currentLinkIndexActive].transform.position = Input.mousePosition;
             // Show the panel for the link we're hovering on
             hiddenPanels[_currentLinkIndexActive].SetActive(true);
         }

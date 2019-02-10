@@ -374,7 +374,7 @@ public class Email
     private Vector3 beforeDragPosition; // The original position of a preview
     // Hovering on preview
     private Color32 previousColor;
-    private bool isSelected = false;
+    private bool isSelected;
     // Preview placements
     public Vector3 originalPreviewPosition; // The position of the preview before anything happens
 
@@ -396,12 +396,14 @@ public class Email
     {
         previewClickedOnColorUsed = _previewClickedOnColor;
         previewNormalColorUsed = _previewNormalColor;
-        halfHeightSmall = emailPreview.gameObject.GetComponent<RectTransform>().rect.height / 6;
-        originalPreviewPosition = emailPreview.gameObject.transform.localPosition;
+        GameObject gameObject;
+        halfHeightSmall = (gameObject = emailPreview.gameObject).GetComponent<RectTransform>().rect.height / 6;
+        originalPreviewPosition = gameObject.transform.localPosition;
         // Hide feedback for now
         emailBody.HideFeedback();
+        emailBody.DisplayBody();
         // Make the text bold (cause unread)
-        this.SetUnread();
+        SetUnread();
         // Unblock sender panel
         emailBody.senderPanel.UnBlock();
     }
@@ -409,7 +411,7 @@ public class Email
     /*
      * Show an email as unread
      */
-    public void SetUnread()
+    private void SetUnread()
     {
         unread = true;
         emailPreview.SetDisplayUnread();
@@ -418,7 +420,7 @@ public class Email
     /*
      * Show an email as read
      */
-     public void SetRead()
+    private void SetRead()
     {
         unread = false;
         emailPreview.SetDisplayRead();
@@ -540,6 +542,8 @@ public class Email
         emailPreview.GetComponent<Image>().color = (isSelected ? previewClickedOnColorUsed : previewNormalColorUsed);
         // Show address permanently
         emailBody.senderPanel.Block();
+        // Change the main content for the main content with feedback
+        emailBody.DisplayFeedback();
     }
 
     /*
