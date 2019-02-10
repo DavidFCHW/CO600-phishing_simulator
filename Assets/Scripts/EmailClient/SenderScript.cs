@@ -9,6 +9,7 @@ public class SenderScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public string senderText;
     public string addressText;
+    public string feedbackText;
     private Text _thisComponent;
     private bool _blocked;
 
@@ -31,7 +32,7 @@ public class SenderScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void Block()
     {
         _blocked = true;
-        _thisComponent.text = senderText + " " + addressText;
+        _thisComponent.text = feedbackText;
     }
 
     public void UnBlock()

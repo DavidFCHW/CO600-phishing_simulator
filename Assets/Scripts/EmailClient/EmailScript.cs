@@ -316,7 +316,7 @@ public class EmailScript : MonoBehaviour {
      */
     public void SetHoveredOn(MailboxScript mailboxHoveredOn)
     {
-        this._mailboxHoveredOn = mailboxHoveredOn;
+        _mailboxHoveredOn = mailboxHoveredOn;
     }
 
     /*
@@ -401,11 +401,8 @@ public class Email
         originalPreviewPosition = gameObject.transform.localPosition;
         // Hide feedback for now
         emailBody.HideFeedback();
-        emailBody.DisplayBody();
         // Make the text bold (cause unread)
         SetUnread();
-        // Unblock sender panel
-        emailBody.senderPanel.UnBlock();
     }
 
     /*
@@ -528,7 +525,7 @@ public class Email
         // Hide feedback
         emailBody.HideFeedback();
         // Unblock sender panel
-        emailBody.senderPanel.UnBlock();
+        emailBody.UnBlockSenderPanel();
     }
 
     /*
@@ -539,11 +536,7 @@ public class Email
         //// Change body color
         //emailBody.GetComponent<Image>().color = previewClickedOnColorUsed;
         // Change preview color
-        emailPreview.GetComponent<Image>().color = (isSelected ? previewClickedOnColorUsed : previewNormalColorUsed);
-        // Show address permanently
-        emailBody.senderPanel.Block();
-        // Change the main content for the main content with feedback
-        emailBody.DisplayFeedback();
+        emailPreview.GetComponent<Image>().color = isSelected ? previewClickedOnColorUsed : previewNormalColorUsed;
     }
 
     /*
@@ -551,47 +544,41 @@ public class Email
      */
     public void OnPreviewDrag(PointerEventData eventData)
     {
-        if (editeable)
-        {
-            // Recalculate position
-            emailPreview.gameObject.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + halfHeightSmall, 0);
-        }
+        if (!editeable) return;
+        // Recalculate position
+        emailPreview.gameObject.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + halfHeightSmall, 0);
     }
 
     public void OnBeginPreviewDrag(PointerEventData eventData)
     {
-        if (editeable)
-        {
-            // Make the preview small
-            emailPreview.gameObject.transform.localScale = _tinyPreviewScale;
-            // Keep track of the original position
-            beforeDragPosition = emailPreview.gameObject.transform.position;
-        }
+        if (!editeable) return;
+        // Make the preview small
+        emailPreview.gameObject.transform.localScale = _tinyPreviewScale;
+        // Keep track of the original position
+        beforeDragPosition = emailPreview.gameObject.transform.position;
     }
 
     public void OnEndPreviewDrag(PointerEventData eventData)
     {
-        if (editeable)
+        if (!editeable) return;
+        // Return the scale to normal
+        emailPreview.gameObject.transform.localScale = _normalPreviewScale;
+        // Check if dropped in a mailbox
+        var mailboxHoveredOn = emailScript.GetMailboxHoveredOn();
+        if (mailboxHoveredOn && emailScript.GetCurrentMailbox() != mailboxHoveredOn)
         {
-            // Return the scale to normal
-            emailPreview.gameObject.transform.localScale = _normalPreviewScale;
-            // Check if dropped in a mailbox
-            MailboxScript mailboxHoveredOn = emailScript.GetMailboxHoveredOn();
-            if (mailboxHoveredOn && emailScript.GetCurrentMailbox() != mailboxHoveredOn)
-            {
-                mailboxHoveredOn.AddEmail(this);
-                // Hide body
-                emailBody.gameObject.SetActive(false);
-                // Hide preview
-                emailPreview.gameObject.SetActive(false);
-                // Remove from List
-                emailScript.RemoveEmailFromCurrentMailbox(this);
-            }
-            else
-            {
-                // Return to original position
-                emailPreview.gameObject.transform.position = beforeDragPosition;
-            }
+            mailboxHoveredOn.AddEmail(this);
+            // Hide body
+            emailBody.gameObject.SetActive(false);
+            // Hide preview
+            emailPreview.gameObject.SetActive(false);
+            // Remove from List
+            emailScript.RemoveEmailFromCurrentMailbox(this);
+        }
+        else
+        {
+            // Return to original position
+            emailPreview.gameObject.transform.position = beforeDragPosition;
         }
     }
 
