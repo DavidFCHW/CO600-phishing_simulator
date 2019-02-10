@@ -2204,6 +2204,79 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: "Hello,\n\nFollowing up on the conversation we had earlier, do you think
+        it would be worthwhile if we had an \nautomatic system to streamline the process?\nIf
+        needs be, we could meet at the coffee machine to discuss further.\n\nKind
+        regards,\nMike."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 439
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 42
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
 --- !u!224 &213018926 stripped
@@ -2919,6 +2992,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmailBodyScroll (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909018801516868422, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445133421914462067, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_text
@@ -3277,6 +3364,87 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: 'Good morning,
+
+
+        Just to let you know, I am going to be late today because of a large amount
+        of traffic on the roads this morning.
+
+        I anticipate that I will be 15 minutes late.
+
+
+        Kind regards,
+
+        Liam.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 370
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 194
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -4120,7 +4288,7 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -4256,6 +4424,75 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: 'Hey boss,
+
+
+        Check out this meme I just found, does it remind you of anyone? HAHAAHA!
+
+
+        <color=blue><u>https://cdn.someecards.com/posts/memes-about-work-3cD.jpg</u></color>
+
+
+        -Liam'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 149
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -4477,7 +4714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4757,6 +4994,20 @@ PrefabInstance:
     - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
       propertyPath: m_Name
       value: EmailBodyScroll (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909018801516868422, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445133421914462067, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -5147,6 +5398,113 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: 'Hello,
+
+
+        Can you please reply to Harry regarding any maintaince you require.
+
+
+        - HR
+
+
+        ---------- Forwarded message ----------
+
+        From:   Harry Stiles <color=blue><u><harry.stiles@hotmail.com></u></color>
+
+        Date: 13 Nov 2018, 16:59 +0000
+
+        To:   <color=blue><u>hr@kompany.com</u></color>
+
+        Subject: Care Taking and property maintaince offer
+
+
+        To whom it may concern,
+
+
+        Let me introduce myself, my name is Harry Stiles and I specialise in Care
+        Taking and property maintaince. I was wondering if you require any services
+        regarding my area of specialisation.
+
+
+        If so, please emailing with the name, number and email of the relevant person
+        dealing with housekeeping or maintaince.
+
+
+        Thank you for taking the time to read this email.
+
+
+        Yours faithfully,
+
+        Harry Stiles'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 659
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 689
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 117
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -6252,11 +6610,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -6367,6 +6725,30 @@ PrefabInstance:
     - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
       propertyPath: m_Name
       value: EmailBodyScroll (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909018801516868422, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445133421914462067, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224911430637071956, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -6722,6 +7104,63 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: -360.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: "- \"Keep track of your spending with the new Card One Banking App\"\n<color=blue><u><http://mail.digest.ru/r.php?t=c&d=21655&l=938v&c=9g4735/2135hdCu5nT></u></color>
+        Melden Sie sich in Ihrem Konto an, \num auf Ihre Gelder zuzugreifen. \n\nKLICK
+        HIER \n\n<color=blue><u><http://mail.digest.ru/r.php?t=c&d=21h45655&l=9348&c=9735/212fgrcUnThe5></u></color>\n<color=blue><u><http://mail.digest.ruopt.php?d=21655&l=938&c=9735&em=4b95998f3460fh5606f019571cos947634b87fd62fea></u></color>"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 391
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -7277,7 +7716,7 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -7414,6 +7853,78 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: 'Good Afternoon All,
+
+
+        As we all are aware, we have a policy that states we must all change our passwords
+        atleast once a year.
+
+        Please change your email password by COB next week Monday.
+
+
+        Have a lovely day.
+
+
+        -Mike'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 39
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
 --- !u!224 &776249174 stripped
@@ -7549,6 +8060,20 @@ PrefabInstance:
     - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
       propertyPath: m_Name
       value: EmailBodyScroll (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909018801516868422, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445133421914462067, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -7804,12 +8329,12 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 267.1
+      value: 306.15
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -7920,6 +8445,99 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: 'Good morning,
+
+
+        As we agreed upon earlier, I would like to arrange a Company Operations Meeting
+        to get an oversight as to how everything is currently going.
+
+        Got any concerns, questions or quries, then it is best to bring it up at this
+        meeting.
+
+
+        CO Meeting:
+
+        Date: 5th December
+
+        Time: 10:30am
+
+        Venue: Coffee machine area
+
+
+        Kind regards,
+
+        -Susan
+
+        Head of HR'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 331
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 348
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 63
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 62
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -8172,6 +8790,20 @@ PrefabInstance:
     - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
       propertyPath: m_Name
       value: EmailBodyScroll (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909018801516868422, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445133421914462067, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -8544,6 +9176,90 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: "Good Afternoon,\n\nMy name is Steven Smith and I will be dealing with
+        the ticket you raised titled \"Slow Internet Speeds\", ticket number: #39280.\nI
+        am sorry to hear that the internet connection speeds have slowed down recently,
+        we will try our best to fix this issue.\n\nFrom my terminal, can see that
+        there are conflicting channels in your area. This means that your WiFi connection
+        is experiencing an abnormal amount of noise because of the particular channel
+        your internet connection is configured to.\nTo resolve this issue, I have
+        reconfigured the your channel so you are now on a channel with a decreased
+        amount of noise. As a consequence, this should increase your internet speed
+        and WiFi signal strengths.\n\nNo further action is required on your part however,
+        I will be keeping this ticket open for the next 5 days incase the issue is
+        resolved. \nIf no response is given in the next 5 days, this case will close
+        automatically.\n\nThank you for choosing ITSupport Ltd. as your IT Support
+        managed service provider.\nHave a lovely rest of your day.\n\nKind regards,\nSteven
+        Smith."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 1045
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 1072
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 190
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 185
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -10709,7 +11425,7 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00030517578
+      value: 0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -10875,6 +11591,94 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: "Hello!\n\nI'm a programmer who cracked your email account and device
+        about half year ago.\nYou entered a password on one of the insecure site you
+        visited, and I catched it.\nYour password from <color=blue><u>rup3rtp05h@hootermail.co.uk</u></color>
+        on moment of crack:\n\nOf course you can will change your password, or already
+        made it.\nBut it doesn't matter, my rat software update it every time.\n\nPlease
+        don't try to contact me or find me, it is impossible, since I sent you an
+        email from your email \naccount.\n\nThrough your e-mail, I uploaded malicious
+        code to your Operation System.\nI saved all of your contacts with friends,
+        colleagues, relatives and a complete history of visits to the \nInternet resources.\nAlso
+        I installed a rat software on your device and long tome spying for you.\n\nYou
+        are not my only victim, I usually lock devices and ask for a ransom.\nBut
+        I was struck by the sites of intimate content that you very often visit.\n\nI
+        am in shock of your reach fantasies! Wow! I've never seen anything like this!\nI
+        did not even know that SUCH content could be so exciting!\n\nSo, when you
+        had fun on intime sites (you know what I mean!) I made screenshot with using
+        my \nprogram from your camera of yours device.\nAfter that, I jointed them
+        to the content of the currently viewed site.\n\nWill be funny when I send
+        these photos to your contacts! And if your relatives see it?\nBUT I'm sure
+        you don't want it. I definitely would not want to ...\n\nI will not do this
+        if you pay me a little amount.\nI think $818 is a nice price for it!\n\nI
+        accept only Bitcoins.\nMy CryptoCurrency wallet ID: <color=blue><u>0pl9ewBilLyfC7EyuePDoPBiGv4wC4C4B60vLWl20tc0ks</u></color>\n\nIf
+        you have difficulty with this - Ask Google \"how to make a payment on a bitcoin
+        wallet\". It's easy.\nAfter receiving the above amount, all your data will
+        be immediately removed automatically.\nMy virus will also will be destroy
+        itself from your operating system.\n\nMy Trojan have auto alert, after this
+        email is looked, I will be know it!\n\nYou have 2 days (48 hours) for make
+        a payment.\nIf this does not happen - all your contacts will get crazy shots
+        with your dirty life!\nAnd so that you do not obstruct me, your device will
+        be locked (also after 48 hours)\n\nDo not take this frivolously! This is the
+        last warning!\nVarious security services or antiviruses won't help you for
+        sure (I have already collected all your data).\n\nHere are the recommendations
+        of a professional:\nAntiviruses do not help against modern malicious code.
+        Just do not enter your passwords on unsafe \nsites!\n\nI hope you will be
+        prudent.\nBye."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 2511
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 468
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 451
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -11785,11 +12589,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -11821,6 +12625,20 @@ PrefabInstance:
     - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
       propertyPath: m_Name
       value: EmailBodyScroll (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909018801516868422, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445133421914462067, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -12052,12 +12870,12 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 229.8
+      value: 253.4
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -12169,10 +12987,92 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114302503290962136, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_Text
       value: BobFraiserCV.pdf
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: 'Hello,
+
+
+        My name is Bob and I was wondering if there are any vacancies available for
+        cleaners. I have 4 years of industrial cleaning experience. I have access
+        to my own transport and am very flexible.
+
+        Please find a copy of my C.V attached to this email.
+
+
+        Yours faithfully,
+
+        Bob Fraiser.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 538
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 284
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -12306,8 +13206,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 221.28302, y: -83.59477}
-  m_SizeDelta: {x: 442.56604, y: 55.729847}
+  m_AnchoredPosition: {x: 221.28299, y: -83.59477}
+  m_SizeDelta: {x: 442.56598, y: 55.729847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1224749588
 GameObject:
@@ -13365,6 +14265,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmailBodyScroll (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909018801516868422, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445133421914462067, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -13598,7 +14512,7 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -13729,6 +14643,68 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Reehan Aslam <color=blue><Bigdoop@obotinvention.info></color>
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: "The chat show host, 40, was seen rocking a fetching safety helmet and
+        cycling gear as he worked up a \nsweat in the run-up to T...\n<color=blue><u>http://89.integdest.com/vux5dundyoop-Wistclod/YCzXf4Y3/JQoH/Stayskond</u></color>\n-=
+        Lindsey Fevre =-"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 306
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 219
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -14906,7 +15882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1400485886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16211,7 +17187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1627254336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16867,7 +17843,7 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -17024,6 +18000,69 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: "Good morning All,\n\nCan you please load the dishwasher with your dirty
+        cutlery and plates instead of leaving it on the side \nfor others to clean
+        up after you.\nNow I don't know who it is, but whoever it is, please do not
+        do it again.\n\n-Susan\nHead of HR."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 474
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 251
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
 --- !u!224 &1639857731 stripped
@@ -17054,6 +18093,20 @@ PrefabInstance:
     - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
       propertyPath: m_Name
       value: EmailBodyScroll (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909018801516868422, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445133421914462067, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -17406,6 +18459,80 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: "Hello,\n\nWe have received your request for a pay rise. \nIn order to
+        process your request, we need you to confirm your:\n- Date of birth\n- Employee
+        number\n- Last 4 digits of your card number\n- Days you are available to meet
+        for a performance appraisal\n\nOnce we have received the complete information,
+        your request will normally take 5 working days to be processed.\n\nKind regards,\n-HR."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 663
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 381
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 69
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -18066,8 +19193,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 221.28302, y: -195.05447}
-  m_SizeDelta: {x: 442.56604, y: 55.729847}
+  m_AnchoredPosition: {x: 221.28299, y: -195.05447}
+  m_SizeDelta: {x: 442.56598, y: 55.729847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1776541195
 PrefabInstance:
@@ -18325,7 +19452,7 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -18511,6 +19638,76 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: "Hello Hey\n\nI earn 20 thou a week working a few hours a day. Are you
+        able to say the same? If not yet, then allow \nme to help you enjoy the kind
+        of income everyone knowing you will be surprised with. \n\nThe investment
+        possibility I can tell you all about are amazing and not very widely known
+        to most \nindividuals. Those that know about them are the ones you see driving
+        around in expensive cars and \ngolfing with their young rich colleagues. \n\nIf
+        you are eager to get really wealthy amazingly quickly - there is a great deal
+        we need to discuss, so \nmake sure to let me know when you have several minutes
+        so that I could send you further information. \nYou'll see and make sure it's
+        totally worth your attention. \n\nHoping I will bediscussing it further with
+        you soon!\n\nVery much thanking you,\nMr Nick Viker Kashew."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 1063
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 811
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 162
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -19020,7 +20217,7 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -19161,6 +20358,76 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: 'Hi All,
+
+
+        Where does everyone want to go for lunch today?
+
+        I want to go to Nandos, anyone want to come with?
+
+
+        Cheers,
+
+        Liam.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 306
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 121
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -20144,6 +21411,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmailBodyScroll (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909018801516868422, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445133421914462067, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_text
@@ -20499,6 +21780,84 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: 'Have you seen the Christmas party email? Drinks all night long!!!
+
+        What are you doing regarding accommodation?
+
+
+        <color=blue><u>https://blog.yellowoctopus.com.au/wp-content/uploads/2017/06/yellow-octopus-Funny-Party-Meme-1.jpg</u></color>
+
+
+        -Liam.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 370
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 217
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -21256,6 +22615,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmailBodyScroll (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909018801516868422, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445133421914462067, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_text
@@ -21495,12 +22868,12 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 368.3
+      value: 414.55
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000015258789
+      value: 0.000045776367
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -21575,7 +22948,7 @@ PrefabInstance:
     - target: {fileID: 224098109935123498, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000015259
       objectReference: {fileID: 0}
     - target: {fileID: 224098109935123498, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -21616,6 +22989,84 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365022271642331991, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: "Hello All,\n\nIt is coming up to that time of year which everyone loves,
+        IT'S CHRISTMAS!!!. It truly is a season to be Jolly (tra la la la laaa la
+        la la la), spread cheer and positivity :)\nRight, enough of that. Lets get
+        down to business.\n\nThe Christmas party will be taking place at the Nes Azera
+        Hotel in Luxury city of West Basing! \nThe plan is to start off with a 3 course
+        meal and then......head off to the dance floor! (It has a disco ball too -
+        ooooo fancy)\nThere are no limits at the bar - it is an ALL YOU CAN DRINK
+        bar ALL NIGHT LONG!\n\nClick this link to confirm your attendance: <color=blue><u>https://www.confirmationevents.com/index.html/kompany-example.php</u></color>\nPlease
+        RSVP with your name and any dietry requirements.\n\n-Susan\nHead of HR"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 718
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 728
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 139
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -22111,6 +23562,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmailBodyScroll (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1727094126170480, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909018801516868422, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445133421914462067, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3625517619495967943, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_text
@@ -22344,7 +23809,7 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000015258789
+      value: -0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -22485,6 +23950,71 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280875962228856349, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1463262798810023033, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_text
+      value: "To Whom This May Concern,\n\nI am interested in the Receptionist vacancy
+        at Kompany Ltd. To give you an overview of my background, \nI was a personal
+        assistant to the CEO of a medium sized finance company. Furthermore, I was
+        the \nreceptionist for a busy fintech start-up for 5 years so I have extensive
+        experience in this area.\n\nI have attached a copy of my C.V.\nI look forward
+        to hearing from you soon.\n\nYours faithfully,\nSusan Boile."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 675
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 432
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 82
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227372647132364891, guid: b3035014ddfcc4df88e576f63a42f692,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 79
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3035014ddfcc4df88e576f63a42f692, type: 3}
@@ -22932,8 +24462,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 221.28302, y: -27.864923}
-  m_SizeDelta: {x: 442.56604, y: 55.729847}
+  m_AnchoredPosition: {x: 221.28299, y: -27.864923}
+  m_SizeDelta: {x: 442.56598, y: 55.729847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2104701283
 GameObject:
@@ -23309,6 +24839,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 221.28302, y: -139.32462}
-  m_SizeDelta: {x: 442.56604, y: 55.729847}
+  m_AnchoredPosition: {x: 221.28299, y: -139.32462}
+  m_SizeDelta: {x: 442.56598, y: 55.729847}
   m_Pivot: {x: 0.5, y: 0.5}
