@@ -39,7 +39,11 @@ public class LinkScript : MonoBehaviour {
             // Assign currentLinkActive
             _currentLinkIndexActive = hoveredLinkIndex;
             // Position panel where the mouse is
-            hiddenPanels[_currentLinkIndexActive].transform.position = Input.mousePosition;
+            hiddenPanels[_currentLinkIndexActive].transform.position = new Vector3(
+                Input.mousePosition.x + 2,
+                Input.mousePosition.y + 2,
+                Input.mousePosition.z + 2
+            );
             // Show the panel for the link we're hovering on
             hiddenPanels[_currentLinkIndexActive].SetActive(true);
         }

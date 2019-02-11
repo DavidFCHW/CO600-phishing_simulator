@@ -112,7 +112,7 @@ public class EmailScript : MonoBehaviour {
 
     public void SetGameScript(GameScript gameScript)
     {
-        this._gameScript = gameScript;
+        _gameScript = gameScript;
     }
 
     /*

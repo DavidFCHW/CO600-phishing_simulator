@@ -34,8 +34,10 @@ public class GameScript : MonoBehaviour {
      */
     private void Awake()
     {
-        // Make pause disabled
-        _pauseEnabled = false;
+        // Make pause enabled
+//        _pauseEnabled = false;
+        _pauseEnabled = true;
+        // Hide pause menu
         pauseMenu.SetActive(false);
         _gameIsPaused = false;
         // Make some objects inactive
@@ -90,38 +92,25 @@ public class GameScript : MonoBehaviour {
     }
 
     /*
-     * The timer reached 0
-     */
-    public void TimerEnded()
-    {
-        whistleSound.Play();
-        StartCoroutine(EndGame());
-    }
-
-    /*
-     * Check button was clicked after every mail was sorted
-     */
-     public void FinishedSortingEmails()
-    {
-        whistleSound.Play();
-        timer.StopTimer();
-        StartCoroutine(EndGame());
-    }
-
-    /*
      * Looked at all the explanation panels
      */
     public void ExplanationsDone()
     {
+        // Remove all the explanations
+        explanations.DestroyExplanations();
+        // Start game
         StartCoroutine(StartGame());
     }
 
     /*
-     * Start the game
+     * Start the countdown before starting the game
+     * Then the countdown will start the game
      */
     private IEnumerator StartGame()
     {
         yield return new WaitForSeconds(0.2f);
+        // Disable pause for countdown
+        _pauseEnabled = false;
         // Show countdown
         startCountdown.StartCountdown();
     }
@@ -131,9 +120,11 @@ public class GameScript : MonoBehaviour {
      */
      public void CountdownDone()
     {
+        // Make pause enabled again
+        _pauseEnabled = true;
         // Remove blur
         blur.SetActive(false);
-        // Make pause enabled
+        // Make the game pause-able
         _pauseEnabled = true;
         // Start music
         backgroundMusic.Play();
@@ -141,13 +132,33 @@ public class GameScript : MonoBehaviour {
         timer.StartTimer();
     }
 
+     /*
+      * Check button was clicked after every mail was sorted
+      */
+     public void FinishedSortingEmails()
+     {
+         whistleSound.Play();
+         timer.StopTimer();
+         StartCoroutine(EndGame());
+     }
+
+     /*
+      * The timer reached 0
+      */
+     public void TimerEnded()
+     {
+         whistleSound.Play();
+         StartCoroutine(EndGame());
+     }
+
     /*
      * Game ended
      */
     private IEnumerator EndGame()
     {
-        // Disable pause
+        // Disable pause while showing score
         _pauseEnabled = false;
+//        _pauseEnabled = true;
         // Stop the stuff
         backgroundMusic.Stop();
         finishedPanel.SetActive(true);
@@ -178,6 +189,8 @@ public class GameScript : MonoBehaviour {
      */
      public void FinishedShowingScore(bool passed)
     {
+        // Make pause enabled again
+        _pauseEnabled = true;
         // Remove blur
         blur.SetActive(false);
         // Tag emails

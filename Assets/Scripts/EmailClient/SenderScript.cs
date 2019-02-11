@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,12 +11,12 @@ public class SenderScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public string senderText;
     public string addressText;
     public string feedbackText;
-    private Text _thisComponent;
+    private TextMeshProUGUI _thisComponent;
     private bool _blocked;
 
     private void Awake()
     {
-        _thisComponent = GetComponent<Text>();
+        _thisComponent = GetComponent<TextMeshProUGUI>();
         _thisComponent.text = senderText;
     }
 
