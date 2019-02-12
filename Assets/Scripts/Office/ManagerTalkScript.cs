@@ -18,7 +18,7 @@ public class ManagerTalkScript : MonoBehaviour {
     {
         mainCam.UnBlock();
         // Hide object
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
         // Hide all text panels
         foreach (var go in textPanels) go.SetActive(false);
         // Show the first text panel
@@ -32,7 +32,7 @@ public class ManagerTalkScript : MonoBehaviour {
      public void ShowDialogue()
     {
         mainCam.Block();
-        this.gameObject.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     /*
@@ -54,6 +54,16 @@ public class ManagerTalkScript : MonoBehaviour {
             textPanels[_currentTextPanel].SetActive(true);
         }
     }
+    
+    /*
+     * Go to next panel
+     */
+    private void GoToPreviousPanel()
+    {
+        textPanels[_currentTextPanel].SetActive(false);
+        _currentTextPanel--;
+        textPanels[_currentTextPanel].SetActive(true);
+    }
 
     /*
      * Next button clicked
@@ -62,5 +72,14 @@ public class ManagerTalkScript : MonoBehaviour {
     {
         clickSound.Play();
         GoToNextPanel();
+    }
+    
+    /*
+     * Previous button clicked
+     */
+    public void OnPreviousClicked()
+    {
+        clickSound.Play();
+        GoToPreviousPanel();
     }
 }
