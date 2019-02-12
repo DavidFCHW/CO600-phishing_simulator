@@ -12,13 +12,16 @@ public class TitleScript : MonoBehaviour {
     public GameObject buttonPanel;
     public GameObject creditsPanel;
     public GameObject creditsText;
+    public GameObject kentLogo;
     // Variables
     private float _creditsTextYOffset;
     private int _step = 1; // How fast the credits go
     private RectTransform _creditsTextRectTrans;
+    private RectTransform _kentLogoRectTransform;
 
     private void Start()
     {
+        _kentLogoRectTransform = kentLogo.GetComponent<RectTransform>();
         _creditsTextRectTrans = creditsText.GetComponent<RectTransform>();
         // Place the credit panel just below the canvas
         var creditsTextRectTrans = creditsText.GetComponent<RectTransform>();
@@ -28,6 +31,7 @@ public class TitleScript : MonoBehaviour {
         buttonPanel.SetActive(true);
         creditsPanel.SetActive(false);
         creditsText.SetActive(true);
+//        kentLogo.SetActive(true);
         // Start the music
         backgroundMusic.Play();
     }
@@ -77,7 +81,7 @@ public class TitleScript : MonoBehaviour {
      */
     IEnumerator MoveCreditsUp()
     {
-        for (float i = _creditsTextYOffset; i < LayoutUtility.GetPreferredSize(_creditsTextRectTrans, 1); i += _step)
+        for (float i = _creditsTextYOffset; i < LayoutUtility.GetPreferredSize(_creditsTextRectTrans, 1) + _kentLogoRectTransform.rect.height; i += _step)
         {
             _creditsTextRectTrans.offsetMax = new Vector2(0, i);
             yield return null;
