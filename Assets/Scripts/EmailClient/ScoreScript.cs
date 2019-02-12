@@ -15,6 +15,9 @@ public class ScoreScript : MonoBehaviour {
     private int scoreThreshold = 800;
 
     // Unity objects
+    public GameObject scorePanel;
+    public GameObject[] explanationPanels;
+    // Score showing related stuff
     public Text legitEmailsArchived;
     public Text legitEmailsArchivedGains;
     public Text phishingEmailsArchived;
@@ -36,12 +39,16 @@ public class ScoreScript : MonoBehaviour {
     private int _legitEmailsTrashedLossesInt;
     private int _phishingEmailsArchivedLossInt;
     private int _phishingEmailsTrashedGainsInt;
+    // The explanation panel we're on
+    private int _currentExplanationPanel;
     
     /*
      * Initialisation
      */
     private void Start()
     {
+        scorePanel.SetActive(true);
+        foreach (GameObject o in explanationPanels) o.SetActive(false);
         // Set all the text fields inactive
         profit.gameObject.SetActive(true);
         legitEmailsArchived.gameObject.SetActive(false);
@@ -183,11 +190,46 @@ public class ScoreScript : MonoBehaviour {
     }
 
     /*
-     * Done button clicked
+     * Next button clicked on score panel
      */
-    public void DoneClicked()
+    public void ShowScoreDone()
+    {
+        _gameScript.PlayLightClick();
+        scorePanel.SetActive(false);
+        // Show the first explanation panel
+        explanationPanels[0].SetActive(true);
+        _currentExplanationPanel = 0;
+    }
+
+    /*
+     * Next clicked on explanations
+     */
+    public void NextExplanation()
+    {
+        _gameScript.PlayLightClick();
+        explanationPanels[_currentExplanationPanel].SetActive(false);
+        _currentExplanationPanel++;
+        explanationPanels[_currentExplanationPanel].SetActive(true);
+    }
+    
+    /*
+     * Previous clicked on explanations
+     */
+    public void PreviousExplanation()
+    {
+        _gameScript.PlayLightClick();
+        explanationPanels[_currentExplanationPanel].SetActive(false);
+        _currentExplanationPanel--;
+        explanationPanels[_currentExplanationPanel].SetActive(true);
+    }
+    
+    /*
+     * Done clicked on explanations
+     */
+    public void ExplanationsDone()
     {
         _gameScript.PlayMeanClick();
+        explanationPanels[_currentExplanationPanel].SetActive(false);
         _gameScript.FinishedShowingScore(_profitValue >= scoreThreshold);
     }
     
@@ -203,6 +245,7 @@ public class ScoreScript : MonoBehaviour {
 
     public void Reset()
     {
+        scorePanel.SetActive(true);
         // Set all the text fields inactive
         profit.gameObject.SetActive(true);
         legitEmailsArchived.gameObject.SetActive(false);
