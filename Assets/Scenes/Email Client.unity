@@ -14654,7 +14654,7 @@ PrefabInstance:
         won't help you for sure (I have already collected all your data).\n\nHere
         are the recommendations of a professional:\nAntiviruses do not help against
         modern malicious code. Just do not enter your passwords on unsafe \nsites!\n\nI
-        hope you will be prudent.\nBye."
+        hope you will be prudent.\n<link><mark=#ff000080>Bye.</mark></link>"
       objectReference: {fileID: 0}
     - target: {fileID: 4302397111893937380, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -14679,7 +14679,7 @@ PrefabInstance:
     - target: {fileID: 4302397111893937380, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_textInfo.linkCount
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2019855166202436046, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -24813,7 +24813,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Sort emails by dragging them in the correct folder. You can check the full
-    email address of a sender by hovering over its name.
+    email address of a sender by hovering over their name.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 82c1d441a53b7435ab13f4dc3072d092, type: 2}
   m_sharedMaterial: {fileID: 21223746208257264, guid: 82c1d441a53b7435ab13f4dc3072d092,
@@ -24882,7 +24882,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1796273589}
-    characterCount: 127
+    characterCount: 129
     spriteCount: 0
     spaceCount: 23
     wordCount: 24
@@ -25064,7 +25064,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Sense of urgency + ultimatum
+  m_text: Sense of urgency and ultimatum
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -25132,10 +25132,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1809816377}
-    characterCount: 28
+    characterCount: 30
     spriteCount: 0
     spaceCount: 4
-    wordCount: 4
+    wordCount: 5
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -25417,7 +25417,7 @@ PrefabInstance:
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000022888184
+      value: 0.0000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 224956511762639886, guid: b3035014ddfcc4df88e576f63a42f692,
         type: 3}
@@ -26221,7 +26221,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: The game ends when the <b>Inbox</b> is empty. Or when the timer runs out
+  m_text: The game ends when the <b>Inbox</b> is empty, or when the timer runs out
     after 2 minutes.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 82c1d441a53b7435ab13f4dc3072d092, type: 2}
