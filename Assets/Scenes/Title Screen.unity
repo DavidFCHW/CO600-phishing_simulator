@@ -1651,7 +1651,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Something Phishy
+  m_text: Phishy business
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 82c1d441a53b7435ab13f4dc3072d092, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 4d2546c2aa9fa44be8ab2c70ef609100, type: 2}
@@ -1678,7 +1678,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 60.1
+  m_fontSize: 56.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1719,12 +1719,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 932670467}
-    characterCount: 16
+    characterCount: 15
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -2810,7 +2810,7 @@ MonoBehaviour:
 
     Group Supervisor:
 
-    - Jason Nurse
+    - Jason R.C. Nurse
 
 
     Producers:
@@ -2930,12 +2930,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2029529728}
-    characterCount: 694
+    characterCount: 699
     spriteCount: 0
-    spaceCount: 76
-    wordCount: 105
+    spaceCount: 77
+    wordCount: 107
     linkCount: 0
-    lineCount: 42
+    lineCount: 45
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
