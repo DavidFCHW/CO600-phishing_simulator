@@ -18,6 +18,6 @@ public class PausePanelScript : MonoBehaviour
 
     public void QuitClicked()
     {
-        gameScript.ContinueButtonPressed();
+        gameScript.QuitButtonPressed();
     }
 }

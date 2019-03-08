@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,21 +10,35 @@ public class SenderScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public string senderText;
     public string addressText;
-    private Text thisComponent;
+    public string feedbackText;
+    private TextMeshProUGUI _thisComponent;
+    private bool _blocked;
 
     private void Awake()
     {
-        thisComponent = this.GetComponent<Text>();
-        thisComponent.text = senderText;
+        _thisComponent = GetComponent<TextMeshProUGUI>();
+        _thisComponent.text = senderText;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        thisComponent.text = senderText + " " + addressText;
+        if (!_blocked) _thisComponent.text = senderText + " " + addressText;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        thisComponent.text = senderText;
+        if (!_blocked) _thisComponent.text = senderText;
+    }
+
+    public void Block()
+    {
+        _blocked = true;
+//        _thisComponent.text = feedbackText;
+    }
+
+    public void UnBlock()
+    {
+        _blocked = false;
+//        _thisComponent.text = senderText;
     }
 }

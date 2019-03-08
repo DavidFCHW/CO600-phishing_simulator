@@ -46,12 +46,19 @@ public class ExplanationScript : MonoBehaviour {
         else if (panelIndex >= explanationPanels.Length)
         {
             gameScript.PlayMeanClick();
-            foreach (ExplanationPanelScript explanationPanel in explanationPanels)
-            {
-                Destroy(explanationPanel.gameObject);
-            }
-            Destroy(this.gameObject);
             gameScript.ExplanationsDone();
         }
+    }
+    
+    /*
+     * Remove all explanation panels from screen
+     */
+    public void DestroyExplanations()
+    {
+        foreach (ExplanationPanelScript explanationPanel in explanationPanels)
+        {
+            Destroy(explanationPanel.gameObject);
+        }
+        Destroy(gameObject);
     }
 }

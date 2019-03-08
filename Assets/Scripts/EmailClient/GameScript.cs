@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameScript : MonoBehaviour {
 
@@ -10,9 +11,13 @@ public class GameScript : MonoBehaviour {
     public ExplanationScript explanations;
     public EmailScript emailScript;
     public ScoreScript score;
+    public StartCountDownScript startCountdown;
     public GameObject finishedPanel;
-    public GameObject goBack;
-    public GameObject pauseMenu; 
+    public GameObject tryAgainButton;
+    public ContinueButtonHoverScript continueButton;
+    public GameObject continueBlockedExplanations;
+    public GameObject pauseMenu;
+    public GameObject blur;
     // Audio sources
     public AudioSource whistleSound;
     public AudioSource backgroundMusic;
@@ -20,28 +25,37 @@ public class GameScript : MonoBehaviour {
     public AudioSource meanClick;
     public AudioSource scoreTally;
     // Variables
-    private bool pauseEnabled; // Game can be paused
-    private bool gameIsPaused; // Game is currently paused
+    private bool _pauseEnabled; // Game can be paused
+    private bool _gameIsPaused; // Game is currently paused
+    private bool _canContinue; // Whether or not the player achieved a high enough score to continue
 
     /*
      * initialisation
      */
     private void Awake()
     {
-        // Make pause disabled
-        pauseEnabled = false;
+        // Make pause enabled
+//        _pauseEnabled = false;
+        _pauseEnabled = true;
+        // Hide pause menu
         pauseMenu.SetActive(false);
-        gameIsPaused = false;
+        _gameIsPaused = false;
         // Make some objects inactive
         score.gameObject.SetActive(false);
         finishedPanel.SetActive(false);
-        goBack.gameObject.SetActive(false);
+        continueButton.gameObject.SetActive(false);
+        tryAgainButton.gameObject.SetActive(false);
+        continueBlockedExplanations.SetActive(false);
+        // Blur the game
+        blur.SetActive(true);
         // Give your reference to other objects
-        score       .SetGameScript(this);
-        timer       .SetGameScript(this);
-        explanations.SetGameScript(this);
-        emailScript .SetGameScript(this);
-        pausePanel  .SetGameScript(this);
+        score         .SetGameScript(this);
+        timer         .SetGameScript(this);
+        explanations  .SetGameScript(this);
+        emailScript   .SetGameScript(this);
+        pausePanel    .SetGameScript(this);
+        startCountdown.SetGameScript(this);
+        continueButton.SetGameScript(this);
     }
 
     /*
@@ -50,23 +64,17 @@ public class GameScript : MonoBehaviour {
     private void Update()
     {
         // Check if pause button pressed
-        if (pauseEnabled && Input.GetKeyUp(KeyCode.Escape))
+        if (_pauseEnabled && Input.GetKeyUp(KeyCode.Escape))
         {
-            if (!gameIsPaused)
-            {
-                Pause();
-            }
-            else
-            {
-                UnPause();
-            }
+            if (!_gameIsPaused) Pause();
+            else UnPause();
         }
     }
 
-    public void Pause()
+    private void Pause()
     {
         pauseMenu.SetActive(true);
-        gameIsPaused = true;
+        _gameIsPaused = true;
         // Stop timer
         timer.PauseTimer();
         // Pause music
@@ -76,7 +84,7 @@ public class GameScript : MonoBehaviour {
     public void UnPause()
     {
         pauseMenu.SetActive(false);
-        gameIsPaused = false;
+        _gameIsPaused = false;
         // Unpause music
         backgroundMusic.Play();
         // Unpause timer
@@ -84,58 +92,80 @@ public class GameScript : MonoBehaviour {
     }
 
     /*
-     * The timer reached 0
-     */
-    public void TimerEnded()
-    {
-        whistleSound.Play();
-        StartCoroutine(EndGame());
-    }
-
-    /*
-     * Check button was clicked after every mail was sorted
-     */
-     public void FinishedSortingEmails()
-    {
-        whistleSound.Play();
-        timer.StopTimer();
-        StartCoroutine(EndGame());
-    }
-
-    /*
      * Looked at all the explanation panels
      */
     public void ExplanationsDone()
     {
+        // Remove all the explanations
+        explanations.DestroyExplanations();
+        // Start game
         StartCoroutine(StartGame());
     }
 
     /*
-     * Start the game
+     * Start the countdown before starting the game
+     * Then the countdown will start the game
      */
-     IEnumerator StartGame()
+    private IEnumerator StartGame()
     {
         yield return new WaitForSeconds(0.2f);
-        // Make pause enabled
-        pauseEnabled = true;
+        // Disable pause for countdown
+        _pauseEnabled = false;
+        // Show countdown
+        startCountdown.StartCountdown();
+    }
+
+    /*
+     * Called when the countdown is done
+     */
+     public void CountdownDone()
+    {
+        // Make pause enabled again
+        _pauseEnabled = true;
+        // Remove blur
+        blur.SetActive(false);
+        // Make the game pause-able
+        _pauseEnabled = true;
         // Start music
         backgroundMusic.Play();
         // Start timer
         timer.StartTimer();
     }
 
+     /*
+      * Check button was clicked after every mail was sorted
+      */
+     public void FinishedSortingEmails()
+     {
+         whistleSound.Play();
+         timer.StopTimer();
+         StartCoroutine(EndGame());
+     }
+
+     /*
+      * The timer reached 0
+      */
+     public void TimerEnded()
+     {
+         whistleSound.Play();
+         StartCoroutine(EndGame());
+     }
+
     /*
      * Game ended
      */
-    IEnumerator EndGame()
+    private IEnumerator EndGame()
     {
-        // Disable pause
-        pauseEnabled = false;
+        // Disable pause while showing score
+        _pauseEnabled = false;
+//        _pauseEnabled = true;
         // Stop the stuff
         backgroundMusic.Stop();
         finishedPanel.SetActive(true);
         yield return new WaitForSeconds(2);
-        int[] results = emailScript.CheckEmails();
+        // Blur
+        blur.SetActive(true);
+        var results = emailScript.CheckEmails();
         // (int totalEmailsInt, int phishingEmailsInt, int sortedEmailsInt, int correctlyIdentifiedInt, int wronglyTrashedInt)
         // Show score panel
         score.gameObject.SetActive(true);
@@ -143,21 +173,54 @@ public class GameScript : MonoBehaviour {
         finishedPanel.gameObject.SetActive(false);
         timer.gameObject.SetActive(false);
         // Show score
-        score.ShowScore(results[0], results[1], results[2], results[3], results[4]);
+        score.ShowScore(
+            results[0], 
+            results[1], 
+            results[2], 
+            results[3], 
+            results[4], 
+            results[5], 
+            results[6]
+        );
     }
 
     /*
      * After the score has been shown
      */
-     public void FinishedShowingScore()
+     public void FinishedShowingScore(bool passed)
     {
+        // Make pause enabled again
+        _pauseEnabled = true;
+        // Remove blur
+        blur.SetActive(false);
         // Tag emails
         emailScript.TagEmails();
         // Remove score panel and finish panel
         score.gameObject.SetActive(false);
-        // Show try again and whatnot
-        goBack.gameObject.SetActive(true);
+        // Show try again, only show continue if passed
+        tryAgainButton.gameObject.SetActive(true);
+        if (!passed)
+        {
+            _canContinue = false;
+            continueButton.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            _canContinue = true;
+            continueButton.GetComponent<Button>().interactable = true;
+        }
+        continueButton.gameObject.SetActive(true);
     }
+
+     public void ContinueButtonHoverStart()
+     {
+         if (!_canContinue) continueBlockedExplanations.SetActive(true);
+     }
+     
+     public void ContinueButtonHoverStop()
+     {
+         if (!_canContinue) continueBlockedExplanations.SetActive(false);
+     }
 
     public void PlayLightClick()
     {
@@ -171,14 +234,8 @@ public class GameScript : MonoBehaviour {
 
     public void ToggleScoreTally(bool toggle)
     {
-        if (toggle)
-        {
-            scoreTally.Play();
-        }
-        else
-        {
-            scoreTally.Pause();
-        }
+        if (toggle)scoreTally.Play();
+        else scoreTally.Pause();
     }
 
     public void TryAgainButtonPressed()
@@ -193,16 +250,33 @@ public class GameScript : MonoBehaviour {
     {
         // play click sound
         PlayMeanClick();
+        // Increase level
+        StaticClass.IncreaseLevel();
         // Go back to office scene
         SceneManager.LoadScene("Office");
     }
 
-    public void StartOver()
+    public void QuitButtonPressed()
     {
+        // play click sound
+        PlayMeanClick();
+        // Go back to office scene
+        SceneManager.LoadScene("Office");
+    }
+
+    /*
+     * Called on try again
+     */
+    private void StartOver()
+    {
+        // Blur
+        blur.SetActive(true);
         // Make some objects inactive
         score.Reset();
         finishedPanel.SetActive(false);
-        goBack.gameObject.SetActive(false);
+        continueButton.gameObject.SetActive(false);
+        tryAgainButton.gameObject.SetActive(false);
+        continueBlockedExplanations.SetActive(false);
         // Reset timer
         timer.gameObject.SetActive(true);
         timer.ResetTimer();
