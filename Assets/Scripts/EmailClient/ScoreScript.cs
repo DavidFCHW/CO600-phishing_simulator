@@ -110,7 +110,8 @@ public class ScoreScript : MonoBehaviour {
         for (var i = 0; i < legitEmailsArchivedGainsInt; i += _step)
         {
             _profitValue += _step;
-            profit.text = "<color=green>£" + _profitValue + "</color>";
+            if (_profitValue > 0) profit.text = "<color=green>£" + _profitValue + "</color>";
+            else profit.text = "<color=red>£" + _profitValue + "</color>";
             yield return null;
         }
         _gameScript.ToggleScoreTally(false); // Stops the sound
@@ -127,7 +128,8 @@ public class ScoreScript : MonoBehaviour {
         for (var i = 0; i < phishingEmailsArchivedLossInt; i += _step)
         {
             _profitValue -= _step;
-            profit.text = "<color=green>£" + _profitValue + "</color>";
+            if (_profitValue > 0) profit.text = "<color=green>£" + _profitValue + "</color>";
+            else profit.text = "<color=red>£" + _profitValue + "</color>";
             yield return null;
         }
         _gameScript.ToggleScoreTally(false); // Stops the sound
@@ -144,7 +146,8 @@ public class ScoreScript : MonoBehaviour {
         for (var i = 0; i < phishingEmailsTrashedGainsInt; i += _step)
         {
             _profitValue += _step;
-            profit.text = "<color=green>£" + _profitValue + "</color>";
+            if (_profitValue > 0) profit.text = "<color=green>£" + _profitValue + "</color>";
+            else profit.text = "<color=red>£" + _profitValue + "</color>";
             yield return null;
         }
         _gameScript.ToggleScoreTally(false); // Stops the sound
@@ -161,7 +164,8 @@ public class ScoreScript : MonoBehaviour {
         for (var i = 0; i < legitEmailsTrashedLossesInt; i += _step)
         {
             _profitValue -= _step;
-            profit.text = "<color=green>£" + _profitValue + "</color>";
+            if (_profitValue > 0) profit.text = "<color=green>£" + _profitValue + "</color>";
+            else profit.text = "<color=red>£" + _profitValue + "</color>";
             yield return null;
         }
         _gameScript.ToggleScoreTally(false); // Stops the sound
@@ -174,7 +178,8 @@ public class ScoreScript : MonoBehaviour {
     private void ShowScoreUndramatically(int legitEmailsArchivedGainsInt, int legitEmailsTrashedLossesInt, int phishingEmailsArchivedLossInt, int phishingEmailsTrashedGainsInt)
     {
         _profitValue = legitEmailsArchivedGainsInt - legitEmailsTrashedLossesInt - phishingEmailsArchivedLossInt + phishingEmailsTrashedGainsInt;
-        profit.text = "<color=green>£" + _profitValue + "</color>";
+        if (_profitValue > 0) profit.text = "<color=green>£" + _profitValue + "</color>";
+        else profit.text = "<color=red>£" + _profitValue + "</color>";
         
         legitEmailsArchived.gameObject.SetActive(true);
         legitEmailsTrashed.gameObject.SetActive(true);
