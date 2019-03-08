@@ -50,11 +50,16 @@ public class EmailBodyScript : MonoBehaviour {
         mainContent.SetActive(!displayFeedback);
         mainContentWithFeedback.SetActive(displayFeedback);
         // Set the sender to sender with feedback and block it
-        if (displayFeedback) senderPanel.Block();
-        else senderPanel.UnBlock();
+        if (displayFeedback) BlockSenderPanel();
+        else UnBlockSenderPanel();
     }
 
     public void UnBlockSenderPanel()
+    {
+        senderPanel.UnBlock();
+    }
+
+    public void BlockSenderPanel()
     {
         senderPanel.UnBlock();
     }
