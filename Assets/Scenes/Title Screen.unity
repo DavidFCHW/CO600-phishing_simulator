@@ -513,7 +513,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 97749a0e0f39f49caa22a14463a14f91, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70baaccbfe4864c7f89de5344efb3bc6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1678,7 +1678,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 59.85
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2935,7 +2935,7 @@ MonoBehaviour:
     spaceCount: 77
     wordCount: 107
     linkCount: 0
-    lineCount: 45
+    lineCount: 39
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
