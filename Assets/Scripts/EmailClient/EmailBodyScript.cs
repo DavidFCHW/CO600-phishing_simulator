@@ -11,6 +11,8 @@ public class EmailBodyScript : MonoBehaviour {
     [SerializeField] private SenderScript senderPanel;
     [SerializeField] private GameObject objectTextBox;
     [SerializeField] private GameObject objectWithFeedback;
+    [SerializeField] private GameObject recipientTextBox;
+    [SerializeField] private GameObject recipientWithFeedback;
     [SerializeField] private GameObject positiveFeedback;
     [SerializeField] private GameObject negativeFeedback;
 
@@ -46,6 +48,9 @@ public class EmailBodyScript : MonoBehaviour {
         // Set object to feedback object
         objectTextBox.SetActive(!displayFeedback);
         objectWithFeedback.SetActive(displayFeedback);
+        // Set recipient to feedback recipient
+        recipientTextBox.SetActive(!displayFeedback);
+        recipientWithFeedback.SetActive(displayFeedback);
         // Set body to feedback body
         mainContent.SetActive(!displayFeedback);
         mainContentWithFeedback.SetActive(displayFeedback);
