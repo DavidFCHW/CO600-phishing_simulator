@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2831,7 +2831,7 @@ MonoBehaviour:
     - Luc Hayward
 
 
-    Developpers:
+    Developers:
 
     - Reehan Aslam
 
@@ -2930,12 +2930,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2029529728}
-    characterCount: 699
+    characterCount: 698
     spriteCount: 0
     spaceCount: 77
     wordCount: 107
     linkCount: 0
-    lineCount: 39
+    lineCount: 34
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
