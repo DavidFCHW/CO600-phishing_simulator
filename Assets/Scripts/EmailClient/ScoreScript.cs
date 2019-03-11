@@ -12,7 +12,7 @@ public class ScoreScript : MonoBehaviour {
     private readonly int _moneyLostPerLegitEmailTrashed = 100;
     private readonly int _moneyLostPerPhishingEmailArchived = 100;
     private readonly int _moneyGainedPerPhishingEmailTrashed = 100;
-    private int scoreThreshold = 800;
+    private readonly int _scoreThreshold = 800;
 
     // Unity objects
     public GameObject scorePanel;
@@ -28,6 +28,7 @@ public class ScoreScript : MonoBehaviour {
     public Text legitEmailsTrashedLosses;
     public Text profit;
     public Button doneButton;
+    public Button skipButton;
     // The profit made
     private int _profitValue = 0;
     // The step used when adding stuff dramatically
@@ -41,6 +42,10 @@ public class ScoreScript : MonoBehaviour {
     private int _phishingEmailsTrashedGainsInt;
     // The explanation panel we're on
     private int _currentExplanationPanel;
+    
+    // Audio objects
+    public AudioSource success;
+    public AudioSource failure;
     
     /*
      * Initialisation
@@ -61,6 +66,8 @@ public class ScoreScript : MonoBehaviour {
         phishingEmailsTrashedGains.gameObject.SetActive(false);
         // Set the done button inactive
         doneButton.gameObject.SetActive(false);
+        // Set skip button active
+        skipButton.gameObject.SetActive(true);
     }
 
     public void SetGameScript(GameScript gameScript)
@@ -170,8 +177,10 @@ public class ScoreScript : MonoBehaviour {
         }
         _gameScript.ToggleScoreTally(false); // Stops the sound
 
+        PlayFinishSound();
         // Show button
         yield return new WaitForSeconds(0.5f);
+        skipButton.gameObject.SetActive(false);
         doneButton.gameObject.SetActive(true);
     }
 
@@ -191,7 +200,17 @@ public class ScoreScript : MonoBehaviour {
         phishingEmailsTrashedGains.gameObject.SetActive(true);
         phishingEmailsArchivedLoss.gameObject.SetActive(true);
         
+        PlayFinishSound();
         doneButton.gameObject.SetActive(true);
+    }
+
+    /*
+     * Plays a sound telling the player whether they succeeded or not
+     */
+    private void PlayFinishSound()
+    {
+        if (_profitValue >= _scoreThreshold) success.Play();
+        else failure.Play();
     }
 
     /*
@@ -235,7 +254,7 @@ public class ScoreScript : MonoBehaviour {
     {
         _gameScript.PlayMeanClick();
         explanationPanels[_currentExplanationPanel].SetActive(false);
-        _gameScript.FinishedShowingScore(_profitValue >= scoreThreshold);
+        _gameScript.FinishedShowingScore(_profitValue >= _scoreThreshold);
     }
     
     /*
@@ -246,6 +265,7 @@ public class ScoreScript : MonoBehaviour {
         StopCoroutine(_showScoreCoroutine);
         _gameScript.ToggleScoreTally(false);
         ShowScoreUndramatically(_legitEmailsArchivedGainsInt, _legitEmailsTrashedLossesInt, _phishingEmailsArchivedLossInt, _phishingEmailsTrashedGainsInt);
+        skipButton.gameObject.SetActive(false);
     }
 
     public void Reset()
@@ -263,6 +283,8 @@ public class ScoreScript : MonoBehaviour {
         phishingEmailsTrashedGains.gameObject.SetActive(false);
         // Set the done button inactive
         doneButton.gameObject.SetActive(false);
+        // Set skip button active
+        skipButton.gameObject.SetActive(true);
         // Set the score panel inactive
         gameObject.SetActive(false);
         // Reset profit
