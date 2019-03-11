@@ -9,6 +9,7 @@ public class OnCharacterOver : MonoBehaviour {
     public GameObject interogationMark;
     private bool _dialogueBoxShowing;
     private bool _clickedOnManager;
+    public AudioSource boopSound;
 
     private void Awake()
     {
@@ -45,6 +46,7 @@ public class OnCharacterOver : MonoBehaviour {
 
     private void OnMouseEnter()
     {
+        boopSound.Play();
         interogationMark.SetActive(true);
     }
 }
