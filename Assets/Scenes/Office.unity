@@ -1780,7 +1780,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Imma need u again in a bit.
+  m_Text: I will still need your help later but you may find the next task harder.
 --- !u!222 &346792254
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3665,7 +3665,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nailed it fam.
+  m_Text: Well done on completing this task!
 --- !u!222 &680994269
 CanvasRenderer:
   m_ObjectHideFlags: 0
