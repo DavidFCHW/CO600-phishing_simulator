@@ -8718,8 +8718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ba52f0685a047acaacfa8c180e11d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedH: 200
-  speedV: 200
+  speedH: 100
+  speedV: 100
   cursor: {fileID: 2056333925}
 --- !u!1 &1779363470
 GameObject:
