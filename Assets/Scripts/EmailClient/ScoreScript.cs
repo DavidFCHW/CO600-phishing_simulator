@@ -28,6 +28,7 @@ public class ScoreScript : MonoBehaviour {
     public Text legitEmailsTrashedLosses;
     public Text profit;
     public Button doneButton;
+    public Button skipButton;
     // The profit made
     private int _profitValue = 0;
     // The step used when adding stuff dramatically
@@ -61,6 +62,8 @@ public class ScoreScript : MonoBehaviour {
         phishingEmailsTrashedGains.gameObject.SetActive(false);
         // Set the done button inactive
         doneButton.gameObject.SetActive(false);
+        // Set skip button active
+        skipButton.gameObject.SetActive(true);
     }
 
     public void SetGameScript(GameScript gameScript)
@@ -172,6 +175,7 @@ public class ScoreScript : MonoBehaviour {
 
         // Show button
         yield return new WaitForSeconds(0.5f);
+        skipButton.gameObject.SetActive(false);
         doneButton.gameObject.SetActive(true);
     }
 
@@ -246,6 +250,7 @@ public class ScoreScript : MonoBehaviour {
         StopCoroutine(_showScoreCoroutine);
         _gameScript.ToggleScoreTally(false);
         ShowScoreUndramatically(_legitEmailsArchivedGainsInt, _legitEmailsTrashedLossesInt, _phishingEmailsArchivedLossInt, _phishingEmailsTrashedGainsInt);
+        skipButton.gameObject.SetActive(false);
     }
 
     public void Reset()
@@ -263,6 +268,8 @@ public class ScoreScript : MonoBehaviour {
         phishingEmailsTrashedGains.gameObject.SetActive(false);
         // Set the done button inactive
         doneButton.gameObject.SetActive(false);
+        // Set skip button active
+        skipButton.gameObject.SetActive(true);
         // Set the score panel inactive
         gameObject.SetActive(false);
         // Reset profit
