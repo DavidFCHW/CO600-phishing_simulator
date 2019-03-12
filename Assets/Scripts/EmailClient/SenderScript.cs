@@ -33,12 +33,12 @@ public class SenderScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void Block()
     {
         _blocked = true;
-//        _thisComponent.text = feedbackText;
+        _thisComponent.text = feedbackText;
     }
 
     public void UnBlock()
     {
         _blocked = false;
-//        _thisComponent.text = senderText;
+        _thisComponent.text = senderText;
     }
 }
