@@ -22,7 +22,7 @@ namespace EmailClient
         public GameObject[] feedbackPanel; // The undercover feedback panels
         public GameObject[] linkPanels; // The undercover link panels
 
-        private void Awake()
+        private void Start()
         {
             _textMeshProText = GetComponent<TextMeshProUGUI>();
             Array.ForEach(feedbackPanel, x => x.SetActive(false));
@@ -95,7 +95,7 @@ namespace EmailClient
             // Position panel above where the mouse is
             linkPanels[panelIndex].transform.position = new Vector3(
                 Input.mousePosition.x - 2,
-                (float) (Input.mousePosition.y - linkPanels[panelIndex].GetComponent<RectTransform>().rect.height * 1.5),
+                Input.mousePosition.y - linkPanels[panelIndex].GetComponent<RectTransform>().rect.height - 5,
                 Input.mousePosition.z - 2
             );
             // Show the panel for the link we're hovering on
