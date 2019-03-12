@@ -27,7 +27,7 @@ namespace EmailClient
             // Position the panel below the mouse
             hiddenPanel.transform.position = new Vector3(
                 Input.mousePosition.x - 2,
-                Input.mousePosition.y - hiddenPanel.GetComponent<RectTransform>().rect.height - 10,
+                Input.mousePosition.y - hiddenPanel.GetComponent<RectTransform>().rect.height / 2 - 10,
                 Input.mousePosition.z - 2
             );
             // Show the panel
