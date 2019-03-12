@@ -20,9 +20,9 @@ public class EmailPreviewScript : MonoBehaviour,
     /*
      * Called by the EmailScript, keeps a reference to the associated email object
      */
-    public void SetEmail(Email email)
+    public void SetEmail(Email e)
     {
-        this.email = email;
+        email = e;
     }
 
     /*
@@ -38,17 +38,17 @@ public class EmailPreviewScript : MonoBehaviour,
      */
     public void OnDrag(PointerEventData eventData)
     {
-        email.OnPreviewDrag(eventData);
+        email.OnPreviewDrag();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        email.OnBeginPreviewDrag(eventData);
+        email.OnBeginPreviewDrag();
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        email.OnEndPreviewDrag(eventData);
+        email.OnEndPreviewDrag();
     }
 
     /*
@@ -56,12 +56,12 @@ public class EmailPreviewScript : MonoBehaviour,
      */
     public void OnPointerExit(PointerEventData eventData)
     {
-        email.OnPointerExitPreview(eventData);
+        email.OnPointerExitPreview();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        email.OnPointerEnterPreview(eventData);
+        email.OnPointerEnterPreview();
     }
 
     public void SetDisplayUnread()
@@ -76,11 +76,11 @@ public class EmailPreviewScript : MonoBehaviour,
 
     public void SetDisplayRead()
     {
-        // Unbold sender
+        // Un-bold sender
         sender.text = sender.text.Substring(3, sender.text.Length - 7);
-        // Unbold subject
+        // Un-bold subject
         subject.text = subject.text.Substring(3, subject.text.Length - 7);
-        // Make blue dot dissapear
+        // Make blue dot disappear
         readIndicator.SetActive(false);
     }
 }

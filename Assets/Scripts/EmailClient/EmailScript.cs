@@ -133,7 +133,7 @@ public class EmailScript : MonoBehaviour {
             // Add to inbox
             inbox.AddEmail(mail);
         }
-        // Clear other inboxes
+        // Clear other mailboxes
         trash.InitialiseEmailList();
         archive.InitialiseEmailList();
         // Set all emails inactive
@@ -346,6 +346,7 @@ public class Email
     private readonly Color32 _previewClickedOnColor = new Color32(255, 255, 255, 255);
     private readonly Color32 _previewNormalColor = new Color32(255, 255, 255, 100);
     private readonly Color32 _previewHoverColor = new Color32(233, 0, 85, 100);
+    private readonly Color32 _previewHoverFeedbackColor = new Color32(255, 255, 255, 255);
 
     private readonly Color32 _correctColor = new Color32(0, 255, 0, 255);
     private readonly Color32 _correctColorLighter = new Color32(156, 255, 156, 255);
@@ -365,10 +366,13 @@ public class Email
     public EmailBodyScript emailBody;
     private EmailScript emailScript;
     // Variables
-    private bool unread = true;
-    private bool editeable = true; // We can move the mail around and whatnot, blocks dragging and setting as read
-    private Color32 previewClickedOnColorUsed; // Used instead of previewClickedOnColor
-    private Color32 previewNormalColorUsed; // Used instead of previewNormalColor
+    private bool _unread = true;
+    private bool _editable = true; // We can move the mail around and whatnot, blocks dragging and setting as read
+    private Color32 _previewClickedOnColorUsed; // Used instead of previewClickedOnColor
+    private Color32 _previewNormalColorUsed; // Used instead of previewNormalColor
+    private Color32 _previewHoverColorUsed; // Used instead of previewHoverColor
+
+    private bool _showingFeedback;
     // Dragging
     private float halfHeightSmall;      // The half height of the tiny preview
     private Vector3 beforeDragPosition; // The original position of a preview
@@ -394,8 +398,9 @@ public class Email
      */
     public void Initialise()
     {
-        previewClickedOnColorUsed = _previewClickedOnColor;
-        previewNormalColorUsed = _previewNormalColor;
+        _previewClickedOnColorUsed = _previewClickedOnColor;
+        _previewNormalColorUsed = _previewNormalColor;
+        _previewHoverColorUsed = _previewHoverColor;
         GameObject gameObject;
         halfHeightSmall = (gameObject = emailPreview.gameObject).GetComponent<RectTransform>().rect.height / 6;
         originalPreviewPosition = gameObject.transform.localPosition;
@@ -410,7 +415,7 @@ public class Email
      */
     private void SetUnread()
     {
-        unread = true;
+        _unread = true;
         emailPreview.SetDisplayUnread();
     }
 
@@ -419,7 +424,7 @@ public class Email
      */
     private void SetRead()
     {
-        unread = false;
+        _unread = false;
         emailPreview.SetDisplayRead();
     }
 
@@ -429,13 +434,13 @@ public class Email
      */
     public void Select()
     {
-        if (unread && editeable)
+        if (_unread && _editable)
         {
             SetRead();
         }
         emailScript.SetSelectedEmail(this);
         // Set selected colour
-        emailPreview.gameObject.GetComponent<Image>().color = previewClickedOnColorUsed;
+        emailPreview.gameObject.GetComponent<Image>().color = _previewClickedOnColorUsed;
         // Show body
         emailBody.gameObject.SetActive(true);
         isSelected = true;
@@ -447,7 +452,7 @@ public class Email
     public void Unselect()
     {
         // Reset to normal colour
-        emailPreview.gameObject.GetComponent<Image>().color = previewNormalColorUsed;
+        emailPreview.gameObject.GetComponent<Image>().color = _previewNormalColorUsed;
         // Hide body
         emailBody.gameObject.SetActive(false);
         isSelected = false;
@@ -459,8 +464,10 @@ public class Email
      public void TagAsCorrect()
     {
         // Change preview color to not mess up on hover
-        previewNormalColorUsed = _correctColorLighter;
-        previewClickedOnColorUsed = _correctColor;
+        _previewNormalColorUsed = _correctColorLighter;
+        _previewClickedOnColorUsed = _correctColor;
+        // Change preview hover color
+        _previewHoverColorUsed = _previewHoverFeedbackColor;
         // Show feedback panel
         emailBody.ShowPositiveFeedback();
         // Change preview and body color
@@ -473,8 +480,10 @@ public class Email
     public void TagAsIncorrect()
     {
         // Change preview color to not mess up on hover
-        previewNormalColorUsed = _incorrectColorLighter;
-        previewClickedOnColorUsed = _incorrectColor;
+        _previewNormalColorUsed = _incorrectColorLighter;
+        _previewClickedOnColorUsed = _incorrectColor;
+        // Change preview hover color
+        _previewHoverColorUsed = _previewHoverFeedbackColor;
         // Show feedback panel
         emailBody.ShowNegativeFeedback();
         // Change preview and body color
@@ -484,11 +493,13 @@ public class Email
     /*
      * Tag as incorrect on game end
      */
-    public void TagAsNeutral()
+    private void TagAsNeutral()
     {
         // Change preview color to not mess up on hover
-        previewNormalColorUsed = _neutralColorLighter;
-        previewClickedOnColorUsed = _neutralColor;
+        _previewNormalColorUsed = _neutralColorLighter;
+        _previewClickedOnColorUsed = _neutralColor;
+        // Change preview hover color
+        _previewHoverColorUsed = _previewHoverFeedbackColor;
         // Show feedback panel
         emailBody.ShowNegativeFeedback();
         // Change preview and body color
@@ -498,11 +509,13 @@ public class Email
     /*
      * Put back to normal
      */
-    public void TagAsUntagged()
+    private void TagAsUntagged()
     {
         // Change preview color to not mess up on hover
-        previewNormalColorUsed = _previewNormalColor;
-        previewClickedOnColorUsed = _previewClickedOnColor;
+        _previewNormalColorUsed = _previewNormalColor;
+        _previewClickedOnColorUsed = _previewClickedOnColor;
+        // Change preview hover color
+        _previewHoverColorUsed = _previewHoverColor;
         // Change preview and body color
         Tag();
     }
@@ -521,7 +534,7 @@ public class Email
         // Unselect
         Unselect();
         // Mark as unread
-        if (!unread) SetUnread();
+        if (!_unread) SetUnread();
         // Hide feedback
         emailBody.HideFeedback();
         // Unblock sender panel
@@ -531,36 +544,35 @@ public class Email
     /*
      * Common code between all three tag functions
      */
-    public void Tag()
+    private void Tag()
     {
-        //// Change body color
-        //emailBody.GetComponent<Image>().color = previewClickedOnColorUsed;
         // Change preview color
-        emailPreview.GetComponent<Image>().color = isSelected ? previewClickedOnColorUsed : previewNormalColorUsed;
+        emailPreview.GetComponent<Image>().color = isSelected ? _previewClickedOnColorUsed : _previewNormalColorUsed;
     }
 
     /*
      * Drag object methods
      */
-    public void OnPreviewDrag(PointerEventData eventData)
+    public void OnPreviewDrag()
     {
-        if (!editeable) return;
+        if (!_editable) return;
         // Recalculate position
         emailPreview.gameObject.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + halfHeightSmall, 0);
     }
 
-    public void OnBeginPreviewDrag(PointerEventData eventData)
+    public void OnBeginPreviewDrag()
     {
-        if (!editeable) return;
+        if (!_editable) return;
         // Make the preview small
-        emailPreview.gameObject.transform.localScale = _tinyPreviewScale;
+        var gameObject = emailPreview.gameObject;
+        gameObject.transform.localScale = _tinyPreviewScale;
         // Keep track of the original position
-        beforeDragPosition = emailPreview.gameObject.transform.position;
+        beforeDragPosition = gameObject.transform.position;
     }
 
-    public void OnEndPreviewDrag(PointerEventData eventData)
+    public void OnEndPreviewDrag()
     {
-        if (!editeable) return;
+        if (!_editable) return;
         // Return the scale to normal
         emailPreview.gameObject.transform.localScale = _normalPreviewScale;
         // Check if dropped in a mailbox
@@ -585,14 +597,14 @@ public class Email
     /*
      * Hover over preview
      */
-    public void OnPointerEnterPreview(PointerEventData eventData)
+    public void OnPointerEnterPreview()
     {
-        emailPreview.gameObject.GetComponent<Image>().color = _previewHoverColor;
+        emailPreview.gameObject.GetComponent<Image>().color = _previewHoverColorUsed;
     }
 
-    public void OnPointerExitPreview(PointerEventData eventData)
+    public void OnPointerExitPreview()
     {
-        emailPreview.gameObject.GetComponent<Image>().color = (isSelected ? previewClickedOnColorUsed : previewNormalColorUsed);
+        emailPreview.gameObject.GetComponent<Image>().color = isSelected ? _previewClickedOnColorUsed : _previewNormalColorUsed;
     }
 
     /*
@@ -608,6 +620,6 @@ public class Email
      */
      public void SetEditable(bool editable)
     {
-        editeable = editable;
+        _editable = editable;
     }
 }
