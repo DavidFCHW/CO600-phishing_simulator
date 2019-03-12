@@ -27,6 +27,8 @@ public class EmailScript : MonoBehaviour {
     private MailboxScript _currentMailbox;
     // Mailbox hovered on
     private MailboxScript _mailboxHoveredOn = null;
+    // Sound effect
+    public AudioSource swoosh;
 
     /*
      * Method called on initialisation
@@ -579,6 +581,9 @@ public class Email
         var mailboxHoveredOn = emailScript.GetMailboxHoveredOn();
         if (mailboxHoveredOn && emailScript.GetCurrentMailbox() != mailboxHoveredOn)
         {
+            // Play swoosh sound
+            emailScript.swoosh.Play();
+            // Add email to specific mailbox
             mailboxHoveredOn.AddEmail(this);
             // Hide body
             emailBody.gameObject.SetActive(false);
