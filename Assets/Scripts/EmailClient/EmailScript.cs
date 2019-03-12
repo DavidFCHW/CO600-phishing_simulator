@@ -539,8 +539,6 @@ public class Email
         if (!_unread) SetUnread();
         // Hide feedback
         emailBody.HideFeedback();
-        // Unblock sender panel
-        emailBody.UnBlockSenderPanel();
     }
 
     /*
