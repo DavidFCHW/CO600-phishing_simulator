@@ -8,7 +8,8 @@ public class EmailBodyScript : MonoBehaviour {
     private Email _email;
     [SerializeField] private GameObject mainContent;
     [SerializeField] private GameObject mainContentWithFeedback;
-    [SerializeField] private SenderScript senderPanel;
+    [SerializeField] private GameObject senderTextBox;
+    [SerializeField] private GameObject senderWithFeedback;
     [SerializeField] private GameObject objectTextBox;
     [SerializeField] private GameObject objectWithFeedback;
     [SerializeField] private GameObject recipientTextBox;
@@ -45,6 +46,9 @@ public class EmailBodyScript : MonoBehaviour {
     
     private void DisplayFeedback(bool displayFeedback)
     {
+        // Set sender to feedback sender
+        senderTextBox.SetActive(!displayFeedback);
+        senderWithFeedback.SetActive(displayFeedback);
         // Set object to feedback object
         objectTextBox.SetActive(!displayFeedback);
         objectWithFeedback.SetActive(displayFeedback);
@@ -54,18 +58,5 @@ public class EmailBodyScript : MonoBehaviour {
         // Set body to feedback body
         mainContent.SetActive(!displayFeedback);
         mainContentWithFeedback.SetActive(displayFeedback);
-        // Set the sender to sender with feedback and block it
-        if (displayFeedback) BlockSenderPanel();
-        else UnBlockSenderPanel();
-    }
-
-    public void UnBlockSenderPanel()
-    {
-        senderPanel.UnBlock();
-    }
-
-    public void BlockSenderPanel()
-    {
-        senderPanel.UnBlock();
     }
 }

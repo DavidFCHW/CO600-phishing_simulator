@@ -8,74 +8,101 @@ using UnityEngine;
  * Put this script on a gameObject with a TextMeshProUGUI element
  * Add the hidden panels to the array in the order they appear in text
  * this shows a panel when hovering on the correct element
+ *
+ * This can only have either hiddenPanels or LinkPanels
  */
-public class LinkScript : MonoBehaviour {
-
-    private TextMeshProUGUI _textMeshProText;
-    private int _currentLinkIndexActive; // The link id we're currently hovering on
-    public GameObject[] hiddenPanels; // The undercover panels revealed by hovering on the correct link
-
-    private void Awake()
+namespace EmailClient
+{
+    public class LinkScript : MonoBehaviour
     {
-        _textMeshProText = GetComponent<TextMeshProUGUI>();
-        Array.ForEach(hiddenPanels, x => x.SetActive(false));
-        _currentLinkIndexActive = -1;
-    }
 
-    private void LateUpdate()
-    {
-        // Find the link hovered on if any
-        var hoveredLinkIndex = -1;
-        try
+        private TextMeshProUGUI _textMeshProText;
+        private int _previousLinkIndex; // The last active link panel
+        private int _previousFeedbackIndex; // The last active feedback panel
+        public GameObject[] feedbackPanel; // The undercover feedback panels
+        public GameObject[] linkPanels; // The undercover link panels
+
+        private void Start()
         {
-            hoveredLinkIndex = TMP_TextUtilities.FindIntersectingLink(_textMeshProText, Input.mousePosition, null);
+            _textMeshProText = GetComponent<TextMeshProUGUI>();
+            Array.ForEach(feedbackPanel, x => x.SetActive(false));
+            Array.ForEach(linkPanels, x => x.SetActive(false));
+            _previousLinkIndex = -1;
+            _previousFeedbackIndex = -1;
         }
-        catch (IndexOutOfRangeException e) { }
-        // Check if it exists and if it's different from the previous one
-        if (hoveredLinkIndex != -1 && hoveredLinkIndex != _currentLinkIndexActive)
+
+        private void LateUpdate()
         {
-            // Unselect panel for previously hovered on link
-            if (_currentLinkIndexActive != -1) hiddenPanels[_currentLinkIndexActive].SetActive(false);
-            // Assign currentLinkActive
-            _currentLinkIndexActive = hoveredLinkIndex;
-            // Position panel where the mouse is
-            hiddenPanels[_currentLinkIndexActive].transform.position = new Vector3(
+            // Find the link hovered on if any
+            var hoveredLinkIndex = -1;
+            try
+            {
+                hoveredLinkIndex = TMP_TextUtilities.FindIntersectingLink(_textMeshProText, Input.mousePosition, null);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+            }
+            
+            // Check if it exists
+            if (hoveredLinkIndex != -1)
+            {
+                // Get the attributes
+                foreach (var attribute in _textMeshProText.textInfo.linkInfo[hoveredLinkIndex].GetLinkID().Split(new [] { ", " }, StringSplitOptions.None))
+                {
+                    var splitId = attribute.Split('=');
+                    if (string.CompareOrdinal(splitId[0], "feedback") == 0) UpdateFeedbackPanels(int.Parse(splitId[1]));
+                    else if (string.CompareOrdinal(splitId[0], "link") == 0) UpdateLinkPanels(int.Parse(splitId[1]));
+                }
+            }
+            // We're hovering over nothing and a feedback panel is showing so hide it
+            else if (hoveredLinkIndex == -1 && _previousFeedbackIndex != -1)
+            {
+                feedbackPanel[_previousFeedbackIndex].SetActive(false);
+                _previousFeedbackIndex = -1;
+            }
+            // We're hovering over nothing and a feedback panel is showing so hide it
+            else if (hoveredLinkIndex == -1 && _previousLinkIndex != -1)
+            {
+                linkPanels[_previousLinkIndex].SetActive(false);
+                _previousLinkIndex = -1;
+            }
+        }
+
+        private void UpdateFeedbackPanels(int panelIndex)
+        {
+            // Check if it's different from the previous one
+            if (panelIndex == _previousFeedbackIndex) return;
+            // Unselect panel for previously hovered on link if there was one
+            if (_previousFeedbackIndex != -1) feedbackPanel[_previousFeedbackIndex].SetActive(false);
+            // Position panel above where the mouse is
+            feedbackPanel[panelIndex].transform.position = new Vector3(
                 Input.mousePosition.x + 2,
                 Input.mousePosition.y + 2,
                 Input.mousePosition.z + 2
             );
             // Show the panel for the link we're hovering on
-            hiddenPanels[_currentLinkIndexActive].SetActive(true);
+            feedbackPanel[panelIndex].SetActive(true);
+            // Assign previous panel
+            _previousFeedbackIndex = panelIndex;
         }
-        // We're hovering over nothing, hide the panel
-        else if (hoveredLinkIndex == -1 && _currentLinkIndexActive != -1)
+        
+        private void UpdateLinkPanels(int panelIndex)
         {
-            hiddenPanels[_currentLinkIndexActive].SetActive(false);
-            _currentLinkIndexActive = -1;
+            // Check if it's different from the previous one
+            if (panelIndex == _previousLinkIndex) return;
+            // Unselect panel for previously hovered on link if there was one
+            if (_previousLinkIndex != -1) linkPanels[_previousLinkIndex].SetActive(false);
+            // Position panel above where the mouse is
+            var rect = linkPanels[panelIndex].GetComponent<RectTransform>().rect;
+            linkPanels[panelIndex].transform.position = new Vector3(
+                Input.mousePosition.x - rect.width / 4,
+                Input.mousePosition.y - rect.height / 2 - 2,
+                Input.mousePosition.z - 2
+            );
+            // Show the panel for the link we're hovering on
+            linkPanels[panelIndex].SetActive(true);
+            // Assign previous panel
+            _previousLinkIndex = panelIndex;
         }
     }
 }
-
-//            if (hoveredLinkIndex != -1 && hoveredLinkIndex != _currentLinkIndexActive)
-//            {
-//                // Get link info based on index
-//                TMP_LinkInfo linkInfo = _textMeshProText.textInfo.linkInfo[hoveredLinkIndex];
-//                // Unselect previously hovered on link
-//                if (_associatedGameObject != null) _associatedGameObject.SetActive(false);
-//                // Assign currentLinkActive
-//                _currentLinkIndexActive = hoveredLinkIndex;
-//                // Check if we're hovering over the word "Phishing"
-//                if (string.CompareOrdinal(linkInfo.GetLinkID(), "Phishing definition") == 0)
-//                {
-//                    _associatedGameObject = phishingDefinition;
-//                    // Position the panel above the cursor
-//                    //associatedGameObject.transform.localPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-//                    // Make it visible
-//                    _associatedGameObject.SetActive(true);
-//                }
-//            }
-//            else if (hoveredLinkIndex == -1 && _currentLinkIndexActive != -1)
-//            {
-//                _associatedGameObject.SetActive(false);
-//                _currentLinkIndexActive = -1;
-//            }
