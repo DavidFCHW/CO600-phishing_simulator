@@ -38,12 +38,12 @@ public class OfficeScript : MonoBehaviour
                     managerDialogue1.ShowDialogue();
                     StaticClass.SeenDialogueForCurrentLevel();
                 }
-                greyedPhisherman.SetActive(true);
-                greyedKingphisher.SetActive(true);
-                greyedPoseidon.SetActive(true);
-                phisherman.SetActive(false);
-                kingphisher.SetActive(false);
-                poseidon.SetActive(false);
+                greyedPhisherman.SetActive(false);
+                greyedKingphisher.SetActive(false);
+                greyedPoseidon.SetActive(false);
+                phisherman.SetActive(true);
+                kingphisher.SetActive(true);
+                poseidon.SetActive(true);
                 break;
             }
             case 2:
