@@ -22,7 +22,7 @@ namespace Office
             // Position the panel below the mouse
             var screenPoint = new Vector3(
                 Input.mousePosition.x - hiddenPanel.GetComponent<RectTransform>().rect.width / 4,
-                Input.mousePosition.y + 40,
+                Input.mousePosition.y + 50,
                 1.0f
             );
             hiddenPanel.transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
