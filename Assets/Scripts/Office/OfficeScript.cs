@@ -17,7 +17,13 @@ public class OfficeScript : MonoBehaviour
     public ManagerTalkScript managerDialogue2;
     public AudioSource backgroundSound;
     public AudioSource clickSound;
-    public TextMeshProUGUI screenText;
+    // Achievement related stuff
+    public GameObject greyedPhisherman;
+    public GameObject phisherman;
+    public GameObject greyedKingphisher;
+    public GameObject kingphisher;
+    public GameObject greyedPoseidon;
+    public GameObject poseidon;
 
     private void Start()
     {
@@ -32,7 +38,12 @@ public class OfficeScript : MonoBehaviour
                     managerDialogue1.ShowDialogue();
                     StaticClass.SeenDialogueForCurrentLevel();
                 }
-                screenText.text = "Easy level <sprite=3>\nMedium level <sprite=3>\nHard level <sprite=3>";
+                greyedPhisherman.SetActive(true);
+                greyedKingphisher.SetActive(true);
+                greyedPoseidon.SetActive(true);
+                phisherman.SetActive(false);
+                kingphisher.SetActive(false);
+                poseidon.SetActive(false);
                 break;
             }
             case 2:
@@ -42,11 +53,36 @@ public class OfficeScript : MonoBehaviour
                     managerDialogue2.ShowDialogue();
                     StaticClass.SeenDialogueForCurrentLevel();
                 }
-                screenText.text = "Easy level <sprite=4>\nMedium level <sprite=3>\nHard level <sprite=3>";
+                greyedPhisherman.SetActive(false);
+                greyedKingphisher.SetActive(true);
+                greyedPoseidon.SetActive(true);
+                phisherman.SetActive(true);
+                kingphisher.SetActive(false);
+                poseidon.SetActive(false);
+                break;
+            }
+            case 3:
+            {
+                if (!StaticClass.DialogueForCurrentLevelShown())
+                {
+                    managerDialogue2.ShowDialogue();
+                    StaticClass.SeenDialogueForCurrentLevel();
+                }
+                greyedPhisherman.SetActive(false);
+                greyedKingphisher.SetActive(false);
+                greyedPoseidon.SetActive(true);
+                phisherman.SetActive(true);
+                kingphisher.SetActive(true);
+                poseidon.SetActive(false);
                 break;
             }
             default:
-                screenText.text = "Easy level <sprite=4>\nMedium level <sprite=4>\nHard level <sprite=3>";
+                greyedPhisherman.SetActive(false);
+                greyedKingphisher.SetActive(false);
+                greyedPoseidon.SetActive(false);
+                phisherman.SetActive(true);
+                kingphisher.SetActive(true);
+                poseidon.SetActive(true);
                 break;
         }
     }
