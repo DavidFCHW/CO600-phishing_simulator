@@ -10,71 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 2019389346, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
-  m_Name: email logos
+  m_Name: eliteMarketting
   m_EditorClassIdentifier: 
-  hashCode: -453642828
-  material: {fileID: 21373140582454514}
+  hashCode: -1077463807
+  material: {fileID: 21766302757191024}
   materialHashCode: 0
-  spriteSheet: {fileID: 2800000, guid: 082c9568bfa514aefb4815ffd37be3c2, type: 3}
+  spriteSheet: {fileID: 2800000, guid: 67e926d18cd58454cb01a5fd6eda011f, type: 3}
   spriteInfoList:
   - id: 0
-    x: 681
-    y: 664
-    width: 207
-    height: 242
+    x: 205
+    y: 658
+    width: 346
+    height: 91
     xOffset: 0
-    yOffset: 242
-    xAdvance: 207
+    yOffset: 91
+    xAdvance: 346
     scale: 1
-    name: email logos_1
-    hashCode: -95798790
+    name: eliteMarketting_0
+    hashCode: -832010994
     unicode: 0
-    pivot: {x: 0, y: 242}
-    sprite: {fileID: 21300002, guid: 082c9568bfa514aefb4815ffd37be3c2, type: 3}
+    pivot: {x: 0, y: 91}
+    sprite: {fileID: 21300000, guid: 67e926d18cd58454cb01a5fd6eda011f, type: 3}
   - id: 1
-    x: 71
-    y: 659
-    width: 376
-    height: 372
+    x: 137
+    y: 89
+    width: 482
+    height: 482
     xOffset: 0
-    yOffset: 372
-    xAdvance: 376
+    yOffset: 482
+    xAdvance: 482
     scale: 1
-    name: email logos_0
-    hashCode: -95798789
+    name: eliteMarketting_1
+    hashCode: -832010993
     unicode: 0
-    pivot: {x: 0, y: 372}
-    sprite: {fileID: 21300000, guid: 082c9568bfa514aefb4815ffd37be3c2, type: 3}
-  - id: 2
-    x: 136
-    y: 283
-    width: 472
-    height: 117
-    xOffset: 0
-    yOffset: 117
-    xAdvance: 472
-    scale: 1
-    name: email logos_2
-    hashCode: -95798791
-    unicode: 0
-    pivot: {x: 0, y: 117}
-    sprite: {fileID: 21300004, guid: 082c9568bfa514aefb4815ffd37be3c2, type: 3}
-  - id: 3
-    x: 698
-    y: 239
-    width: 476
-    height: 161
-    xOffset: 0
-    yOffset: 161
-    xAdvance: 476
-    scale: 1
-    name: email logos_3
-    hashCode: -95798792
-    unicode: 0
-    pivot: {x: 0, y: 161}
-    sprite: {fileID: 21300006, guid: 082c9568bfa514aefb4815ffd37be3c2, type: 3}
+    pivot: {x: 0, y: 482}
+    sprite: {fileID: 21300002, guid: 67e926d18cd58454cb01a5fd6eda011f, type: 3}
   fallbackSpriteAssets: []
---- !u!21 &21373140582454514
+--- !u!21 &21766302757191024
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -94,7 +66,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 082c9568bfa514aefb4815ffd37be3c2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 67e926d18cd58454cb01a5fd6eda011f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
