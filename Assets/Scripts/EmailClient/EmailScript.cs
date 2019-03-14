@@ -20,6 +20,7 @@ public class EmailScript : MonoBehaviour {
     public GameObject previewScrollView;
     // Finished Panel
     public GameObject donePanel;
+    public GameObject lookAtFeedbackPanel;
     // Index of currently selected email
     private Email _currentlySelectedEmail;
     private int _currentlySelectedEmailIndex = 0;
@@ -53,6 +54,7 @@ public class EmailScript : MonoBehaviour {
         _currentMailbox = inbox;
         // Set finished panel inactive
         donePanel.SetActive(false);
+        lookAtFeedbackPanel.SetActive(false);
         // Initialise emails
         if (StaticClass.GetCurrentLevel() == 1) InitialiseEasyEmails();
         else if (StaticClass.GetCurrentLevel() == 2) InitialiseMediumEmails();
@@ -124,6 +126,7 @@ public class EmailScript : MonoBehaviour {
     {
         // Set finished panel inactive
         donePanel.SetActive(false);
+        lookAtFeedbackPanel.SetActive(false);
         // Move every mail to inbox
         foreach (Email mail in trash.GetEmails())
         {
@@ -286,6 +289,7 @@ public class EmailScript : MonoBehaviour {
                 mail.TagAsCorrect();
             }
         }
+        lookAtFeedbackPanel.SetActive(true);
     }
 
     public void SetCurrentMailbox(MailboxScript newCurrentMailbox)
