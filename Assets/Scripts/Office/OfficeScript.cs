@@ -15,6 +15,7 @@ public class OfficeScript : MonoBehaviour
     // Unity object references
     public ManagerTalkScript managerDialogue1;
     public ManagerTalkScript managerDialogue2;
+    public ManagerTalkScript managerDialogue3;
     public AudioSource backgroundSound;
     public AudioSource clickSound;
     // Achievement related stuff
@@ -24,6 +25,11 @@ public class OfficeScript : MonoBehaviour
     public GameObject kingphisher;
     public GameObject greyedPoseidon;
     public GameObject poseidon;
+    // Manager
+    public GameObject managerNeutral;
+    public GameObject managerThinking;
+    // Hidden jason nurse
+    public GameObject jasonNurse;
 
     private void Start()
     {
@@ -33,17 +39,17 @@ public class OfficeScript : MonoBehaviour
         {
             case 1:
             {
+                // Sort out the dialogue
                 if (!StaticClass.DialogueForCurrentLevelShown())
                 {
                     managerDialogue1.ShowDialogue();
                     StaticClass.SeenDialogueForCurrentLevel();
                 }
-                greyedPhisherman.SetActive(true);
-                greyedKingphisher.SetActive(true);
-                greyedPoseidon.SetActive(true);
-                phisherman.SetActive(false);
-                kingphisher.SetActive(false);
-                poseidon.SetActive(false);
+                // Show the correct manager
+                managerNeutral.SetActive(true);
+                managerThinking.SetActive(false);
+                // Hide Jason
+                jasonNurse.SetActive(false);
                 break;
             }
             case 2:
@@ -53,38 +59,35 @@ public class OfficeScript : MonoBehaviour
                     managerDialogue2.ShowDialogue();
                     StaticClass.SeenDialogueForCurrentLevel();
                 }
-                greyedPhisherman.SetActive(false);
-                greyedKingphisher.SetActive(true);
-                greyedPoseidon.SetActive(true);
-                phisherman.SetActive(true);
-                kingphisher.SetActive(false);
-                poseidon.SetActive(false);
+                // Show the correct manager
+                managerNeutral.SetActive(true);
+                managerThinking.SetActive(false);
+                // Hide Jason
+                jasonNurse.SetActive(false);
                 break;
             }
             case 3:
             {
                 if (!StaticClass.DialogueForCurrentLevelShown())
                 {
-                    managerDialogue2.ShowDialogue();
+                    managerDialogue3.ShowDialogue();
                     StaticClass.SeenDialogueForCurrentLevel();
                 }
-                greyedPhisherman.SetActive(false);
-                greyedKingphisher.SetActive(false);
-                greyedPoseidon.SetActive(true);
-                phisherman.SetActive(true);
-                kingphisher.SetActive(true);
-                poseidon.SetActive(false);
+                // Show the correct manager
+                managerNeutral.SetActive(false);
+                managerThinking.SetActive(true);
+                // Show Jason
+                jasonNurse.SetActive(true);
                 break;
             }
-            default:
-                greyedPhisherman.SetActive(false);
-                greyedKingphisher.SetActive(false);
-                greyedPoseidon.SetActive(false);
-                phisherman.SetActive(true);
-                kingphisher.SetActive(true);
-                poseidon.SetActive(true);
-                break;
         }
+        // Sort out the badges
+        greyedPhisherman.SetActive(!StaticClass.gotAchievementEasy);
+        greyedKingphisher.SetActive(!StaticClass.gotAchievementMedium);
+        greyedPoseidon.SetActive(!StaticClass.gotAchievementHard);
+        phisherman.SetActive(StaticClass.gotAchievementEasy);
+        kingphisher.SetActive(StaticClass.gotAchievementMedium);
+        poseidon.SetActive(StaticClass.gotAchievementHard);
     }
     
     /*
@@ -101,6 +104,13 @@ public class OfficeScript : MonoBehaviour
         clickSound.Play();
         SceneManager.LoadScene("Title Screen");
     }
+
+    public void BumpAchievement()
+    {
+        StaticClass.gotAchievementHard = true;
+        greyedPoseidon.SetActive(false);
+        poseidon.SetActive(true);
+    }
 }
 
 /*
@@ -110,12 +120,17 @@ public static class StaticClass {
     
     private static int _currentLevel = 1;
     private static bool _dialogueForCurrentLevelShown { get; set; }
+    public static bool gotAchievementEasy;
+    public static bool gotAchievementMedium;
+    public static bool gotAchievementHard;
     
     /*
      * Called when a level is completed
      */
     public static void IncreaseLevel()
     {
+        if (_currentLevel == 1) gotAchievementEasy = true;
+        else if (_currentLevel == 2) gotAchievementMedium = true;
         _currentLevel++;
         _dialogueForCurrentLevelShown = false;
     }

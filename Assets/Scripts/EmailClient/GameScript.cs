@@ -8,7 +8,8 @@ public class GameScript : MonoBehaviour {
 
     public TimerScript timer;
     public PausePanelScript pausePanel;
-    public ExplanationScript explanations;
+    public ExplanationScript easyExplanations;
+    public ExplanationScript mediumExplanations;
     public EmailScript emailScript;
     public ScoreScript score;
     public StartCountDownScript startCountdown;
@@ -21,6 +22,7 @@ public class GameScript : MonoBehaviour {
     // Audio sources
     public AudioSource whistleSound;
     public AudioSource backgroundMusic;
+    public AudioSource backgroundNoise;
     public AudioSource lightClick;
     public AudioSource meanClick;
     public AudioSource scoreTally;
@@ -37,6 +39,8 @@ public class GameScript : MonoBehaviour {
         // Make pause enabled
 //        _pauseEnabled = false;
         _pauseEnabled = true;
+        // Start background noise
+        backgroundNoise.Play();
         // Hide pause menu
         pauseMenu.SetActive(false);
         _gameIsPaused = false;
@@ -49,13 +53,19 @@ public class GameScript : MonoBehaviour {
         // Blur the game
         blur.SetActive(true);
         // Give your reference to other objects
-        score         .SetGameScript(this);
-        timer         .SetGameScript(this);
-        explanations  .SetGameScript(this);
-        emailScript   .SetGameScript(this);
-        pausePanel    .SetGameScript(this);
-        startCountdown.SetGameScript(this);
-        continueButton.SetGameScript(this);
+        score             .SetGameScript(this);
+        timer             .SetGameScript(this);
+        easyExplanations  .SetGameScript(this);
+        mediumExplanations.SetGameScript(this);
+        emailScript       .SetGameScript(this);
+        pausePanel        .SetGameScript(this);
+        startCountdown    .SetGameScript(this);
+        continueButton    .SetGameScript(this);
+        // Show explanations
+        easyExplanations.gameObject.SetActive(false);
+        mediumExplanations.gameObject.SetActive(false);
+        if (StaticClass.GetCurrentLevel() == 1) easyExplanations.gameObject.SetActive(true);
+        else if (StaticClass.GetCurrentLevel() == 2) mediumExplanations.gameObject.SetActive(true);
     }
 
     /*
@@ -79,6 +89,7 @@ public class GameScript : MonoBehaviour {
         timer.PauseTimer();
         // Pause music
         backgroundMusic.Pause();
+        backgroundNoise.Pause();
     }
 
     public void UnPause()
@@ -87,6 +98,7 @@ public class GameScript : MonoBehaviour {
         _gameIsPaused = false;
         // Unpause music
         backgroundMusic.Play();
+        backgroundNoise.Play();
         // Unpause timer
         timer.UnPauseTimer();
     }
@@ -97,7 +109,8 @@ public class GameScript : MonoBehaviour {
     public void ExplanationsDone()
     {
         // Remove all the explanations
-        explanations.DestroyExplanations();
+        easyExplanations.DestroyExplanations();
+        mediumExplanations.DestroyExplanations();
         // Start game
         StartCoroutine(StartGame());
     }
@@ -161,6 +174,7 @@ public class GameScript : MonoBehaviour {
 //        _pauseEnabled = true;
         // Stop the stuff
         backgroundMusic.Stop();
+        backgroundNoise.Stop();
         finishedPanel.SetActive(true);
         yield return new WaitForSeconds(2);
         // Blur

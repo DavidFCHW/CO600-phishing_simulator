@@ -70,7 +70,7 @@ public class EmailScript : MonoBehaviour {
         // Link together bodies and previews
         for (int i = 0; i < easyEmailPreviewArray.Length; i++)
         {
-            // Create email object with preview, body, index and emailscript reference
+            // Create email object with preview, body, index and emailScript reference
             Email email = new Email(easyEmailPreviewArray[i], easyEmailBodyArray[i], i, this);
             // Set isPhis
             if (i == 1 || i == 2 || i == 8 || i == 9)
@@ -95,10 +95,10 @@ public class EmailScript : MonoBehaviour {
         // Link together bodies and previews
         for (int i = 0; i < mediumEmailPreviewArray.Length; i++)
         {
-            // Create email object with preview, body, index and emailscript reference
+            // Create email object with preview, body, index and emailScript reference
             Email email = new Email(mediumEmailPreviewArray[i], mediumEmailBodyArray[i], i, this);
             // Set isPhis
-            if (i == 10000)
+            if (i == 8 || i == 9 || i == 10 || i == 11)
             {
                 email.isPhish = true;
             }
