@@ -44,6 +44,11 @@ public class EmailBodyScript : MonoBehaviour {
         DisplayFeedback(true);
     }
     
+    public void ShowNeutralFeedback()
+    {
+        DisplayFeedback(true);
+    }
+    
     private void DisplayFeedback(bool displayFeedback)
     {
         // Set sender to feedback sender

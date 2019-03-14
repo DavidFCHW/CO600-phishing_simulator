@@ -259,8 +259,8 @@ public class EmailScript : MonoBehaviour {
         foreach (Email mail in inbox.GetEmails())
         {
             mail.SetEditable(false);
-            //mail.TagAsNeutral();
-            mail.TagAsIncorrect();
+            mail.TagAsNeutral();
+//            mail.TagAsIncorrect();
         }
         foreach (Email mail in trash.GetEmails())
         {
@@ -495,17 +495,16 @@ public class Email
     /*
      * Tag as incorrect on game end
      */
-    private void TagAsNeutral()
+    public void TagAsNeutral()
     {
-        // Change preview color to not mess up on hover
-        _previewNormalColorUsed = _neutralColorLighter;
-        _previewClickedOnColorUsed = _neutralColor;
-        // Change preview hover color
-        _previewHoverColorUsed = _previewHoverFeedbackColor;
+//        // Change preview color to not mess up on hover
+//        _previewNormalColorUsed = _neutralColorLighter;
+//        _previewClickedOnColorUsed = _neutralColor;
+//        // Change preview hover color
+//        _previewHoverColorUsed = _previewHoverFeedbackColor;
         // Show feedback panel
-        emailBody.ShowNegativeFeedback();
+        emailBody.ShowNeutralFeedback();
         // Change preview and body color
-        Tag();
     }
 
     /*
