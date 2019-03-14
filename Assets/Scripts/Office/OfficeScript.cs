@@ -15,6 +15,7 @@ public class OfficeScript : MonoBehaviour
     // Unity object references
     public ManagerTalkScript managerDialogue1;
     public ManagerTalkScript managerDialogue2;
+    public ManagerTalkScript managerDialogue3;
     public AudioSource backgroundSound;
     public AudioSource clickSound;
     // Achievement related stuff
@@ -24,6 +25,14 @@ public class OfficeScript : MonoBehaviour
     public GameObject kingphisher;
     public GameObject greyedPoseidon;
     public GameObject poseidon;
+    // Manager
+    public GameObject managerNeutral;
+    public GameObject managerThinking;
+    // Manager bubble
+    public GameObject bubbleAsk;
+    public GameObject bubbleDone;
+    // Hidden jason nurse
+    public GameObject jasonNurse;
 
     private void Start()
     {
@@ -33,17 +42,27 @@ public class OfficeScript : MonoBehaviour
         {
             case 1:
             {
+                // Sort out the dialogue
                 if (!StaticClass.DialogueForCurrentLevelShown())
                 {
                     managerDialogue1.ShowDialogue();
                     StaticClass.SeenDialogueForCurrentLevel();
                 }
+                // Show the correct manager
+                managerNeutral.SetActive(true);
+                managerThinking.SetActive(false);
+                // Show the correct bubble
+                bubbleAsk.SetActive(true);
+                bubbleDone.SetActive(false);
+                // Sort out the badges
                 greyedPhisherman.SetActive(true);
                 greyedKingphisher.SetActive(true);
                 greyedPoseidon.SetActive(true);
                 phisherman.SetActive(false);
                 kingphisher.SetActive(false);
                 poseidon.SetActive(false);
+                // Hide Jason
+                jasonNurse.SetActive(false);
                 break;
             }
             case 2:
@@ -53,27 +72,45 @@ public class OfficeScript : MonoBehaviour
                     managerDialogue2.ShowDialogue();
                     StaticClass.SeenDialogueForCurrentLevel();
                 }
+                // Show the correct manager
+                managerNeutral.SetActive(true);
+                managerThinking.SetActive(false);
+                // Show the correct bubble
+                bubbleAsk.SetActive(true);
+                bubbleDone.SetActive(false);
+                // Sort out the badges
                 greyedPhisherman.SetActive(false);
                 greyedKingphisher.SetActive(true);
                 greyedPoseidon.SetActive(true);
                 phisherman.SetActive(true);
                 kingphisher.SetActive(false);
                 poseidon.SetActive(false);
+                // Hide Jason
+                jasonNurse.SetActive(false);
                 break;
             }
             case 3:
             {
                 if (!StaticClass.DialogueForCurrentLevelShown())
                 {
-                    managerDialogue2.ShowDialogue();
+                    managerDialogue3.ShowDialogue();
                     StaticClass.SeenDialogueForCurrentLevel();
                 }
+                // Show the correct manager
+                managerNeutral.SetActive(false);
+                managerThinking.SetActive(true);
+                // Show the correct bubble
+                bubbleAsk.SetActive(true);
+                bubbleDone.SetActive(false);
+                // Sort out the badges
                 greyedPhisherman.SetActive(false);
                 greyedKingphisher.SetActive(false);
                 greyedPoseidon.SetActive(true);
                 phisherman.SetActive(true);
                 kingphisher.SetActive(true);
                 poseidon.SetActive(false);
+                // Show Jason
+                jasonNurse.SetActive(true);
                 break;
             }
             default:
