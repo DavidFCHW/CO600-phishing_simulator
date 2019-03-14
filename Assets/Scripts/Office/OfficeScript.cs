@@ -28,9 +28,6 @@ public class OfficeScript : MonoBehaviour
     // Manager
     public GameObject managerNeutral;
     public GameObject managerThinking;
-    // Manager bubble
-    public GameObject bubbleAsk;
-    public GameObject bubbleDone;
     // Hidden jason nurse
     public GameObject jasonNurse;
 
@@ -51,16 +48,6 @@ public class OfficeScript : MonoBehaviour
                 // Show the correct manager
                 managerNeutral.SetActive(true);
                 managerThinking.SetActive(false);
-                // Show the correct bubble
-                bubbleAsk.SetActive(true);
-                bubbleDone.SetActive(false);
-                // Sort out the badges
-                greyedPhisherman.SetActive(true);
-                greyedKingphisher.SetActive(true);
-                greyedPoseidon.SetActive(true);
-                phisherman.SetActive(false);
-                kingphisher.SetActive(false);
-                poseidon.SetActive(false);
                 // Hide Jason
                 jasonNurse.SetActive(false);
                 break;
@@ -75,16 +62,6 @@ public class OfficeScript : MonoBehaviour
                 // Show the correct manager
                 managerNeutral.SetActive(true);
                 managerThinking.SetActive(false);
-                // Show the correct bubble
-                bubbleAsk.SetActive(true);
-                bubbleDone.SetActive(false);
-                // Sort out the badges
-                greyedPhisherman.SetActive(false);
-                greyedKingphisher.SetActive(true);
-                greyedPoseidon.SetActive(true);
-                phisherman.SetActive(true);
-                kingphisher.SetActive(false);
-                poseidon.SetActive(false);
                 // Hide Jason
                 jasonNurse.SetActive(false);
                 break;
@@ -99,29 +76,18 @@ public class OfficeScript : MonoBehaviour
                 // Show the correct manager
                 managerNeutral.SetActive(false);
                 managerThinking.SetActive(true);
-                // Show the correct bubble
-                bubbleAsk.SetActive(true);
-                bubbleDone.SetActive(false);
-                // Sort out the badges
-                greyedPhisherman.SetActive(false);
-                greyedKingphisher.SetActive(false);
-                greyedPoseidon.SetActive(true);
-                phisherman.SetActive(true);
-                kingphisher.SetActive(true);
-                poseidon.SetActive(false);
                 // Show Jason
                 jasonNurse.SetActive(true);
                 break;
             }
-            default:
-                greyedPhisherman.SetActive(false);
-                greyedKingphisher.SetActive(false);
-                greyedPoseidon.SetActive(false);
-                phisherman.SetActive(true);
-                kingphisher.SetActive(true);
-                poseidon.SetActive(true);
-                break;
         }
+        // Sort out the badges
+        greyedPhisherman.SetActive(!StaticClass.gotAchievementEasy);
+        greyedKingphisher.SetActive(!StaticClass.gotAchievementMedium);
+        greyedPoseidon.SetActive(!StaticClass.gotAchievementHard);
+        phisherman.SetActive(StaticClass.gotAchievementEasy);
+        kingphisher.SetActive(StaticClass.gotAchievementMedium);
+        poseidon.SetActive(StaticClass.gotAchievementHard);
     }
     
     /*
@@ -138,6 +104,13 @@ public class OfficeScript : MonoBehaviour
         clickSound.Play();
         SceneManager.LoadScene("Title Screen");
     }
+
+    public void BumpAchievement()
+    {
+        StaticClass.gotAchievementHard = true;
+        greyedPoseidon.SetActive(false);
+        poseidon.SetActive(true);
+    }
 }
 
 /*
@@ -147,12 +120,17 @@ public static class StaticClass {
     
     private static int _currentLevel = 1;
     private static bool _dialogueForCurrentLevelShown { get; set; }
+    public static bool gotAchievementEasy;
+    public static bool gotAchievementMedium;
+    public static bool gotAchievementHard;
     
     /*
      * Called when a level is completed
      */
     public static void IncreaseLevel()
     {
+        if (_currentLevel == 1) gotAchievementEasy = true;
+        else if (_currentLevel == 2) gotAchievementMedium = true;
         _currentLevel++;
         _dialogueForCurrentLevelShown = false;
     }
