@@ -1174,11 +1174,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3789259224255382021, guid: ad9d22e67f6aa4c57a9b018a37460b75,
         type: 3}
       propertyPath: m_text
@@ -1247,6 +1242,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9d22e67f6aa4c57a9b018a37460b75, type: 3}
@@ -5111,11 +5111,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3789259224255382021, guid: ad9d22e67f6aa4c57a9b018a37460b75,
         type: 3}
       propertyPath: m_text
@@ -5184,6 +5179,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9d22e67f6aa4c57a9b018a37460b75, type: 3}
@@ -10069,11 +10069,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3789259224255382021, guid: ad9d22e67f6aa4c57a9b018a37460b75,
         type: 3}
       propertyPath: m_text
@@ -10142,6 +10137,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9d22e67f6aa4c57a9b018a37460b75, type: 3}
@@ -11381,11 +11381,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3789259224255382021, guid: ad9d22e67f6aa4c57a9b018a37460b75,
         type: 3}
       propertyPath: m_text
@@ -11454,6 +11449,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9d22e67f6aa4c57a9b018a37460b75, type: 3}
@@ -12438,11 +12438,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3789259224255382021, guid: ad9d22e67f6aa4c57a9b018a37460b75,
         type: 3}
       propertyPath: m_text
@@ -12511,6 +12506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9d22e67f6aa4c57a9b018a37460b75, type: 3}
@@ -14008,11 +14008,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3789259224255382021, guid: ad9d22e67f6aa4c57a9b018a37460b75,
         type: 3}
       propertyPath: m_text
@@ -14081,6 +14076,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789259224255382020, guid: ad9d22e67f6aa4c57a9b018a37460b75,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9d22e67f6aa4c57a9b018a37460b75, type: 3}
