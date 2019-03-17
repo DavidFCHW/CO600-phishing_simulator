@@ -30,6 +30,8 @@ public class OfficeScript : MonoBehaviour
     public GameObject managerThinking;
     // Hidden jason nurse
     public GameObject jasonNurse;
+    // Blinking instructions
+    public GameObject instructions;
 
     private void Start()
     {
@@ -88,6 +90,17 @@ public class OfficeScript : MonoBehaviour
         phisherman.SetActive(StaticClass.gotAchievementEasy);
         kingphisher.SetActive(StaticClass.gotAchievementMedium);
         poseidon.SetActive(StaticClass.gotAchievementHard);
+        // Hide instructions
+        instructions.SetActive(false);
+    }
+    
+    /*
+     * Manager explanations done
+     */
+    public void ExplanationsDone()
+    {
+        // Show instructions
+        instructions.SetActive(true);
     }
     
     /*
