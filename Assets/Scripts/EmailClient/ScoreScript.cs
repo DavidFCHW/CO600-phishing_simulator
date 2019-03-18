@@ -254,6 +254,10 @@ public class ScoreScript : MonoBehaviour {
     {
         _gameScript.PlayMeanClick();
         explanationPanels[_currentExplanationPanel].SetActive(false);
+        if (_profitValue == 1200)
+        {
+            StaticClass.PerfectedThisLevel();
+        }
         _gameScript.FinishedShowingScore(_profitValue >= _scoreThreshold);
     }
     

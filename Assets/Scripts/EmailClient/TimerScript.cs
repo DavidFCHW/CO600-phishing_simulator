@@ -21,6 +21,7 @@ public class TimerScript : MonoBehaviour {
 
     private void Awake()
     {
+        countFrom = StaticClass.GetCurrentLevel() == 1 ? 120.0f : 180.0f;
         ResetTimer();
     }
 

@@ -30,12 +30,17 @@ public class OfficeScript : MonoBehaviour
     public GameObject managerThinking;
     // Hidden jason nurse
     public GameObject jasonNurse;
+    // Blinking instructions
+    public GameObject instructions;
+    private bool showInstructions;
 
     private void Start()
     {
         // Play background sound
         backgroundSound.Play();
-        switch (StaticClass.GetCurrentLevel())
+        int level = StaticClass.GetAndSetCurrentLevel();
+        Debug.Log("Current level = " + level);
+        switch (level)
         {
             case 1:
             {
@@ -50,6 +55,8 @@ public class OfficeScript : MonoBehaviour
                 managerThinking.SetActive(false);
                 // Hide Jason
                 jasonNurse.SetActive(false);
+                // Show instructions
+                showInstructions = true;
                 break;
             }
             case 2:
@@ -64,6 +71,8 @@ public class OfficeScript : MonoBehaviour
                 managerThinking.SetActive(false);
                 // Hide Jason
                 jasonNurse.SetActive(false);
+                // show instructions
+                showInstructions = true;
                 break;
             }
             case 3:
@@ -78,16 +87,41 @@ public class OfficeScript : MonoBehaviour
                 managerThinking.SetActive(true);
                 // Show Jason
                 jasonNurse.SetActive(true);
+                // Hide instructions
+                showInstructions = false;
+                break;
+            }
+            default:
+            {
+                // Show the correct manager
+                managerNeutral.SetActive(false);
+                managerThinking.SetActive(true);
+                // Show Jason
+                jasonNurse.SetActive(true);
+                // Hide instructions
+                showInstructions = false;
                 break;
             }
         }
         // Sort out the badges
         greyedPhisherman.SetActive(!StaticClass.gotAchievementEasy);
         greyedKingphisher.SetActive(!StaticClass.gotAchievementMedium);
-        greyedPoseidon.SetActive(!StaticClass.gotAchievementHard);
+        greyedPoseidon.SetActive(!StaticClass.perfectedEasy || !StaticClass.perfectedMedium);
         phisherman.SetActive(StaticClass.gotAchievementEasy);
         kingphisher.SetActive(StaticClass.gotAchievementMedium);
-        poseidon.SetActive(StaticClass.gotAchievementHard);
+        poseidon.SetActive(StaticClass.perfectedEasy && StaticClass.perfectedMedium);
+        // Hide instructions
+        instructions.SetActive(false);
+    }
+    
+    /*
+     * Manager explanations done
+     */
+    public void ExplanationsDone()
+    {
+        // Show instructions
+//        showExplanations = true;
+        instructions.SetActive(showInstructions);
     }
     
     /*
@@ -119,10 +153,14 @@ public class OfficeScript : MonoBehaviour
 public static class StaticClass {
     
     private static int _currentLevel = 1;
+    private static int _currentLevelCopy = 1;
     private static bool _dialogueForCurrentLevelShown { get; set; }
     public static bool gotAchievementEasy;
     public static bool gotAchievementMedium;
     public static bool gotAchievementHard;
+    public static bool perfectedEasy;
+    public static bool perfectedMedium;
+    public static int jsonCount = 0;
     
     /*
      * Called when a level is completed
@@ -131,13 +169,41 @@ public static class StaticClass {
     {
         if (_currentLevel == 1) gotAchievementEasy = true;
         else if (_currentLevel == 2) gotAchievementMedium = true;
+        if (_currentLevelCopy == _currentLevel)
+        {
+            _currentLevelCopy++;
+            _dialogueForCurrentLevelShown = false;
+        }
         _currentLevel++;
-        _dialogueForCurrentLevelShown = false;
     }
 
     public static int GetCurrentLevel()
     {
         return _currentLevel;
+    }
+
+    public static int GetAndSetCurrentLevel()
+    {
+        _currentLevel = _currentLevelCopy;
+        return _currentLevel;
+    }
+
+    public static void RetryEasyLevel()
+    {
+        _currentLevel = 1;
+        SceneManager.LoadScene("Email Client");
+    }
+    
+    public static void RetryMediumLevel()
+    {
+        _currentLevel = 2;
+        SceneManager.LoadScene("Email Client");
+    }
+
+    public static void PerfectedThisLevel()
+    {
+        if (_currentLevel == 1) perfectedEasy = true;
+        else if (_currentLevel == 2) perfectedMedium = true;
     }
     
     public static bool DialogueForCurrentLevelShown()

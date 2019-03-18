@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Office
 {
     public class OnJasonHover : MonoBehaviour
     {
-        private int count = 0;
         public GameObject[] dialogueBoxes;
         public GameObject interogationMark;
         private bool _dialogueBoxShowing;
@@ -29,12 +29,12 @@ namespace Office
         {
             if (_dialogueBoxShowing)
             {
-                dialogueBoxes[count].SetActive(false);
+                dialogueBoxes[StaticClass.jsonCount].SetActive(false);
                 _dialogueBoxShowing = false;
             }
             else
             {
-                dialogueBoxes[count].SetActive(true);
+                dialogueBoxes[StaticClass.jsonCount].SetActive(true);
                 _dialogueBoxShowing = true;
             }
         }
@@ -53,21 +53,33 @@ namespace Office
         public void OnNextClicked()
         {
             lightClick.Play();
-            dialogueBoxes[count].SetActive(false);
-            count++;
-            dialogueBoxes[count].SetActive(true);
+            dialogueBoxes[StaticClass.jsonCount].SetActive(false);
+            StaticClass.jsonCount++;
+            dialogueBoxes[StaticClass.jsonCount].SetActive(true);
         }
 
         public void OnOKClicked()
         {
             meanClick.Play();
-            dialogueBoxes[count].SetActive(false);
+            dialogueBoxes[StaticClass.jsonCount].SetActive(false);
             _dialogueBoxShowing = false;
             if (!awardedAchYet)
             {
                 awardedAchYet = true;
                 officeScript.BumpAchievement();
             }
+        }
+
+        public void RetryEasyLevel()
+        {
+            meanClick.Play();
+            StaticClass.RetryEasyLevel();
+        }
+        
+        public void RetryMediumLevel()
+        {
+            meanClick.Play();
+            StaticClass.RetryMediumLevel();
         }
     }
 }

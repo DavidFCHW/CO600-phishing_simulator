@@ -20,6 +20,7 @@ public class EmailScript : MonoBehaviour {
     public GameObject previewScrollView;
     // Finished Panel
     public GameObject donePanel;
+    public GameObject lookAtFeedbackPanel;
     // Index of currently selected email
     private Email _currentlySelectedEmail;
     private int _currentlySelectedEmailIndex = 0;
@@ -53,6 +54,7 @@ public class EmailScript : MonoBehaviour {
         _currentMailbox = inbox;
         // Set finished panel inactive
         donePanel.SetActive(false);
+        lookAtFeedbackPanel.SetActive(false);
         // Initialise emails
         if (StaticClass.GetCurrentLevel() == 1) InitialiseEasyEmails();
         else if (StaticClass.GetCurrentLevel() == 2) InitialiseMediumEmails();
@@ -124,6 +126,7 @@ public class EmailScript : MonoBehaviour {
     {
         // Set finished panel inactive
         donePanel.SetActive(false);
+        lookAtFeedbackPanel.SetActive(false);
         // Move every mail to inbox
         foreach (Email mail in trash.GetEmails())
         {
@@ -259,8 +262,8 @@ public class EmailScript : MonoBehaviour {
         foreach (Email mail in inbox.GetEmails())
         {
             mail.SetEditable(false);
-            //mail.TagAsNeutral();
-            mail.TagAsIncorrect();
+            mail.TagAsNeutral();
+//            mail.TagAsIncorrect();
         }
         foreach (Email mail in trash.GetEmails())
         {
@@ -286,6 +289,7 @@ public class EmailScript : MonoBehaviour {
                 mail.TagAsCorrect();
             }
         }
+        lookAtFeedbackPanel.SetActive(true);
     }
 
     public void SetCurrentMailbox(MailboxScript newCurrentMailbox)
@@ -495,17 +499,16 @@ public class Email
     /*
      * Tag as incorrect on game end
      */
-    private void TagAsNeutral()
+    public void TagAsNeutral()
     {
-        // Change preview color to not mess up on hover
-        _previewNormalColorUsed = _neutralColorLighter;
-        _previewClickedOnColorUsed = _neutralColor;
-        // Change preview hover color
-        _previewHoverColorUsed = _previewHoverFeedbackColor;
+//        // Change preview color to not mess up on hover
+//        _previewNormalColorUsed = _neutralColorLighter;
+//        _previewClickedOnColorUsed = _neutralColor;
+//        // Change preview hover color
+//        _previewHoverColorUsed = _previewHoverFeedbackColor;
         // Show feedback panel
-        emailBody.ShowNegativeFeedback();
+        emailBody.ShowNeutralFeedback();
         // Change preview and body color
-        Tag();
     }
 
     /*

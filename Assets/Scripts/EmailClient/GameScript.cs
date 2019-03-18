@@ -66,6 +66,7 @@ public class GameScript : MonoBehaviour {
         mediumExplanations.gameObject.SetActive(false);
         if (StaticClass.GetCurrentLevel() == 1) easyExplanations.gameObject.SetActive(true);
         else if (StaticClass.GetCurrentLevel() == 2) mediumExplanations.gameObject.SetActive(true);
+        else ExplanationsDone();
     }
 
     /*

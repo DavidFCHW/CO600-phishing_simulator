@@ -13,6 +13,7 @@ public class ManagerTalkScript : MonoBehaviour {
     public GameObject[] textPanels; // All the text panels
     private int _currentTextPanel; // The text panel we're currently on
     public AudioSource clickSound;
+    public OfficeScript officeScript;
 
     private void Awake()
     {
@@ -27,7 +28,7 @@ public class ManagerTalkScript : MonoBehaviour {
     }
 
     /*
-     * Show dilogue
+     * Show dialogue
      */
      public void ShowDialogue()
     {
@@ -45,6 +46,7 @@ public class ManagerTalkScript : MonoBehaviour {
             // We're on the last one
             Destroy(gameObject);
             mainCam.UnBlock();
+            officeScript.ExplanationsDone();
         }
         else
         {
