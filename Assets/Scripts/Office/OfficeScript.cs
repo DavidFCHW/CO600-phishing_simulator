@@ -39,7 +39,6 @@ public class OfficeScript : MonoBehaviour
         // Play background sound
         backgroundSound.Play();
         int level = StaticClass.GetAndSetCurrentLevel();
-        Debug.Log("Current level = " + level);
         switch (level)
         {
             case 1:
