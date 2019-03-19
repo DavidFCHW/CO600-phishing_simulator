@@ -95,8 +95,8 @@ namespace EmailClient
             // Position panel above where the mouse is
             var rect = linkPanels[panelIndex].GetComponent<RectTransform>().rect;
             linkPanels[panelIndex].transform.position = new Vector3(
-                Input.mousePosition.x - rect.width / 4,
-                Input.mousePosition.y - rect.height / 2 - 2,
+                Input.mousePosition.x - rect.width,
+                Input.mousePosition.y - rect.height - 2,
                 Input.mousePosition.z - 2
             );
             // Show the panel for the link we're hovering on

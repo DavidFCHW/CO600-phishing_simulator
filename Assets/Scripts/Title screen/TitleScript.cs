@@ -13,6 +13,7 @@ public class TitleScript : MonoBehaviour {
     public GameObject creditsPanel;
     public GameObject creditsText;
     public GameObject kentLogo;
+    public GameObject areUSurePanel;
     // Variables
     private float _creditsTextYOffset;
     private int _step = 1; // How fast the credits go
@@ -32,8 +33,12 @@ public class TitleScript : MonoBehaviour {
         creditsPanel.SetActive(false);
         creditsText.SetActive(true);
 //        kentLogo.SetActive(true);
+        // Hide areUSure panel
+        areUSurePanel.SetActive(false);
         // Start the music
         backgroundMusic.Play();
+        // Load data
+        StaticClass.LoadData();
     }
 
     /*
@@ -48,13 +53,12 @@ public class TitleScript : MonoBehaviour {
 
      private void PlayGame()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //either this
-        SceneManager.LoadScene("Office"); //Or this one...
+        SceneManager.LoadScene("Office");
     }
 
     private void QuitGame()
     {
-        Debug.Log("Quit game");
+        StaticClass.SaveData();
         Application.Quit();
     }
 
@@ -116,6 +120,28 @@ public class TitleScript : MonoBehaviour {
     {
         clickSound.Play();
         QuitGame();
+    }
+    
+    /*
+     * Reset button clicked
+     */
+    public void ResetClicked()
+    {
+        clickSound.Play();
+        areUSurePanel.SetActive(true);
+    }
+
+    public void ConfirmReset()
+    {
+        clickSound.Play();
+        areUSurePanel.SetActive(false);
+        StaticClass.ResetSavedData();
+    }
+
+    public void CancelReset()
+    {
+        clickSound.Play();
+        areUSurePanel.SetActive(false);
     }
 
     /*
