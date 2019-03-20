@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 /*
  * Script to coordinate the events in the office
@@ -33,6 +27,8 @@ public class OfficeScript : MonoBehaviour
     // Blinking instructions
     public GameObject instructions;
     private bool showInstructions;
+    // Camera script
+    public FirstPersonCameraScript _cameraScript;
 
     private void Start()
     {

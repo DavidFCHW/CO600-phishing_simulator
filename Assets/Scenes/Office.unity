@@ -8008,6 +8008,7 @@ MonoBehaviour:
   managerThinking: {fileID: 1360404324}
   jasonNurse: {fileID: 444988985}
   instructions: {fileID: 1307538153}
+  _cameraScript: {fileID: 1775525759}
 --- !u!4 &982351620
 Transform:
   m_ObjectHideFlags: 0
@@ -10062,7 +10063,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 22
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -10090,7 +10091,7 @@ MonoBehaviour:
     spaceCount: 5
     wordCount: 6
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -13175,9 +13176,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ba52f0685a047acaacfa8c180e11d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedH: 70
-  speedV: 70
+  speedH: 60
+  speedV: 60
   cursor: {fileID: 2056333925}
+  cursorClosedHandTexture: {fileID: 2800000, guid: f4b57fea5705d4272953ea4619ca760c,
+    type: 3}
+  cursorOpenHandTexture: {fileID: 2800000, guid: 0fee72e06f46a4e78ae07c97e4bbe888,
+    type: 3}
 --- !u!1 &1779363470
 GameObject:
   m_ObjectHideFlags: 0
