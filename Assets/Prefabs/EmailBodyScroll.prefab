@@ -451,6 +451,7 @@ MonoBehaviour:
   hoverColor:
     serializedVersion: 2
     rgba: 4294962336
+  canvas: {fileID: 0}
 --- !u!1 &1309148604603268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,6 +1835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedbackPanel: []
   linkPanels: []
+  canvas: {fileID: 0}
 --- !u!1 &592959933545681585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,6 +2025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedbackPanel: []
   linkPanels: []
+  canvas: {fileID: 0}
 --- !u!1 &635503153919726280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,6 +2592,7 @@ MonoBehaviour:
   feedbackPanel: []
   linkPanels:
   - {fileID: 5927969477569383769}
+  canvas: {fileID: 0}
 --- !u!1 &1487559009758354046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2873,6 +2877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedbackPanel: []
   linkPanels: []
+  canvas: {fileID: 0}
 --- !u!1 &1679533186455177225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3231,6 +3236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedbackPanel: []
   linkPanels: []
+  canvas: {fileID: 0}
 --- !u!1 &4161630369647843265
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,6 +3608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedbackPanel: []
   linkPanels: []
+  canvas: {fileID: 0}
 --- !u!1 &4314355838909286796
 GameObject:
   m_ObjectHideFlags: 0
@@ -4015,6 +4022,7 @@ MonoBehaviour:
   feedbackPanel: []
   linkPanels:
   - {fileID: 5927969477569383769}
+  canvas: {fileID: 0}
 --- !u!1 &5637178904755159191
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,6 +4119,7 @@ MonoBehaviour:
   hoverColor:
     serializedVersion: 2
     rgba: 4294962336
+  canvas: {fileID: 0}
 --- !u!1 &7322619721989013766
 GameObject:
   m_ObjectHideFlags: 0
@@ -4362,6 +4371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedbackPanel: []
   linkPanels: []
+  canvas: {fileID: 0}
 --- !u!1001 &7134757965462881118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4628,16 +4638,6 @@ PrefabInstance:
     - target: {fileID: 4367373337163421195, guid: f95ced83df27e4754987367e7ccee896,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367373337163421195, guid: f95ced83df27e4754987367e7ccee896,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367373337163421195, guid: f95ced83df27e4754987367e7ccee896,
-        type: 3}
-      propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4367373338270878685, guid: f95ced83df27e4754987367e7ccee896,

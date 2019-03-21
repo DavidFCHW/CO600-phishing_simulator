@@ -75,11 +75,11 @@ namespace EmailClient
             // Unselect panel for previously hovered on link if there was one
             if (_previousFeedbackIndex != -1) feedbackPanel[_previousFeedbackIndex].SetActive(false);
             // Position panel above where the mouse is
-feedbackPanel[panelIndex].transform.position = new Vector3(
-    Input.mousePosition.x + 2,
-    Input.mousePosition.y + 2,
-    Input.mousePosition.z + 2
-);
+            feedbackPanel[panelIndex].transform.position = new Vector3(
+                Input.mousePosition.x + 2,
+                Input.mousePosition.y + 2,
+                Input.mousePosition.z + 2
+            );
             // Show the panel for the link we're hovering on
             feedbackPanel[panelIndex].SetActive(true);
             // Assign previous panel
@@ -95,8 +95,8 @@ feedbackPanel[panelIndex].transform.position = new Vector3(
             // Position panel above where the mouse is
             var rect = linkPanels[panelIndex].GetComponent<RectTransform>().rect;
             linkPanels[panelIndex].transform.position = new Vector3(
-                Input.mousePosition.x - rect.width / 4,
-                Input.mousePosition.y - rect.height / 2,
+                Input.mousePosition.x,
+                Input.mousePosition.y - 2,
                 Input.mousePosition.z - 2
             );
             // Show the panel for the link we're hovering on

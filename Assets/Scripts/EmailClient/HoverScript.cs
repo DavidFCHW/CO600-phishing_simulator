@@ -26,8 +26,8 @@ namespace EmailClient
             gameObject.GetComponent<Image>().color = hoverColor;
             // Position the panel below the mouse
             hiddenPanel.transform.position = new Vector3(
-                Input.mousePosition.x - 2,
-                Input.mousePosition.y - hiddenPanel.GetComponent<RectTransform>().rect.height / 2 - 10,
+                Input.mousePosition.x,
+                Input.mousePosition.y - 2,
                 Input.mousePosition.z - 2
             );
             // Show the panel
