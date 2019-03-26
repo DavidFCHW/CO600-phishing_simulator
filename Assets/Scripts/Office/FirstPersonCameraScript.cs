@@ -5,7 +5,6 @@ public class FirstPersonCameraScript : MonoBehaviour {
 
     public float speedH;
     public float speedV;
-    public GameObject cursor;
 
     private float _yaw;
     private float _pitch;
@@ -21,7 +20,7 @@ public class FirstPersonCameraScript : MonoBehaviour {
         Cursor.SetCursor(cursorOpenHandTexture, Vector2.zero, CursorMode.Auto);
     }
 
-    void Update ()
+    private void Update ()
     {   
         if (_rotationBlocked) return;
 

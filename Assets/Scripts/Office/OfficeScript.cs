@@ -1,4 +1,7 @@
 ﻿
+using System.IO;
+using System.Text;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /*
@@ -26,7 +29,7 @@ public class OfficeScript : MonoBehaviour
     public GameObject jasonNurse;
     // Blinking instructions
     public GameObject instructions;
-    private bool showInstructions;
+    private bool _showInstructions;
 
     private void Start()
     {
@@ -49,7 +52,7 @@ public class OfficeScript : MonoBehaviour
                 // Hide Jason
                 jasonNurse.SetActive(false);
                 // Show instructions
-                showInstructions = true;
+                _showInstructions = true;
                 break;
             }
             case 2:
@@ -65,7 +68,7 @@ public class OfficeScript : MonoBehaviour
                 // Hide Jason
                 jasonNurse.SetActive(false);
                 // show instructions
-                showInstructions = true;
+                _showInstructions = true;
                 break;
             }
             case 3:
@@ -81,7 +84,7 @@ public class OfficeScript : MonoBehaviour
                 // Show Jason
                 jasonNurse.SetActive(true);
                 // Hide instructions
-                showInstructions = false;
+                _showInstructions = false;
                 break;
             }
             default:
@@ -92,7 +95,7 @@ public class OfficeScript : MonoBehaviour
                 // Show Jason
                 jasonNurse.SetActive(true);
                 // Hide instructions
-                showInstructions = false;
+                _showInstructions = false;
                 break;
             }
         }
@@ -114,7 +117,7 @@ public class OfficeScript : MonoBehaviour
     {
         // Show instructions
 //        showExplanations = true;
-        instructions.SetActive(showInstructions);
+        instructions.SetActive(_showInstructions);
     }
     
     /*
