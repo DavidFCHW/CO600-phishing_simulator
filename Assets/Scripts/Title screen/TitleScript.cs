@@ -22,6 +22,7 @@ public class TitleScript : MonoBehaviour {
 
     private void Start()
     {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         _kentLogoRectTransform = kentLogo.GetComponent<RectTransform>();
         _creditsTextRectTrans = creditsText.GetComponent<RectTransform>();
         // Place the credit panel just below the canvas

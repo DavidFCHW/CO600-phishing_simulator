@@ -36,6 +36,7 @@ public class GameScript : MonoBehaviour {
      */
     private void Awake()
     {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         // Make pause enabled
 //        _pauseEnabled = false;
         _pauseEnabled = true;

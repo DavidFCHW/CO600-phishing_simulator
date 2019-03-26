@@ -93,7 +93,6 @@ namespace EmailClient
             // Unselect panel for previously hovered on link if there was one
             if (_previousLinkIndex != -1) linkPanels[_previousLinkIndex].SetActive(false);
             // Position panel above where the mouse is
-            var rect = linkPanels[panelIndex].GetComponent<RectTransform>().rect;
             linkPanels[panelIndex].transform.position = new Vector3(
                 Input.mousePosition.x,
                 Input.mousePosition.y - 2,
