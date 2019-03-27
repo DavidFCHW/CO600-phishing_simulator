@@ -4067,7 +4067,7 @@ MonoBehaviour:
 
     Group Supervisor:
 
-    - Jason R.C. Nurse
+    - Jason Nurse
 
 
     Producers:
@@ -4079,7 +4079,7 @@ MonoBehaviour:
     - Luc Hayward
 
 
-    Script writers:
+    Scripters:
 
     - Reehan Aslam
 
@@ -4103,11 +4103,23 @@ MonoBehaviour:
 
     - Background Music: <color=blue><u>https://youtu.be/kxD6poJ8BgE</u></color>
 
-    - Whistle: <color=blue><u>https://www.youtube.com/watch?v=r4CjAsg_vmQ</u></color>
+    - Whistle: <color=blue><u>https://www.youtu.be/r4CjAsg_vmQ</u></color>
 
     - Score Tally: <color=blue><u>https://freesound.org/people/xtrgamr/sounds/253546/</u></color>
 
     - Countdown: <color=blue><u>https://www.youtube.com/watch?v=7guNNC2QEKo</u></color>
+
+    - Title screen music: <color=blue><u>https://youtu.be/2hejRO7RMtU</u></color>
+
+    - Audience cheer: <color=blue><u>https://youtu.be/d2Unuzkdfbs</u></color>
+
+    - Boop: <color=blue><u>https://www.sounds-resource.com/game_boy_advance/pokemonfireredleafgreen/sound/4204</u></color>
+
+    - Office ambient: <color=blue><u>https://youtu.be/pNhxg4dOlig</u></color>
+
+    - Sad Trombone: <color=blue><u>https://youtu.be/CQeezCdF4mk</u></color>
+
+    - Swoosh: <color=blue><u>https://youtu.be/B-uIfFgMPyw</u></color>
 
 
     Art:
@@ -4118,8 +4130,70 @@ MonoBehaviour:
 
     - Office: <color=blue><u>https://dribbble.com/shots/2059808-Free-Flat-Office-Vector-Illustration</u></color>
 
+    - Jason body: <color=blue><u>https://managewp.com/wp-content/uploads/2013/01/yoast.jpg</u></color>
 
-    Thank you!'
+    - Phisherman: <color=blue><u>https://fr.123rf.com/photo_84209613_illustration-qu-un-homme-portant-des-v%C3%AAtements-de-travail-l%C3%A8ve-une-main-et-rit.html</u></color>
+
+    - Piranha: <color=blue><u>https://www.vectorstock.com/royalty-free-vector/piranha-cartoon-vector-6917170</u></color>
+
+    - Swordfish: <color=blue><u>https://www.bigstockphoto.com/nl/image-34760951/stock-vector-zeilvis-zwaardvis-springen-cartoon</u></color>
+
+    - Poseidon cartoon: <color=blue><u>http://www.clipartbest.com/clipart-9izogBy9T</u></color>
+
+    - Kingfisher: <color=blue><u>http://clipartmag.com/kingfisher-bird-clipart#kingfisher-bird-clipart-36.jpg</u></color>
+
+
+    3D Models:
+
+    - Coat hanger: <color=blue><u>https://free3d.com/3d-model/hanger-60035.html</u></color>
+
+    - Hanger: <color=blue><u>https://free3d.com/3d-model/hanger-846393.html</u></color>
+
+    - Coffee cups: <color=blue><u>https://free3d.com/3d-model/culver-black-mug-52773.html</u></color>
+
+    - Coffee machines: <color=blue><u>https://free3d.com/3d-model/coffee-machine-rigged-78507.html</u></color>
+
+    - Coffee table: <color=blue><u>https://free3d.com/3d-model/coffee-table-71234.html</u></color>
+
+    - Corkboard: <color=blue><u>https://free3d.com/3d-model/corkboard-v3--49913.html</u></color>
+
+    - Table scene: <color=blue><u>https://free3d.com/3d-model/table-scene-53619.html</u></color>
+
+    - Fire Extinguisher: <color=blue><u>https://free3d.com/3d-model/fire-extinguisher--58509.html</u></color>
+
+    - Flower pot: <color=blue><u>https://free3d.com/3d-model/house-plant-01-60848.html</u></color>
+
+    - Hour glass: <color=blue><u>https://www.turbosquid.com/3d-models/hourglass-hour-glass-x-free/804025</u></color>
+
+    - Kitchen: <color=blue><u>https://free3d.com/3d-model/basic-kitchen-sink-and-tap-24017.html</u></color>
+
+    - Light switch: <color=blue><u>https://free3d.com/3d-model/light-switch-22023.html</u></color>
+
+    - Metal drawers: <color=blue><u>https://free3d.com/3d-model/office-drawer-29068.html</u></color>
+
+    - Computer table: <color=blue><u>https://free3d.com/3d-model/computer-table-86952.html</u></color>
+
+    - Wall clock: <color=blue><u>https://free3d.com/3d-model/wall-clock-11050.html</u></color>
+
+    - Picture frame: <color=blue><u>https://www.turbosquid.com/3d-models/c4d-oil-painting/422316</u></color>
+
+    - Sofa: <color=blue><u>https://free3d.com/3d-model/sofa-801691.html</u></color>
+
+    - Curved TV: <color=blue><u>https://free3d.com/3d-model/curved-led-tv-52553.html</u></color>
+
+    - Studio light: <color=blue><u>https://free3d.com/3d-model/studio-light-68252.html</u></color>
+
+    - Window casement: <color=blue><u>https://www.turbosquid.com/3d-models/window-frame-max-free/250264</u></color>
+
+
+    Other:
+
+    - Blur: <color=blue><u>https://youtu.be/YKTjVACAfqE</u></color>
+
+
+    Thank you!
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -4187,12 +4261,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2029529728}
-    characterCount: 698
+    characterCount: 3030
     spriteCount: 0
-    spaceCount: 77
-    wordCount: 107
+    spaceCount: 203
+    wordCount: 396
     linkCount: 0
-    lineCount: 36
+    lineCount: 98
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
