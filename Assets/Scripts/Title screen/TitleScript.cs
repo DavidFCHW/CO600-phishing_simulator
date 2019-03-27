@@ -13,27 +13,32 @@ public class TitleScript : MonoBehaviour {
     public GameObject creditsPanel;
     public GameObject creditsText;
     public GameObject kentLogo;
+    public GameObject areUSurePanel;
     // Variables
     private float _creditsTextYOffset;
     private int _step = 1; // How fast the credits go
     private RectTransform _creditsTextRectTrans;
     private RectTransform _kentLogoRectTransform;
+    private int _stepIncrease = 1;
 
     private void Start()
     {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         _kentLogoRectTransform = kentLogo.GetComponent<RectTransform>();
         _creditsTextRectTrans = creditsText.GetComponent<RectTransform>();
         // Place the credit panel just below the canvas
-        var creditsTextRectTrans = creditsText.GetComponent<RectTransform>();
         _creditsTextYOffset = -gameObject.GetComponent<RectTransform>().rect.height;
-        creditsTextRectTrans.offsetMax = new Vector2(0, _creditsTextYOffset);
         // Hide credits
         buttonPanel.SetActive(true);
         creditsPanel.SetActive(false);
         creditsText.SetActive(true);
 //        kentLogo.SetActive(true);
+        // Hide areUSure panel
+        areUSurePanel.SetActive(false);
         // Start the music
         backgroundMusic.Play();
+        // Load data
+        StaticClass.LoadData();
     }
 
     /*
@@ -41,20 +46,35 @@ public class TitleScript : MonoBehaviour {
      */
      private void IncreaseStep()
     {
-        if (_step == 1) _step = 4;
-        else if (_step == 4) _step = 8;
-        else if (_step == 8) _step = 1;
+        switch (_stepIncrease)
+        {
+            case 1:
+                _stepIncrease = 2;
+                _step *= 4;
+                break;
+            case 2:
+                _stepIncrease = 3;
+                _step *= 2;
+                break;
+            case 3:
+                _stepIncrease = 4;
+                _step *= 2;
+                break;
+            case 4:
+                _stepIncrease = 1;
+                _step /= 16;
+                break;
+        }
     }
 
      private void PlayGame()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //either this
-        SceneManager.LoadScene("Office"); //Or this one...
+        SceneManager.LoadScene("Office");
     }
 
     private void QuitGame()
     {
-        Debug.Log("Quit game");
+        StaticClass.SaveData();
         Application.Quit();
     }
 
@@ -116,6 +136,28 @@ public class TitleScript : MonoBehaviour {
     {
         clickSound.Play();
         QuitGame();
+    }
+    
+    /*
+     * Reset button clicked
+     */
+    public void ResetClicked()
+    {
+        clickSound.Play();
+        areUSurePanel.SetActive(true);
+    }
+
+    public void ConfirmReset()
+    {
+        clickSound.Play();
+        areUSurePanel.SetActive(false);
+        StaticClass.ResetSavedData();
+    }
+
+    public void CancelReset()
+    {
+        clickSound.Play();
+        areUSurePanel.SetActive(false);
     }
 
     /*

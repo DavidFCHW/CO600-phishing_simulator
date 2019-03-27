@@ -17,14 +17,6 @@ public class OnCharacterOver : MonoBehaviour {
         interogationMark.SetActive(false);
     }
 
-    private void LateUpdate()
-    {
-//        if (!Input.GetMouseButtonDown(0)) return;
-//        if (!_dialogueBoxShowing) return;
-//        dialogueBox.SetActive(false);
-//        _dialogueBoxShowing = false;
-    }
-
     private void OnMouseDown()
     {
         if (_dialogueBoxShowing)

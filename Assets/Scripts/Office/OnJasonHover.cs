@@ -29,12 +29,12 @@ namespace Office
         {
             if (_dialogueBoxShowing)
             {
-                dialogueBoxes[StaticClass.jsonCount].SetActive(false);
+                dialogueBoxes[StaticClass.JsonCount].SetActive(false);
                 _dialogueBoxShowing = false;
             }
             else
             {
-                dialogueBoxes[StaticClass.jsonCount].SetActive(true);
+                dialogueBoxes[StaticClass.JsonCount].SetActive(true);
                 _dialogueBoxShowing = true;
             }
         }
@@ -53,21 +53,9 @@ namespace Office
         public void OnNextClicked()
         {
             lightClick.Play();
-            dialogueBoxes[StaticClass.jsonCount].SetActive(false);
-            StaticClass.jsonCount++;
-            dialogueBoxes[StaticClass.jsonCount].SetActive(true);
-        }
-
-        public void OnOKClicked()
-        {
-            meanClick.Play();
-            dialogueBoxes[StaticClass.jsonCount].SetActive(false);
-            _dialogueBoxShowing = false;
-            if (!awardedAchYet)
-            {
-                awardedAchYet = true;
-                officeScript.BumpAchievement();
-            }
+            dialogueBoxes[StaticClass.JsonCount].SetActive(false);
+            StaticClass.JsonCount++;
+            dialogueBoxes[StaticClass.JsonCount].SetActive(true);
         }
 
         public void RetryEasyLevel()
