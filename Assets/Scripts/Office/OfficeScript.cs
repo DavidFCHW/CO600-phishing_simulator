@@ -1,6 +1,9 @@
 ﻿
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -116,8 +119,16 @@ public class OfficeScript : MonoBehaviour
     public void ExplanationsDone()
     {
         // Show instructions
-//        showExplanations = true;
-        instructions.SetActive(_showInstructions);
+        if (_showInstructions) StartCoroutine(ShowInstructions());
+    }
+
+    /*
+     * Shows instructions after a delay
+     */
+    IEnumerator ShowInstructions()
+    {
+        yield return new WaitForSeconds(3);
+        instructions.SetActive(true);
     }
     
     /*

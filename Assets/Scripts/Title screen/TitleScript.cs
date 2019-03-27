@@ -19,6 +19,7 @@ public class TitleScript : MonoBehaviour {
     private int _step = 1; // How fast the credits go
     private RectTransform _creditsTextRectTrans;
     private RectTransform _kentLogoRectTransform;
+    private int _stepIncrease = 1;
 
     private void Start()
     {
@@ -26,9 +27,7 @@ public class TitleScript : MonoBehaviour {
         _kentLogoRectTransform = kentLogo.GetComponent<RectTransform>();
         _creditsTextRectTrans = creditsText.GetComponent<RectTransform>();
         // Place the credit panel just below the canvas
-        var creditsTextRectTrans = creditsText.GetComponent<RectTransform>();
         _creditsTextYOffset = -gameObject.GetComponent<RectTransform>().rect.height;
-        creditsTextRectTrans.offsetMax = new Vector2(0, _creditsTextYOffset);
         // Hide credits
         buttonPanel.SetActive(true);
         creditsPanel.SetActive(false);
@@ -47,9 +46,25 @@ public class TitleScript : MonoBehaviour {
      */
      private void IncreaseStep()
     {
-        if (_step == 1) _step = 4;
-        else if (_step == 4) _step = 8;
-        else if (_step == 8) _step = 1;
+        switch (_stepIncrease)
+        {
+            case 1:
+                _stepIncrease = 2;
+                _step *= 4;
+                break;
+            case 2:
+                _stepIncrease = 3;
+                _step *= 2;
+                break;
+            case 3:
+                _stepIncrease = 4;
+                _step *= 2;
+                break;
+            case 4:
+                _stepIncrease = 1;
+                _step /= 16;
+                break;
+        }
     }
 
      private void PlayGame()
