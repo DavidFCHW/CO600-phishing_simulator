@@ -83,7 +83,7 @@ public class GameScript : MonoBehaviour {
         }
     }
 
-    private void Pause()
+    public void Pause()
     {
         pauseMenu.SetActive(true);
         _gameIsPaused = true;
