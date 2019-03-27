@@ -230,38 +230,38 @@ public static class StaticClass {
      */
     public static void SaveData()
     {
-        Debug.Log(GotAchievementMedium);
-        
-        var strBld = new StringBuilder();
-        strBld.AppendFormat("CurrentLevel:{0}\n", _currentLevel);
-        strBld.AppendFormat("GotAchievementEasy:{0}\n", GotAchievementEasy ? "true" : "false");
-        strBld.AppendFormat("GotAchievementMedium:{0}\n", GotAchievementMedium ? "true" : "false");
-        strBld.AppendFormat("PerfectedEasy:{0}\n", PerfectedEasy ? "true" : "false");
-        strBld.AppendFormat("PerfectedMedium:{0}\n", PerfectedMedium ? "true" : "false");
-        strBld.AppendFormat("JsonCount:{0}\n", JsonCount);
-        
-        Debug.Log("Saving " + strBld);
-        
-        if (File.Exists(@SavePath)) File.Delete(@SavePath);
-        File.WriteAllText(@SavePath, strBld.ToString());
+//        Debug.Log(GotAchievementMedium);
+//        
+//        var strBld = new StringBuilder();
+//        strBld.AppendFormat("CurrentLevel:{0}\n", _currentLevel);
+//        strBld.AppendFormat("GotAchievementEasy:{0}\n", GotAchievementEasy ? "true" : "false");
+//        strBld.AppendFormat("GotAchievementMedium:{0}\n", GotAchievementMedium ? "true" : "false");
+//        strBld.AppendFormat("PerfectedEasy:{0}\n", PerfectedEasy ? "true" : "false");
+//        strBld.AppendFormat("PerfectedMedium:{0}\n", PerfectedMedium ? "true" : "false");
+//        strBld.AppendFormat("JsonCount:{0}\n", JsonCount);
+//        
+//        Debug.Log("Saving " + strBld);
+//        
+//        if (File.Exists(@SavePath)) File.Delete(@SavePath);
+//        File.WriteAllText(@SavePath, strBld.ToString());
     }
 
     public static void LoadData()
     {
-        if (dataLoaded) return;
-        if (!File.Exists(@SavePath)) return;
-        
-        var lines = File.ReadAllLines(@SavePath);
-        
-        _currentLevel = int.Parse(lines[0].Split(':')[1]);
-        _currentLevelCopy = _currentLevel;
-        GotAchievementEasy = lines[1].Split(':')[1] == "true";
-        GotAchievementMedium = lines[2].Split(':')[1] == "true";
-        PerfectedEasy = lines[3].Split(':')[1] == "true";
-        PerfectedMedium = lines[4].Split(':')[1] == "true";
-        JsonCount = int.Parse(lines[5].Split(':')[1]);
-
-        dataLoaded = true;
+//        if (dataLoaded) return;
+//        if (!File.Exists(@SavePath)) return;
+//        
+//        var lines = File.ReadAllLines(@SavePath);
+//        
+//        _currentLevel = int.Parse(lines[0].Split(':')[1]);
+//        _currentLevelCopy = _currentLevel;
+//        GotAchievementEasy = lines[1].Split(':')[1] == "true";
+//        GotAchievementMedium = lines[2].Split(':')[1] == "true";
+//        PerfectedEasy = lines[3].Split(':')[1] == "true";
+//        PerfectedMedium = lines[4].Split(':')[1] == "true";
+//        JsonCount = int.Parse(lines[5].Split(':')[1]);
+//
+//        dataLoaded = true;
     }
 
     public static void ResetSavedData()
