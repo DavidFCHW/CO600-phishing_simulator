@@ -32,7 +32,9 @@ public class OfficeScript : MonoBehaviour
     public GameObject jasonNurse;
     // Blinking instructions
     public GameObject instructions;
+    public GameObject instructions2; // Look around the office
     private bool _showInstructions;
+    private int _instructionsToShow;
 
     private void Start()
     {
@@ -55,6 +57,7 @@ public class OfficeScript : MonoBehaviour
                 // Hide Jason
                 jasonNurse.SetActive(false);
                 // Show instructions
+                _instructionsToShow = 1;
                 _showInstructions = true;
                 break;
             }
@@ -71,6 +74,7 @@ public class OfficeScript : MonoBehaviour
                 // Hide Jason
                 jasonNurse.SetActive(false);
                 // show instructions
+                _instructionsToShow = 1;
                 _showInstructions = true;
                 break;
             }
@@ -87,7 +91,8 @@ public class OfficeScript : MonoBehaviour
                 // Show Jason
                 jasonNurse.SetActive(true);
                 // Hide instructions
-                _showInstructions = false;
+                _instructionsToShow = 2;
+                _showInstructions = true;
                 break;
             }
             default:
@@ -111,6 +116,7 @@ public class OfficeScript : MonoBehaviour
         poseidon.SetActive(StaticClass.PerfectedEasy && StaticClass.PerfectedMedium);
         // Hide instructions
         instructions.SetActive(false);
+        instructions2.SetActive(false);
     }
     
     /*
@@ -128,7 +134,8 @@ public class OfficeScript : MonoBehaviour
     IEnumerator ShowInstructions()
     {
         yield return new WaitForSeconds(3);
-        instructions.SetActive(true);
+        if (_instructionsToShow == 1) instructions.SetActive(true);
+        if (_instructionsToShow == 2) instructions2.SetActive(true);
     }
     
     /*
