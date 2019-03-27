@@ -535,7 +535,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: I wish Liam would stop sending me stupid memes...
+  m_Text: I wish Liam would stop sending me weird memes...
 --- !u!222 &74468722
 CanvasRenderer:
   m_ObjectHideFlags: 0
