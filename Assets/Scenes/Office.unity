@@ -8407,12 +8407,12 @@ MonoBehaviour:
   managerDialogue3: {fileID: 1341881690}
   backgroundSound: {fileID: 1556220238}
   clickSound: {fileID: 2102728113}
-  greyedPhisherman: {fileID: 1658510216}
-  phisherman: {fileID: 245570301}
-  greyedKingphisher: {fileID: 1877537737}
-  kingphisher: {fileID: 339675218}
-  greyedPoseidon: {fileID: 1908252087}
-  poseidon: {fileID: 816790111}
+  greyedPhisherman: {fileID: 1658510220}
+  phisherman: {fileID: 245570305}
+  greyedKingphisher: {fileID: 1877537741}
+  kingphisher: {fileID: 339675222}
+  greyedPoseidon: {fileID: 1908252091}
+  poseidon: {fileID: 816790115}
   managerNeutral: {fileID: 819393847}
   managerThinking: {fileID: 1360404324}
   jasonNurse: {fileID: 444988985}

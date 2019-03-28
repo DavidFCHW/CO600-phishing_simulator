@@ -25,13 +25,12 @@ namespace Office
         public AudioSource clickSound;
 
         // Achievement related stuff
-        public GameObject greyedPhisherman;
-        public GameObject phisherman;
-        public GameObject greyedKingphisher;
-        public GameObject kingphisher;
-        public GameObject greyedPoseidon;
-
-        public GameObject poseidon;
+        public BadgeHoverScript greyedPhisherman;
+        public BadgeHoverScript phisherman;
+        public BadgeHoverScript greyedKingphisher;
+        public BadgeHoverScript kingphisher;
+        public BadgeHoverScript greyedPoseidon;
+        public BadgeHoverScript poseidon;
 
         // Manager
         public GameObject managerNeutral;
@@ -56,13 +55,6 @@ namespace Office
             {
                 case 1:
                 {
-                    // Sort out the dialogue
-                    if (!StaticClass.DialogueForCurrentLevelShown())
-                    {
-                        managerDialogue1.ShowDialogue();
-                        StaticClass.SeenDialogueForCurrentLevel();
-                    }
-
                     // Show the correct manager
                     managerNeutral.SetActive(true);
                     managerThinking.SetActive(false);
@@ -71,16 +63,17 @@ namespace Office
                     // Show instructions
                     _instructionsToShow = 1;
                     _showInstructions = true;
+                    // Sort out the dialogue
+                    if (!StaticClass.DialogueForCurrentLevelShown())
+                    {
+                        managerDialogue1.ShowDialogue();
+                        StaticClass.SeenDialogueForCurrentLevel();
+                    }
+                    else ExplanationsDone();
                     break;
                 }
                 case 2:
                 {
-                    if (!StaticClass.DialogueForCurrentLevelShown())
-                    {
-                        managerDialogue2.ShowDialogue();
-                        StaticClass.SeenDialogueForCurrentLevel();
-                    }
-
                     // Show the correct manager
                     managerNeutral.SetActive(true);
                     managerThinking.SetActive(false);
@@ -89,16 +82,16 @@ namespace Office
                     // show instructions
                     _instructionsToShow = 1;
                     _showInstructions = true;
+                    if (!StaticClass.DialogueForCurrentLevelShown())
+                    {
+                        managerDialogue2.ShowDialogue();
+                        StaticClass.SeenDialogueForCurrentLevel();
+                    }
+                    else ExplanationsDone();
                     break;
                 }
                 case 3:
                 {
-                    if (!StaticClass.DialogueForCurrentLevelShown())
-                    {
-                        managerDialogue3.ShowDialogue();
-                        StaticClass.SeenDialogueForCurrentLevel();
-                    }
-
                     // Show the correct manager
                     managerNeutral.SetActive(false);
                     managerThinking.SetActive(true);
@@ -107,6 +100,12 @@ namespace Office
                     // Hide instructions
                     _instructionsToShow = 2;
                     _showInstructions = true;
+                    if (!StaticClass.DialogueForCurrentLevelShown())
+                    {
+                        managerDialogue3.ShowDialogue();
+                        StaticClass.SeenDialogueForCurrentLevel();
+                    }
+                    else ExplanationsDone();
                     break;
                 }
                 default:
@@ -123,12 +122,12 @@ namespace Office
             }
 
             // Sort out the badges
-            greyedPhisherman.SetActive(!StaticClass.GotAchievementEasy);
-            greyedKingphisher.SetActive(!StaticClass.GotAchievementMedium);
-            greyedPoseidon.SetActive(!StaticClass.PerfectedEasy || !StaticClass.PerfectedMedium);
-            phisherman.SetActive(StaticClass.GotAchievementEasy);
-            kingphisher.SetActive(StaticClass.GotAchievementMedium);
-            poseidon.SetActive(StaticClass.PerfectedEasy && StaticClass.PerfectedMedium);
+            greyedPhisherman.gameObject.SetActive(!StaticClass.GotAchievementEasy);
+            greyedKingphisher.gameObject.SetActive(!StaticClass.GotAchievementMedium);
+            greyedPoseidon.gameObject.SetActive(!StaticClass.PerfectedEasy || !StaticClass.PerfectedMedium);
+            phisherman.gameObject.SetActive(StaticClass.GotAchievementEasy);
+            kingphisher.gameObject.SetActive(StaticClass.GotAchievementMedium);
+            poseidon.gameObject.SetActive(StaticClass.PerfectedEasy && StaticClass.PerfectedMedium);
             // Hide instructions
             instructions.SetActive(false);
             instructions2.SetActive(false);
@@ -139,6 +138,13 @@ namespace Office
          */
         public void ExplanationsDone()
         {
+            // Make badges hoverable
+            greyedPhisherman.UnBlock();
+            greyedKingphisher.UnBlock();
+            greyedPoseidon.UnBlock();
+            phisherman.UnBlock();
+            kingphisher.UnBlock();
+            poseidon.UnBlock();
             // Show instructions
             if (_showInstructions) StartCoroutine(ShowInstructions());
         }

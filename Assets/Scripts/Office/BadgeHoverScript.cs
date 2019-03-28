@@ -12,6 +12,7 @@ namespace Office
         public GameObject hiddenPanel; // The panel to show on hover
         [SerializeField] private Color32 normalColor;
         [SerializeField] private Color32 hoverColor;
+        private bool _blocked = true;
         
         private void Start()
         {
@@ -20,6 +21,8 @@ namespace Office
         
         public void OnPointerEnter(PointerEventData eventData)
         {
+            // Check if blocked
+            if (_blocked) return;
             // Change object color
             gameObject.GetComponent<Image>().color = hoverColor;
             // Position the panel below the mouse
@@ -39,6 +42,11 @@ namespace Office
             gameObject.GetComponent<Image>().color = normalColor;
             // Hide panel
             hiddenPanel.SetActive(false);
+        }
+
+        public void UnBlock()
+        {
+            _blocked = false;
         }
     }
 }
