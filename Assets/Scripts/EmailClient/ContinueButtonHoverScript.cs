@@ -1,24 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ContinueButtonHoverScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+/*
+ * Blocks the continue button if the threshold is not reached
+ * Displays a panel
+ */
+namespace EmailClient
 {
-    private GameScript _gameScript;
-    
-    public void SetGameScript(GameScript gameScript)
+    public class ContinueButtonHoverScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        _gameScript = gameScript;
-    }
-    
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        _gameScript.ContinueButtonHoverStop();
-    }
+        private GameScript _gameScript;
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        _gameScript.ContinueButtonHoverStart();
+        public void SetGameScript(GameScript gameScript)
+        {
+            _gameScript = gameScript;
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            _gameScript.ContinueButtonHoverStop();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _gameScript.ContinueButtonHoverStart();
+        }
     }
 }

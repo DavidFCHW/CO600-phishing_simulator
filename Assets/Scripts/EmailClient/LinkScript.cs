@@ -5,9 +5,12 @@ using TMPro;
 using UnityEngine;
 
 /*
+ * Script responsible for showing the links and feedback where the mouse is
+ * when you hover over the correct things
+ * 
  * Put this script on a gameObject with a TextMeshProUGUI element
  * Add the hidden panels to the array in the order they appear in text
- * this shows a panel when hovering on the correct element
+ * this shows a panel where the mouse is when hovering on the correct element
  *
  * This can only have either hiddenPanels or LinkPanels
  */

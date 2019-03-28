@@ -1,58 +1,66 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FirstPersonCameraScript : MonoBehaviour {
-
-    public float speedH;
-    public float speedV;
-
-    private float _yaw;
-    private float _pitch;
-    private bool _rotationBlocked;
-    
-    private bool _mouseKeyDown;
-    
-    public Texture2D cursorClosedHandTexture;
-    public Texture2D cursorOpenHandTexture;
-
-    private void Start()
+/*
+ * Script responsible for the movement of the camera
+ * the drag and turn thingy to look around
+ */
+namespace Office
+{
+    public class FirstPersonCameraScript : MonoBehaviour
     {
-        Cursor.SetCursor(cursorOpenHandTexture, Vector2.zero, CursorMode.Auto);
-    }
 
-    private void Update ()
-    {   
-        if (_rotationBlocked) return;
+        public float speedH;
+        public float speedV;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        private float _yaw;
+        private float _pitch;
+        private bool _rotationBlocked;
+
+        private bool _mouseKeyDown;
+
+        public Texture2D cursorClosedHandTexture;
+        public Texture2D cursorOpenHandTexture;
+
+        private void Start()
         {
-            _mouseKeyDown = true;
-            Cursor.SetCursor(cursorClosedHandTexture, Vector2.zero, CursorMode.Auto);
-        }
-
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            _mouseKeyDown = false;
             Cursor.SetCursor(cursorOpenHandTexture, Vector2.zero, CursorMode.Auto);
         }
 
-        if (!_mouseKeyDown) return;
-        _yaw += speedH * Input.GetAxis("Mouse X") * Time.deltaTime;
-        _pitch -= speedV * Input.GetAxis("Mouse Y") * Time.deltaTime;
-        transform.eulerAngles = new Vector3(-_pitch, -_yaw, 0.0f);
-    }
+        private void Update()
+        {
+            if (_rotationBlocked) return;
 
-    public void Block()
-    {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                _mouseKeyDown = true;
+                Cursor.SetCursor(cursorClosedHandTexture, Vector2.zero, CursorMode.Auto);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                _mouseKeyDown = false;
+                Cursor.SetCursor(cursorOpenHandTexture, Vector2.zero, CursorMode.Auto);
+            }
+
+            if (!_mouseKeyDown) return;
+            _yaw += speedH * Input.GetAxis("Mouse X") * Time.deltaTime;
+            _pitch -= speedV * Input.GetAxis("Mouse Y") * Time.deltaTime;
+            transform.eulerAngles = new Vector3(-_pitch, -_yaw, 0.0f);
+        }
+
+        public void Block()
+        {
 //        cursor.SetActive(false);
-        _rotationBlocked = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
+            _rotationBlocked = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
 
-    public void UnBlock()
-    {
+        public void UnBlock()
+        {
 //        cursor.SetActive(true);
-        _rotationBlocked = false;
-        Cursor.lockState = CursorLockMode.Confined;
+            _rotationBlocked = false;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
     }
 }

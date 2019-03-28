@@ -1,53 +1,59 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ExplanationPanelScript : MonoBehaviour {
-
-    private ExplanationScript explanations;
-    private int index;
-
-    /*
-     * Setter for explanations
-     */
-    public void SetExplanations(ExplanationScript explanations)
+/*
+ * A reference of a panel for an explanation script
+ * essentially forwards the events to the explanation script so it can handle it
+ */
+namespace EmailClient
+{
+    public class ExplanationPanelScript : MonoBehaviour
     {
-        this.explanations = explanations;
-    }
 
-    /*
-     * Setter for the index
-     */
-     public void SetIndex(int index)
-    {
-        this.index = index;
-    }
+        private ExplanationScript explanations;
+        private int index;
 
-    public void OnNextClicked()
-    {
-        this.Unselect();
-        explanations.GoToPanel(index + 1);
-    }
+        /*
+         * Setter for explanations
+         */
+        public void SetExplanations(ExplanationScript explanations)
+        {
+            this.explanations = explanations;
+        }
 
-    public void OnPrevClicked()
-    {
-        this.Unselect();
-        explanations.GoToPanel(index - 1);
-    }
+        /*
+         * Setter for the index
+         */
+        public void SetIndex(int index)
+        {
+            this.index = index;
+        }
 
-    /*
-     * Select this panel
-     */
-    public void Select()
-    {
-        this.gameObject.SetActive(true);
-    }
+        public void OnNextClicked()
+        {
+            this.Unselect();
+            explanations.GoToPanel(index + 1);
+        }
 
-    /*
-     * Unselect this panel
-     */
-    public void Unselect()
-    {
-        this.gameObject.SetActive(false);
+        public void OnPrevClicked()
+        {
+            this.Unselect();
+            explanations.GoToPanel(index - 1);
+        }
+
+        /*
+         * Select this panel
+         */
+        public void Select()
+        {
+            this.gameObject.SetActive(true);
+        }
+
+        /*
+         * Unselect this panel
+         */
+        public void Unselect()
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }

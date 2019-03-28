@@ -5,45 +5,50 @@ using UnityEngine;
 /*
  * Class representing the 3... 2... 1... countdown before the game starts
  */
-public class StartCountDownScript : MonoBehaviour
+namespace EmailClient
 {
-    public GameObject[] elements;
-    private GameScript gameScript;
-    public AudioSource countdownLastBeep;
-
-    private void Start()
+    public class StartCountDownScript : MonoBehaviour
     {
-        foreach (GameObject element in elements)
+        public GameObject[] elements;
+        private GameScript gameScript;
+        public AudioSource countdownLastBeep;
+
+        private void Start()
         {
-            element.SetActive(false);
+            foreach (GameObject element in elements)
+            {
+                element.SetActive(false);
+            }
+
+            this.gameObject.SetActive(true);
         }
-        this.gameObject.SetActive(true);
-    }
 
-    public void SetGameScript(GameScript gameScript)
-    {
-        this.gameScript = gameScript;
-    }
-
-    /*
-     * Countdown before game starts
-     */
-    public void StartCountdown()
-    {
-        StartCoroutine(CountdownAllElements());
-    }
-
-    IEnumerator CountdownAllElements()
-    {
-        foreach (GameObject element in elements)
+        public void SetGameScript(GameScript gameScript)
         {
-            element.SetActive(true);
-            element.GetComponent<AudioSource>().Play();
-            yield return new WaitForSeconds(1);
-            element.SetActive(false);
+            this.gameScript = gameScript;
         }
-        countdownLastBeep.Play();
-        yield return new WaitForSeconds(0.2f);
-        gameScript.CountdownDone();
+
+        /*
+         * Countdown before game starts
+         */
+        public void StartCountdown()
+        {
+            StartCoroutine(CountdownAllElements());
+        }
+
+        IEnumerator CountdownAllElements()
+        {
+            foreach (GameObject element in elements)
+            {
+                element.SetActive(true);
+                element.GetComponent<AudioSource>().Play();
+                yield return new WaitForSeconds(1);
+                element.SetActive(false);
+            }
+
+            countdownLastBeep.Play();
+            yield return new WaitForSeconds(0.2f);
+            gameScript.CountdownDone();
+        }
     }
 }

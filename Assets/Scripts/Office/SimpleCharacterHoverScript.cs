@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/*
+ * Simplified version of the character hover script
+ * created for the non-important characters as the other script didn't fit
+ */
 namespace Office
 {
     public class SimpleCharacterHoverScript : MonoBehaviour

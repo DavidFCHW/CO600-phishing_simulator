@@ -1,7 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
+/*
+ * Script that manages Jason's dialogue and the retry of previous levels
+ */
 namespace Office
 {
     public class OnJasonHover : MonoBehaviour

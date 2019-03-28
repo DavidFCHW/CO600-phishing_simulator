@@ -1,23 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PausePanelScript : MonoBehaviour
+/*
+ * Simple script attached to the pause panel
+ * Doesn't actually cover the logic of it all, that's in the gamescript
+ */
+namespace EmailClient
 {
-    private GameScript gameScript;
-
-    public void SetGameScript(GameScript gameScript)
+    public class PausePanelScript : MonoBehaviour
     {
-        this.gameScript = gameScript;
-    }
+        private GameScript gameScript;
 
-    public void ResumeClicked()
-    {
-        gameScript.UnPause();
-    }
+        public void SetGameScript(GameScript gameScript)
+        {
+            this.gameScript = gameScript;
+        }
 
-    public void QuitClicked()
-    {
-        gameScript.QuitButtonPressed();
+        public void ResumeClicked()
+        {
+            gameScript.UnPause();
+        }
+
+        public void QuitClicked()
+        {
+            gameScript.QuitButtonPressed();
+        }
     }
 }

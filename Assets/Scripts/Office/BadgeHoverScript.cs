@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/*
+ * Shows the achievement explanations when hovering over a badge in the office
+ */
 namespace Office
 {
     public class BadgeHoverScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler

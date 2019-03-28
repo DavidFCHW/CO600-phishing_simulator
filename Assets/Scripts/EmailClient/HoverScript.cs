@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/*
+ * Hover over a component and a panel appears below the mouse
+ * Similar to LinkScript but on the entire component
+ * Used for attachments
+ */
 namespace EmailClient
 {
-    /*
-     * Hover over a component and a panel appears below the mouse
-     * Similar to LinkScript but on the entire component
-     * Used for attachments
-     */
     public class HoverScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public GameObject hiddenPanel; // The panel to show on hover
